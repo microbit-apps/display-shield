@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "makecode": "^1.3.0",
     "pxt-microbit": "^7.1.9"
   }
 }
