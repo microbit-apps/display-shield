@@ -68,5 +68,5 @@ basic.forever(() => {
 ```
 
 ```package
-pxt-arcadeshield=github:microsoft/pxt-arcadeshield
+pxt-arcadeshield=github:microbit-apps/pxt-arcadeshield
 ```

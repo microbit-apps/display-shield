@@ -37,5 +37,5 @@ screen().drawBitmap(stickPerson2, 0, 32)
 ```
 
 ```package
-pxt-arcadeshield=github:microsoft/pxt-arcadeshield
+pxt-arcadeshield=github:microbit-apps/pxt-arcadeshield
 ```
