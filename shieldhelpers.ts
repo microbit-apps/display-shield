@@ -53,7 +53,7 @@ namespace shieldhelpers {
         }
 
         private sendMessage(msg: string) {
-            control.simmessages.send("arcadeshield2", Buffer.fromUTF8(msg) , false)
+            control.simmessages.send("microbit-apps/pxt-arcadeshield", Buffer.fromUTF8(msg) , false)
         }
 
         initSim() {
@@ -99,7 +99,7 @@ namespace shieldhelpers {
 
     //% shim=TD_NOOP
     function startSim() {
-        control.simmessages.onReceived("arcadeshield2", handleShieldMessage)
+        control.simmessages.onReceived("microbit-apps/pxt-arcadeshield", handleShieldMessage)
         _screenState.initSim()
     }
 

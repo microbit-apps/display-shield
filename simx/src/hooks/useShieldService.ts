@@ -6,7 +6,7 @@ function postMessage(msg: protocol.ArcadeShieldMessage) {
     window.parent.postMessage(
         {
             type: "messagepacket",
-            channel: "arcadeshield2",
+            channel: "microbit-apps/pxt-arcadeshield",
             data: payload,
         },
         "*"
@@ -42,7 +42,7 @@ export function useShieldService(
         function handleMessagePacket(msg: any) {
             const srcFrameIndex = (msg.srcFrameIndex as number) ?? -1
             switch (msg.channel) {
-                case "arcadeshield2":
+                case "microbit-apps/pxt-arcadeshield":
                     return handleShieldMessage(msg.data, srcFrameIndex)
                 case "jacdac":
                     return
