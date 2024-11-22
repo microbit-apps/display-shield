@@ -58,7 +58,7 @@ function postMessagePacket(msg: any) {
     window.parent.postMessage(
         {
             type: "messagepacket",
-            channel: "arcadeshield",
+            channel: "arcadeshield2",
             data: payload,
         },
         "*"

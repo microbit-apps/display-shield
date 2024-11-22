@@ -53,7 +53,7 @@ namespace shieldhelpers {
         }
 
         private sendMessage(msg: string) {
-            control.simmessages.send("arcadeshield", Buffer.fromUTF8(msg) , false)
+            control.simmessages.send("arcadeshield2", Buffer.fromUTF8(msg) , false)
         }
 
         initSim() {
@@ -99,7 +99,7 @@ namespace shieldhelpers {
 
     //% shim=TD_NOOP
     function startSim() {
-        control.simmessages.onReceived("arcadeshield", handleShieldMessage)
+        control.simmessages.onReceived("arcadeshield2", handleShieldMessage)
         _screenState.initSim()
     }
 
