@@ -1,8 +1,8 @@
 {
-  "name": "@pxt-arcadeshield/sim",
+  "name": "@pxt-arcadeshield/simx",
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://github.com/microsoft/pxt-arcadeshield",
+  "homepage": "https://github.com/microbit-apps/pxt-arcadeshield",
   "type": "module",
   "scripts": {
     "dev": "vite",

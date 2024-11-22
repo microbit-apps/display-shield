@@ -6,7 +6,7 @@ Simulates an Arcade Shield accessory attached to a BBC micro:bit. When the pxt-a
 
 ### First-time setup
 ```
-cd sim
+cd simx
 npm i
 ```
 
@@ -15,7 +15,7 @@ npm i
 npm run dev
 ```
 
-This starts the sim's local development server.
+This starts the simx's local development server.
 
 ### Load into the MakeCode editor
 
