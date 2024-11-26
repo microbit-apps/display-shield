@@ -105,6 +105,7 @@ namespace shieldhelpers {
         _screenState.initSim()
         while (!_screenState.gotSimMessage) {
             basic.pause(0)
+            _screenState.initSim()
         }
     }
 
