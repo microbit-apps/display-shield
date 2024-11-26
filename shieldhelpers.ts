@@ -34,10 +34,12 @@ namespace shieldhelpers {
         runId: string;
         brightness: number;
         displayOn: boolean;
+        gotSimMessage: boolean;
 
         constructor() {
             this.runId = Math.random() + "";
             this.displayOn = undefined
+            this.gotSimMessage = false
         }
 
         displayHeight(): number {
@@ -101,8 +103,9 @@ namespace shieldhelpers {
     function startSim() {
         control.simmessages.onReceived("microbit-apps/pxt-arcadeshield", handleShieldMessage)
         _screenState.initSim()
-        // TODO: 
-        // wait for a message from the simulator extension
+        while (!__screenState.gotSimMessage) {
+            basic.pause(0)
+        }
     }
 
     function getScreenState() {
@@ -223,6 +226,9 @@ namespace shieldhelpers {
         const s = b.toString()
         const msg = <ArcadeShieldMessage>JSON.parse(s)
         if (msg) {
+            getScreenState();
+            _screenState.gotSimMessage = true
+            basic.pause(0)
             if (msg.type === "button-down" || msg.type === "button-up") {
                 const button = getButton((<ButtonMessage>msg).buttonId)
                 if (button) {
