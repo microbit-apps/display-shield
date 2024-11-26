@@ -101,6 +101,8 @@ namespace shieldhelpers {
     function startSim() {
         control.simmessages.onReceived("microbit-apps/pxt-arcadeshield", handleShieldMessage)
         _screenState.initSim()
+        // TODO: 
+        // wait for a message from the simulator extension
     }
 
     function getScreenState() {
