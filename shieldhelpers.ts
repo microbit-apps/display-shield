@@ -103,7 +103,7 @@ namespace shieldhelpers {
     function startSim() {
         control.simmessages.onReceived("microbit-apps/pxt-arcadeshield", handleShieldMessage)
         _screenState.initSim()
-        while (!__screenState.gotSimMessage) {
+        while (!_screenState.gotSimMessage) {
             basic.pause(0)
         }
     }
