@@ -101,7 +101,21 @@ Display present/absent
 ```blocks
 ```
 
-### Drawing with bitmaps
+### Drawing into the screen bitmap
+
+The screen is 160 pixels wide and 120 pixels high. The upper
+left of the screen is coordinate (0,0); The lower right of
+the screen is coordinate (159,119).  We draw two lines to 
+show the four corners of the screen:
+
+```blocks
+screen().drawLine(0, 0, 159, 119, 2)
+screen().drawLine(159, 0, 0, 119, 5)
+```
+
+
+### Creating your own bitmaps
+
 
 ## TypeScript APIs
 
