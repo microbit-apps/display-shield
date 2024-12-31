@@ -115,10 +115,11 @@ screen().drawLine(0, 0, 159, 119, 2)
 screen().drawLine(159, 0, 0, 119, 5)
 ```
 
-#### Screen center and setting a pixel
+#### Screen center, setting a pixel, and floating point
 
 Since the width and height of the screen are both even, the center of
-the screen is bounded by these four pixels:
+the screen is bounded by these four pixels, as shown by the following
+four commands that each draw a single pixel:
 ```
 screen().setPixel(79, 59, 1)
 screen().setPixel(80, 59, 1)
@@ -126,12 +127,10 @@ screen().setPixel(79, 60, 1)
 screen().setPixel(80, 60, 1)
 ```
 
-#### Fixed point arithmetic
-
 You can pass floating point numbers to any drawing command that takes 
-a coordinate. The underlying representation is fixed point in the MakeCode
-runtime. Fractional values are ignored when setting a pixel in a bitmap, so
-
+a coordinate. For efficiency, the underlying representation is fixed point 
+in the MakeCode runtime. Fractional values are ignored when setting a pixel 
+in a bitmap, so
 ```blocks
 screen().setPixel(79.6, 59.6, 1)
 ```
@@ -143,10 +142,35 @@ which has the same effect as
 ```blocks
 screen().setPixel(79, 59, 1)
 ```
+#### Getting a pixel's (color index) value
+
+The following code will show a 2 on the micro:bit screen, as this is the color index 
+stored in the pixel:
+```blocks
+screen().setPixel(80, 60, 2)
+basic.showNumber(screen().getPixel(80, 60))
+}
+```
+So we can see that each pixel is like a variable that stores a value (in the range 0-15)
+that can later be retrieved.
+
+#### Drawing shapes
+
+Draw
+
+- rectangle
+- circle
+- triangle
+
+Fill
 
 
 ### Creating your own bitmaps
 
+#### bitmap editor
+#### bitmap as hex literal
+
+### Drawing a bitmap onto the screen
 
 ## TypeScript APIs
 
