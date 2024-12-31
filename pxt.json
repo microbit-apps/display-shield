@@ -35,6 +35,7 @@
         "cpp/pinsDigital.cpp",
         "cpp/controllerbuttons.cpp",
         "cpp/screen.cpp",
+        "cpp/screenhelpers.d.ts",
         "docs/clone.md",
         "docs/draw-line.md",
         "docs/draw-rect.md",
