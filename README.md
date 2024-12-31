@@ -103,14 +103,45 @@ Display present/absent
 
 ### Drawing into the screen bitmap
 
-The screen is 160 pixels wide and 120 pixels high. The upper
-left of the screen is coordinate (0,0); The lower right of
-the screen is coordinate (159,119).  We draw two lines to 
-show the four corners of the screen:
+#### Screen coordinates and lines
+
+The screen bitmap is 160 pixels wide and 120 pixels high. 
+The upper left of the screen is coordinate (0,0); The lower 
+right of the screen is coordinate (159,119).  We draw two lines 
+to the screen bitmap to show the four corners of the screen:
 
 ```blocks
 screen().drawLine(0, 0, 159, 119, 2)
 screen().drawLine(159, 0, 0, 119, 5)
+```
+
+#### Screen center and setting a pixel
+
+Since the width and height of the screen are both even, the center of
+the screen is bounded by these four pixels:
+```
+screen().setPixel(79, 59, 1)
+screen().setPixel(80, 59, 1)
+screen().setPixel(79, 60, 1)
+screen().setPixel(80, 60, 1)
+```
+
+#### Fixed point arithmetic
+
+You can pass floating point numbers to any drawing command that takes 
+a coordinate. The underlying representation is fixed point in the MakeCode
+runtime. Fractional values are ignored when setting a pixel in a bitmap, so
+
+```blocks
+screen().setPixel(79.6, 59.6, 1)
+```
+has the same effect as 
+```blocks
+screen().setPixel(79.4, 59.4, 1)
+```
+which has the same effect as
+```blocks
+screen().setPixel(79, 59, 1)
 ```
 
 
