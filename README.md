@@ -120,7 +120,7 @@ screen().drawLine(159, 0, 0, 119, 5)
 You don't need to worry (for any drawing command) about drawing off
 the screen. So, for example,
 ```blocks
-screen().drawLine(-10,10,10,10,2)
+screen().drawLine(-10,-10,10,10,2)
 ```
 has the same effect as 
 ```blocks
