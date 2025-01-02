@@ -128,7 +128,7 @@ screen().drawLine(0,0,10,10,2)
 ```
 While the following code won't display anything on the screen at all:
 ```blocks
-screen().drawLine(-1,=1,-10,-10,2)
+screen().drawLine(-1,-1,-10,-10,2)
 ```
 
 #### Screen center, setting a pixel, and floating point
