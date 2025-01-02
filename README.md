@@ -145,8 +145,7 @@ screen().setPixel(80, 60, 1)
 
 You can pass floating point numbers to any drawing command that takes 
 a coordinate. For efficiency, the underlying representation is fixed point 
-in the MakeCode runtime. Fractional values are ignored when setting a pixel 
-in a bitmap, so
+in the MakeCode runtime. Fractional values are ignored when setting a pixel in a bitmap, so
 ```blocks
 screen().setPixel(79.6, 59.6, 1)
 ```
@@ -165,20 +164,32 @@ stored in the pixel:
 ```blocks
 screen().setPixel(80, 60, 2)
 basic.showNumber(screen().getPixel(80, 60))
-}
 ```
 So we can see that each pixel is like a variable that stores a value (in the range 0-15)
 that can later be retrieved.
 
 #### Drawing shapes
 
-Draw
+You can draw a recentangle by specifying the upper left
+corner with the first two parameters to the `drawRect` 
+function, followed by the width and the height of the
+rectangle, and ending with the draw color:
 
-- rectangle
-- circle
-- triangle
+```blocks
+screen().drawRect(0, 0, 10, 10, 1)
+screen().drawRect(10, 10, 20, 20, 2)
+screen().drawRect(0, 10, 10, 20, 3)
+screen().drawRect(10, 0, 20, 10, 4)
+```
 
-Fill
+You can have the rectangle filled with the specified color instead:
+```blocks
+screen().fillRect(0, 0, 10, 10, 1)
+screen().fillRect(10, 10, 20, 20, 2)
+screen().fillRect(0, 10, 10, 20, 3)
+screen().fillRect(10, 0, 20, 10, 4)
+```
+
 
 
 ### Creating your own bitmaps
