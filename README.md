@@ -115,6 +115,22 @@ screen().drawLine(0, 0, 159, 119, 2)
 screen().drawLine(159, 0, 0, 119, 5)
 ```
 
+### Drawing out of bounds
+
+You don't need to worry (for any drawing command) about drawing off
+the screen. So, for example,
+```blocks
+screen().drawLine(-10,10,10,10,2)
+```
+has the same effect as 
+```blocks
+screen().drawLine(0,0,10,10,2)
+```
+While the following code won't display anything on the screen at all:
+```blocks
+screen().drawLine(-1,=1,-10,-10,2)
+```
+
 #### Screen center, setting a pixel, and floating point
 
 Since the width and height of the screen are both even, the center of
