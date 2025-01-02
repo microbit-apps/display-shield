@@ -114,6 +114,10 @@ to the screen bitmap to show the four corners of the screen:
 screen().drawLine(0, 0, 159, 119, 2)
 screen().drawLine(159, 0, 0, 119, 5)
 ```
+The first two parameters to the function are the (x,y)
+coordinate where the line should start, while the next
+two parameters are the (x',y') coordinate where the line
+should end. The final parameter is the color to draw.
 
 ### Drawing out of bounds
 
@@ -198,13 +202,53 @@ to fill the circle or just draw its outline:
 screen().fillCircle(10, 10, 10, 2)
 screen().drawCircle(10, 10, 10, 5)
 ```
-
 ### Creating your own bitmaps
 
-#### bitmap editor
-#### bitmap as hex literal
+There are two ways you can create your own bitmap. 
 
-### Drawing a bitmap onto the screen
+#### Bitmap editor and hex literal
+
+The first way to create a bitmap is with the bitmap editor, 
+which represents the bitmap in code as a hex literal that 
+must be assigned to a program variable. The bitmap won't appear
+on the screen unless it is draw using the function below:
+```
+```block
+let bitmap = bmp`
+    . . . . . . . . . . . . . . . . 
+    . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+    . 2 . . . . . . . . . . . . 2 . 
+    . 2 . 2 2 2 2 2 2 2 2 2 2 . 2 . 
+    . 2 . 2 . . . . . . . . 2 . 2 . 
+    . 2 . 2 . . . . . . . . 2 . 2 . 
+    . 2 . 2 . . 5 5 5 5 . . 2 . 2 . 
+    . 2 . 2 . . 5 5 5 5 . . 2 . 2 . 
+    . 2 . 2 . . 5 5 5 5 . . 2 . 2 . 
+    . 2 . 2 . . 5 5 5 5 . . 2 . 2 . 
+    . 2 . 2 . . . . . . . . 2 . 2 . 
+    . 2 . 2 . . . . . . . . 2 . 2 . 
+    . 2 . 2 2 2 2 2 2 2 2 2 2 . 2 . 
+    . 2 . . . . . . . . . . . . 2 . 
+    . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+    . . . . . . . . . . . . . . . . 
+    `
+    screen().fill(5)
+    screen().drawBitmap(0,0,bitmap)
+```
+The `.` in string representation of the bitmap represents the
+color value 0, which is interpreted as `transparent` by the following
+function:
+```blocks
+    screen().fill(5)
+    screen().drawTransparentBitmap(0,0,bitmap)
+```
+
+#### Bitmap create function
+
+#### Drawing to a bitmap
+
+All the functions we previously reviewed for drawing to the
+screen can also be applied to a bitmap. EXAMPLE
 
 ## TypeScript APIs
 
