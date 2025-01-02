@@ -170,7 +170,7 @@ that can later be retrieved.
 
 #### Drawing shapes
 
-You can draw a recentangle by specifying the upper left
+You can draw a recentangle by first specifying the upper left
 corner with the first two parameters to the `drawRect` 
 function, followed by the width and the height of the
 rectangle, and ending with the draw color:
@@ -190,7 +190,14 @@ screen().fillRect(0, 10, 10, 20, 3)
 screen().fillRect(10, 0, 20, 10, 4)
 ```
 
-
+To draw a circle, first specify the coordinate
+of the center of the circle, followed by the radius
+of the circle and the draw color. Again, you can choose
+to fill the circle or just draw its outline:
+```blocks
+screen().fillCircle(10, 10, 10, 2)
+screen().drawCircle(10, 10, 10, 5)
+```
 
 ### Creating your own bitmaps
 
