@@ -477,6 +477,7 @@ orangeBox.drawLine(0, 0, 0, 31, 4)
 orangeBox.drawLine(0, 31, 31, 31, 4)
 orangeBox.drawLine(31, 0, 31, 31, 4)
 screen().drawTransparentBitmap(orangeBox, 0, 0)
+screen().drawTransparentBitmap(orangeBox, 32, 32)
 ```
 
 # Supported targets
