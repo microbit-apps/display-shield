@@ -53,7 +53,7 @@
         "docs/screen-bitmap.md",
         "docs/on-button-event.md",
         "docs/is-pressed.md",
-        "docs/bitmap-type.md"
+        "docs/draw-bitmap.md"
     ],
     "testFiles": [
         "test.ts"
