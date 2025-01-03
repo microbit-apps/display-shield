@@ -282,31 +282,31 @@ Besides the empty, or transparent pixel `.`, there are 16 color pixels you can u
 * `.`: empty or transparent
 * `0`: transparent
 * `1`: white
-* `2`: light blue
-* `3`: medium blue
-* `4`: dark blue
-* `5`: violet
-* `6`: lime
-* `7`: olive
-* `8`: brown
-* `9`: cyan
-* `a`: red
-* `b`: purple
-* `c`: pink
-* `d`: orange
-* `e`: yellow
+* `2`: red
+* `3`: pink
+* `4`: orange
+* `5`: yellow
+* `6`: blue-green
+* `7`: green
+* `8`: dark blue
+* `9`: light blue
+* `a`: purple
+* `b`: dark grey
+* `c`: dark purple
+* `d`: beige
+* `e`: brown
 * `f`: black
 
 A 1 x 1 bitmap with a red pixel is declared as:
 
 ```typescript
-let oneRed = bmp`a`
+let oneRed = bmp`2`
 ```
 
 As a block it looks like this:
 
 ```block
-let oneRed = bmp`a`
+let oneRed = bmp`2`
 ```
 
 We can make 4 x 4 bitmap that uses all of the colors:
@@ -407,7 +407,7 @@ screeb().drawTransparentBitmap(greenBall, 0, 0)
 
 #### Setting pixels at locations
 
-You can create your bitmaps while your program is running too (dynamically). To make a bitmap this way, you set the color of a pixel at its location with code. Pixels are addressed by their row (``x`` value) and column (``y`` value) inside the bitmap. You could create and empty bitmap and make some or all of the bitmap by setting pixel colors in your code. Let's make a 32 x 32 box by creating an empty bitmap and then draw an orange border around it.
+You can create your bitmaps while your program is running too (dynamically). To make a bitmap this way, you set the color of a pixel at its location with code. Pixels are addressed by their row (``x`` value) and column (``y`` value) inside the bitmap. You could create an empty bitmap and make some or all of the bitmap by setting pixel colors in your code. Let's make a 32 x 32 box by creating an empty bitmap and then draw an orange border in it.
 
 ```blocks
 let orangeBox = bitmaps.create(32, 32)
@@ -419,7 +419,6 @@ for (let i = 0; i <= 31; i++) {
 }
 screen().drawTransparentBitmap(orangeBox, 0, 0)
 ```
-
 
 #### Creating your own bitmaps
 
@@ -464,12 +463,21 @@ function:
 
 ##### Bitmap create function
 
+The other way to create a bitmap is with the `create` function, as shown above.
+
 #### Drawing to a bitmap
 
 All the functions we previously reviewed for drawing to the
-screen can also be applied to a bitmap. EXAMPLE
+screen can also be applied to a bitmap. For example, the orange border in a bitmap can be created as followsL
 
-## TypeScript APIs
+```blocks
+let orangeBox = bitmaps.create(32, 32)
+orangeBox.drawLine(0, 0, 31, 0, 4)
+orangeBox.drawLine(0, 0, 0, 31, 4)
+orangeBox.drawLine(0, 31, 31, 31, 4)
+orangeBox.drawLine(31, 0, 31, 31, 4)
+screen().drawTransparentBitmap(orangeBox, 0, 0)
+```
 
 # Supported targets
 
