@@ -6,7 +6,7 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "arcadeshield": "*",
+        "bitmap": "*",
         "fonts": "*"
     },
     "files": [
@@ -24,6 +24,18 @@
         "ns.ts",
         "shieldhelpers.ts",
         "text.ts",
+        "cpp/config_nrf.h",
+        "cpp/arcadegamepad.h",
+        "cpp/indexedscreen.h",
+        "cpp/arcadesound.h",
+        "cpp/jdprotocol.h",
+        "cpp/jddisplay.h",
+        "cpp/jddisplay.cpp",
+        "cpp/pins.cpp",
+        "cpp/pinsDigital.cpp",
+        "cpp/controllerbuttons.cpp",
+        "cpp/screen.cpp",
+        "cpp/screenhelpers.d.ts",
         "docs/clone.md",
         "docs/draw-line.md",
         "docs/draw-rect.md",
@@ -41,7 +53,7 @@
         "docs/screen-bitmap.md",
         "docs/on-button-event.md",
         "docs/is-pressed.md",
-        "docs/bitmap-type.md"
+        "docs/draw-bitmap.md"
     ],
     "testFiles": [
         "test.ts"
@@ -54,6 +66,15 @@
     "supportedTargets": [
         "microbit"
     ],
+    "disablesVariants": [
+        "mbdal"
+    ],
+    "yotta": {
+        "config": {
+            "DEVICE_BLE": 0,
+            "DMESG_SERIAL_DEBUG": 1
+        }
+    },
     "preferredEditor": "tsprj",
     "tests": [
         "test.ts"
@@ -75,8 +96,5 @@
         "#e5cdc4",
         "#91463d",
         "#000000"
-    ],
-    "disablesVariants": [
-        "mbdal"
     ]
 }
