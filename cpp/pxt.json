@@ -35,5 +35,6 @@
             "DEVICE_BLE": 0,
             "DMESG_SERIAL_DEBUG": 1
         }
-    }
+    },
+    "version": "0.1.14"
 }
