@@ -29,7 +29,7 @@ D-pad, see arrow buttons).  Blocks
 for the shield are under the toolbox categories `Controller` and
 `Drawing` and are described further below.
 
-![MakeCode with Arcade Shield Simulator](https://microbit-apps.github.io/pxt-arcadeshield/assets/shieldSim.png)
+![MakeCode with Arcade Shield Simulator](assets/shieldSim.png)
 
 ## Overview of API
 
