@@ -11,24 +11,11 @@ image editor in MakeCode.
 
 ## Arcade Shields for the micro:bit V2
 
-Various Arcade shields for the micro:bit V2 are available on the market today, including
+Various Arcade shields for the micro:bit V2 are available on the market today, including:
 
-### [Kittenbot's newbit Arcade shield](https://www.kittenbot.cc/products/newbit-arcade-shield)
-
-![[Kittenbot's newbit Arcade shield](https://www.kittenbot.cc/products/newbit-arcade-shield)](assets/newbit-shield.png)
-
-Small screen and nice enclosure with LiPo battery inside. One <a href="https://aka.ms/jacdac">Jacdac</a> port.
-
-### [ELECFREAK's micro:bit Arcade shield](https://www.kittenbot.cc/products/newbit-arcade-shield)
-
-![[ELECFREAK's micro:bit Retro Arcade shield](https://shop.elecfreaks.com/products/micro-bit-retro-programming-arcade)](assets/elecfreaks-shield.png)
-
-Assembly required. Small screen. AAA Battery pack on back. One <a href="https://aka.ms/jacdac">Jacdac</a> port.
-    
-### [ICShopping's Game:bit Arcade shield](https://www.icshop.com.tw/products/368112100137?locale=en)
-
-![[ICShopping's Game:bit](https://www.icshop.com.tw/products/368112100137?locale=en)](assets/gamebit-shield.png)
-No assembly required. Large screen and 3d-printed enclosure with LiPo battery inside. Two <a href="https://aka.ms/jacdac">Jacdac</a> ports.
+* [Kittenbot's newbit Arcade shield](https://www.kittenbot.cc/products/newbit-arcade-shield): No assembly required Small screen and nice enclosure with LiPo battery inside. One [Jacdac](https://aka.ms/jacdac) port.
+* [ELECFREAK's micro:bit Arcade shield](https://www.kittenbot.cc/products/newbit-arcade-shield): Assembly required. Small screen. AAA Battery pack on back. One [Jacdac](https://aka.ms/jacdac) port.
+* ICShopping's Game:bit Arcade shield](https://www.icshop.com.tw/products/368112100137?locale=en): No assembly required. Large screen and 3d-printed enclosure with LiPo battery inside. Two [Jacdac](https://aka.ms/jacdac) ports.
 
 ## [This page with block rendering](https://makecode.microbit.org/pkg/microbit-apps/pxt-arcadeshield])
 
