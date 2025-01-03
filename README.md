@@ -66,7 +66,7 @@ No assembly required. Large screen and 3d-printed enclosure with LiPo battery in
 
 ## This page with block rendering
 
-[https://makecode.microbit.org/pkg/microbit-apps/pxt-arcadeshield](README with block rendering)
+[README with block rendering](https://makecode.microbit.org/pkg/microbit-apps/pxt-arcadeshield])
 
 ## Simulator support
 
