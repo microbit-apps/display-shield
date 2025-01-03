@@ -2,7 +2,7 @@
 
 A bitmap is some number of rows and columns of color pixels that make up rectangular picture. A _pixel_ is a single point of color inside the bitmap.
 
-Bitmaps are two-dimensional so they have a known height and width. When a bitmap is declared, or created, the height and width are specified either by the _layout_ of the bitmap or as parameters to it's [create](/reference/bitmaps/create) method.
+Bitmaps are two-dimensional so they have a known height and width. When a bitmap is declared, or created, the height and width are specified either by the _layout_ of the bitmap or as parameters to it's `create` method.
 
 ## Bitmap layout
 
@@ -16,7 +16,7 @@ An zero size bitmap has no height or width and has no pixels, so the **bmp** str
 let emptyBitmap = bmp``
 ```
 
-You can also use [create](/reference/bitmaps/create) and make another zero size bitmap with no pixels.
+You can also use the `create` function and make another zero size bitmap with no pixels.
 
 ```blocks
 let emptyBitmap1 = bmp``
@@ -214,8 +214,7 @@ for (let i = 0; i < 32; i++) {
 let boxSprite = sprites.create(orangeBox)
 ```
 
-The [bitmap](/reference/bitmaps) functions let you do more complex pixel operations like filling and drawing shapes.
-
+Other functions let you do more complex pixel operations like filling and drawing shapes.
 
 ```package
 pxt-arcadeshield=github:microbit-apps/pxt-arcadeshield
