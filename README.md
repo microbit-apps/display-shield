@@ -16,7 +16,7 @@ Various Arcade shields for the micro:bit V2 are available on the market today, i
 * [Kittenbot's newbit Arcade shield](https://www.kittenbot.cc/products/newbit-arcade-shield): No assembly required Small screen and nice enclosure with LiPo battery inside. One [Jacdac](https://aka.ms/jacdac) port.
 * [ELECFREAK's micro:bit Arcade shield](https://www.kittenbot.cc/products/newbit-arcade-shield): Assembly required. Small screen. AAA Battery pack on back. One [Jacdac](https://aka.ms/jacdac) port.
 * [ICShopping's Game:bit Arcade shield](https://www.icshop.com.tw/products/368112100137?locale=en): No assembly required. Large screen and 3d-printed enclosure with LiPo battery inside. Two [Jacdac](https://aka.ms/jacdac) ports.
-* [Kitronik's Arcade for BBC micro:bit](https://kitronik.co.uk/products/56116-kitronik-arcade-for-bbc-micro-bit-makecode-arcade): No assembly required. Small screen. *No Jacdac ports*
+* [Kitronik's Arcade for BBC micro:bit](https://kitronik.co.uk/products/56116-kitronik-arcade-for-bbc-micro-bit-makecode-arcade): No assembly required. Small screen. No Jacdac port.
 
 ## [This page with block rendering](https://makecode.microbit.org/pkg/microbit-apps/pxt-arcadeshield)
 
