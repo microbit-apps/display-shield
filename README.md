@@ -25,7 +25,7 @@ Various Arcade shields for the micro:bit V2 are available on the market today, i
 
 ## Tutorials
 
--   [Getting started](https://makecode.microbit.org/beta/#tutorial:github:microbit-apps/pxt-arcadeshield/tutorials/getting-started#tutorials)
+-   [Getting started](https://makecode.microbit.org/beta/#tutorial:github:microbit-apps/pxt-arcadeshield/tutorials/getting-started)
 
 ## [This page with block rendering](https://makecode.microbit.org/pkg/microbit-apps/pxt-arcadeshield)
 
