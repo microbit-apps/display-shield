@@ -16,7 +16,7 @@ Various Arcade shields for the micro:bit V2 are available on the market today, i
 * [Kittenbot's newbit Arcade shield](https://www.kittenbot.cc/products/newbit-arcade-shield): No assembly required Small screen and nice enclosure with LiPo battery inside. One [Jacdac](https://aka.ms/jacdac) port.
 * [ELECFREAK's micro:bit Arcade shield](https://www.kittenbot.cc/products/newbit-arcade-shield): Assembly required. Small screen. AAA Battery pack on back. One [Jacdac](https://aka.ms/jacdac) port.
 * [ICShopping's Game:bit Arcade shield](https://www.icshop.com.tw/products/368112100137?locale=en): No assembly required. Large screen and 3d-printed enclosure with LiPo battery inside. Two [Jacdac](https://aka.ms/jacdac) ports.
-* [Kitronik's Arcade for BBC micro:bit](https://kitronik.co.uk/products/56116-kitronik-arcade-for-bbc-micro-bit-makecode-arcade): No assembly required. Small screen. No Jacdac port.
+* [Kitronik's Arcade for BBC micro:bit](https://kitronik.co.uk/products/56116-kitronik-arcade-for-bbc-micro-bit-makecode-arcade): No assembly required. Small screen. Battery holder on back. No Jacdac port.
 
 ## Using this extension
 
@@ -89,15 +89,15 @@ screen().drawLine(159, 0, 0, 119, 5)
 You don't need to worry (for any drawing command) about drawing off
 the screen. So, for example,
 ```typescript
-screen().drawLine(-10,-10,10,10,2)
+screen().drawLine(-10, -10, 10, 10, 2)
 ```
 has the same effect as 
 ```typescript
-screen().drawLine(0,0,10,10,2)
+screen().drawLine(0, 0, 10, 10, 2)
 ```
 While the following code won't display anything on the screen at all:
 ```typescript
-screen().drawLine(-1,-1,-10,-10,2)
+screen().drawLine(-1, -1, -10, -10, 2)
 ```
 
 #### Screen center, setting a pixel, and floating point
@@ -165,39 +165,18 @@ of the center of the circle, followed by the radius
 of the circle and the draw color. Again, you can choose
 to fill the circle or just draw its outline:
 ```block
-screen().fillCircle(10, 10, 10, 2)
-screen().drawCircle(10, 10, 10, 5)
+screen().fillCircle(10, 10, 8, 2)
+screen().drawCircle(10, 10, 8, 5)
 ```
 ### Bitmap
 
-Let's dig into bitmaps, which you can create yourself (the screen is represented by a bitmap, as we have seen already).
+Let's dig into bitmaps, which you can create yourself (the screen is represented by a bitmap, as we have seen already). A bitmap is some number of rows and columns of color pixels that make up rectangular picture. A _pixel_ is a single point of color inside the bitmap. 
 
-A bitmap is some number of rows and columns of color pixels that make up rectangular picture. A _pixel_ is a single point of color inside the bitmap.
-
-Bitmaps are two-dimensional so they have a known height and width. When a bitmap is declared, or created, the height and width are specified either by the _layout_ of the bitmap or as parameters to it's `create` method.
+Bitmaps are have a set height (number of rows) and width (number of columns). When a bitmap is declared, or created, the height and width are specified either by the _layout_ of the bitmap or as parameters to it's `create` method.
 
 #### Bitmap layout
 
-You _declare_ a bitmap by creating a layout. This is done in JavaScript with the ``bmp'...'`` string declaration. The pixels are single characters inside the string.
-
-##### Zero size bitmap
-
-An zero size bitmap has no height or width and has no pixels, so the **bmp** string is just ``bmp''``.
-
-```typescript
-let emptyBitmap = bmp``
-```
-
-You can also use the `create` function and make another zero size bitmap with no pixels.
-
-```block
-let emptyBitmap1 = bmp``
-let emptyBitmap2 = bitmaps.create(0, 0)
-```
-
-A zero size bitmap isn't really useful so MakeCode actually makes it have some size if you declare it without any.
-
-#### Bitmaps with size
+You _declare_ a bitmap by creating a layout. This is done in JavaScript with the ``bmp'...'`` string declaration. The pixels are single (non-white-space) characters inside the string.
 
 To make a bitmap with some size, just set the pixel characters in the rows of the **bmp** string. A bitmap that is 1 pixel high by 1 pixel wide (1 x 1) is:
 
@@ -243,7 +222,7 @@ A pixel value of `.` means an empty pixel. This pixel has no color and that pixe
 
 ##### Pixel colors
 
-Besides the empty, or transparent pixel `.`, there are 16 color pixels you can use. These are matched to colors in a _palette_. A palette is a group of colors you can choose from. The colors are selected by using a single number or letter to match them. The default palette, for example, uses these colors:
+Besides the empty, or transparent pixel `.`, there are 16 color pixels you can use. These are matched to colors in a _palette_. A palette is a set of colors you can choose from. The colors are selected by using a single number or letter to match them. The default palette, for example, uses these colors:
 
 * `.`: empty or transparent
 * `0`: transparent
@@ -347,25 +326,27 @@ Putting the green circle bitmap exactly over the yellow square, you see that the
 
 ```block
 let greenBall = bmp`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . 6 6 6 6 . . . . . . 
-. . . . 6 6 6 6 6 6 6 6 . . . . 
-. . . 6 6 6 6 6 6 6 6 6 6 . . . 
-. . . 6 6 6 6 6 6 6 6 6 6 . . . 
-. . 6 6 6 6 6 6 6 6 6 6 6 6 . . 
-. . 6 6 6 6 6 6 6 6 6 6 6 6 . . 
-. . 6 6 6 6 6 6 6 6 6 6 6 6 . . 
-. . 6 6 6 6 6 6 6 6 6 6 6 6 . . 
-. . . 6 6 6 6 6 6 6 6 6 6 . . . 
-. . . 6 6 6 6 6 6 6 6 6 6 . . . 
-. . . . 6 6 6 6 6 6 6 6 . . . . 
-. . . . . . 6 6 6 6 . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
+. . . . . . . .
+. . . 6 6 . . .
+. . 6 6 6 6 . .
+. 6 6 6 6 6 6 .
+. 6 6 6 6 6 6 .
+. . 6 6 6 6 . .
+. . . 6 6 . . .
+. . . . . . . .
 `
-let yellowSquare = bitmaps.create(16, 16)
-yellowSquare.fill(5)
+
+let yellowSquare = bmp`
+5 5 5 5 5 5 5 5
+5 5 5 5 5 5 5 5
+5 5 5 5 5 5 5 5
+5 5 5 5 5 5 5 5
+5 5 5 5 5 5 5 5
+5 5 5 5 5 5 5 5
+5 5 5 5 5 5 5 5
+5 5 5 5 5 5 5 5
+5 5 5 5 5 5 5 5
+`
 
 screen().drawBitmap(yellowSquare, 0, 0)
 screeb().drawTransparentBitmap(greenBall, 0, 0)
@@ -373,7 +354,7 @@ screeb().drawTransparentBitmap(greenBall, 0, 0)
 
 #### Setting pixels at locations
 
-You can create your bitmaps while your program is running too (dynamically). To make a bitmap this way, you set the color of a pixel at its location with code. Pixels are addressed by their row (``x`` value) and column (``y`` value) inside the bitmap. You could create an empty bitmap and make some or all of the bitmap by setting pixel colors in your code. Let's make a 32 x 32 box by creating an empty bitmap and then draw an orange border in it.
+You can create your bitmaps while your program is running. To make a bitmap this way, you set the color of a pixel at its location with code. Pixels are addressed by their column (``x`` value) and row (``y`` value) inside the bitmap. You could create an empty bitmap and make some or all of the bitmap by setting pixel colors in your code. Let's make a 32 x 32 box by creating an empty bitmap and then draw an orange border in it.
 
 ```block
 let orangeBox = bitmaps.create(32, 32)
@@ -384,6 +365,7 @@ for (let i = 0; i <= 31; i++) {
     orangeBox.setPixel(31, i, 4)
 }
 screen().drawTransparentBitmap(orangeBox, 0, 0)
+screen().drawTransparentBitmap(orangeBox, 32, 32)
 ```
 
 #### Drawing to a bitmap
