@@ -6,7 +6,7 @@
 function bmp(lits: any, ...args: any[]): Bitmap { return null; }
 
 // set palette before creating screen, which initializes the display
-shieldhelpers.setPalette(hex`dededeffffffff2121ff93c4ff8135fff609249ca378dc52003fad87f2ff8e2ec4a4839f5c406ce5cdc491463d000000`)
+shieldhelpers.setPalette(hex`000000ffffffff2121ff93c4ff8135fff609249ca378dc52003fad87f2ff8e2ec4a4839f5c406ce5cdc491463d000000`)
 
 const theScreen: Bitmap = __screen_internal.createScreen();
 theScreen.fill(15)

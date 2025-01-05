@@ -6,18 +6,18 @@ Create a pixel bitmap of a certain size.
 bitmaps.create(0, 0)
 ```
 
-An empty rectangular bitmap is created for the number of pixels wide and high you ask for. Empty means that the bitmap contains all transparent pixels. Pixels colors are set in the bitmap using the bitmap functions.
+An empty rectangular bitmap is created with the specified width and height. Empty means that the bitmap contains all transparent pixels.
 
-You can create an zero size bitmap (``width = 0`` and ``height = 0``) but the function will actually create and bitmap of a default size.
+You can create an zero size bitmap (``width = 0`` and ``height = 0``) but the function will actually create a bitmap of a default size.
 
 ## Parameters
 
-* **width**: the [number](/types/number) of pixels wide (x dimension) for the bitmap.
-* **height**: the [number](/types/number) of pixels high (y dimension) for the bitmap.
+* **width**: the [number](/types/number) of columns (x dimension) of the bitmap.
+* **height**: the [number](/types/number) of rows (y dimension) of the bitmap.
 
 ## Returns
 
-* an empty (transparent) [bitmap](/types/bitmap) of the desired size.
+* an empty (transparent) bitmap of the desired size.
 
 ## Example #example
 

@@ -10,7 +10,7 @@ A new bitmap is created that is a copy of the original. The bitmap layout and pi
 
 ## Returns
 
-* an [bitmap](/types/bitmap) that is an exact copy of the original bitmap.
+* a bitmap that is an exact copy of the original bitmap.
 
 ## Example #example
 

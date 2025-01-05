@@ -6,11 +6,11 @@ The container and editor block for a bitmap.
 bitmaps._bitmap(null)
 ```
 
-Clicking on the bitmap window in the block will open the bitmap editor and a you can create a new bitmap or edit the current one.
+Clicking on the bitmap window in the block will open the bitmap editor to create a new bitmap or edit the current one.
 
 ## Parameters
 
-* **bitmap**: The [bitmap](/types/bitmap) to contain in the block.
+* **bitmap**: The bitmap associated with this block.
 
 ## Example #example
 
