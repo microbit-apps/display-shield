@@ -14,5 +14,23 @@ Drag the `||drawing:fill||` at the start of `||basic:on start||`. After restarti
 screen().fill(4)
 ```
 
-## Simulator Pro Tips! @showdialog
+## Draw some lines @showhint
+
+Drag the `||drawing:draw line||` twice to create two diagonal libes.
+
+```block
+screen().drawLine(0, 0, 159, 119, 2)
+screen().drawLine(159, 0, 0, 119, 5)
+```
+
+## Draw a rectangle @showhint
+
+## Draw a circle @showhint
+
+## Create a bitmap
+
+
+```
+
+
 
