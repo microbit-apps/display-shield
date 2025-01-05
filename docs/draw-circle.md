@@ -1,6 +1,6 @@
 # draw/fill Circle
 
-Draw an outline around a circle with a pixel color (or fill a circle with a color).
+Draw a circle with a pixel color (or fill a circle with a color).
 
 ```sig
 bitmaps.create(0,0).drawCircle(0,0,0,0,0)
@@ -13,12 +13,11 @@ bitmaps.create(0,0).fillRect(0,0,0,0,0)
 ```
 A filled circle is drawn in the bitmap with the color you choose.
 
-
 ## Parameters
 
-* **x**: a [number](/types/number) that's the horizontal pixel location of the center of the circle.
-* **y**: a [number](/types/number) that's the vertical pixel location of the ceneter of the circle.
-* **r**: a [number](/types/number) that's the radius of the circle.
+* **x**: a [number](/types/number), the horizontal center of the circle.
+* **y**: a [number](/types/number), the vertical center of the circle.
+* **r**: a [number](/types/number), the radius of the circle.
 * **c**: the [number](/types/number) of the color to draw; Color numbers are value between `0` and `15` which select a color from the current palette of colors.
 
 ## Example (draw) #example
@@ -39,7 +38,7 @@ Fill an entire bitmap with all blue pixels. Fill a circle with red.
 ```blocks
 let blueRect = bitmaps.create(32, 32)
 blueRect.fill(3)
-blueRect.fillircle(16,16, 8, 10)
+blueRect.fillCircle(16,16, 8, 10)
 screen().drawBitmap(blueRect, 0, 0)
 
 

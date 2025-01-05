@@ -10,11 +10,11 @@ A rectangular outline is drawn in a bitmap. The line width of the outline is one
 
 ## Parameters
 
-* **x**: a [number](/types/number) that's the horizontal pixel location of the upper-left corner of the rectangle to draw.
-* **y**: a [number](/types/number) that's the vertical pixel location of the upper-left corner of the rectangle to draw.
-* **w**: a [number](/types/number) that's the width in pixels of the rectangle.
-* **h**: a [number](/types/number) that's the height in pixels of the rectangle.
-* **c**: the [number](/types/number) of the color to draw the rectangular outline with. Color numbers are value between `0` and `15` which select a color from the current palette of colors.
+* **x**: a [number](/types/number), the horizontal location of the upper-left corner of the rectangle
+* **y**: a [number](/types/number), the vertical location of the upper-left corner of the rectangle
+* **w**: a [number](/types/number), the width in pixels of the rectangle.
+* **h**: a [number](/types/number), the height in pixels of the rectangle.
+* **c**: a [number](/types/number), the color to draw the rectangular outline with. Color numbers are value between `0` and `15` which select a color from the current palette of colors.
 
 ## Example #example
 

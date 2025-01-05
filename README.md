@@ -345,11 +345,10 @@ let yellowSquare = bmp`
 5 5 5 5 5 5 5 5
 5 5 5 5 5 5 5 5
 5 5 5 5 5 5 5 5
-5 5 5 5 5 5 5 5
 `
 
 screen().drawBitmap(yellowSquare, 0, 0)
-screeb().drawTransparentBitmap(greenBall, 0, 0)
+screen().drawTransparentBitmap(greenBall, 0, 0)
 ```
 
 #### Setting pixels at locations

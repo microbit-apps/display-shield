@@ -10,15 +10,15 @@ The pixels are located at points in the bitmap. The point is a _coordinate_ whic
 
 ## Parameters
 
-* **x0**: a [number](/types/number) that's the horizontal pixel location of the first coordinate.
-* **y0**: a [number](/types/number) that's the vertical pixel location of the first coordinate.
-* **x1**: a [number](/types/number) that's the horizontal pixel location of the second coordinate.
-* **y1**: a [number](/types/number) that's the vertical pixel location of the second coordinate.
-* **c**: the [number](/types/number) of the color of the pixels in the line. Color numbers are value between `0` and `15` which select a color from the current palette of colors.
+* **x0**: a [number](/types/number), the horizontal location of the first coordinate.
+* **y0**: a [number](/types/number), the vertical location of the first coordinate.
+* **x1**: a [number](/types/number), the horizontal location of the second coordinate.
+* **y1**: a [number](/types/number), the vertical location of the second coordinate.
+* **c**: a [number](/types/number), the color of the pixels in the line. Color numbers are value between `0` and `15` which select a color from the current palette of colors.
 
 ## Example #example
 
-Draw a big `X` in bitmap by making two diagonal lines.
+Draw a big `X` in a bitmap by making two diagonal lines.
 
 ```blocks
 let drawBigX = bitmaps.create(32, 32)

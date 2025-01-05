@@ -8,7 +8,7 @@ bitmaps.create(0,0).drawBitmap(null,0,0)
 
 ## Parameters
 
-* **bitmap**: a Bitmap to be drawn
+* **bitmap**: the bitmap to be drawn
 * **x**: a [number](/types/number), the column (horizontal pixel location) to draw the bitmap at.
 * **y**: a [number](/types/number), the row (vertical pixel location) to draw the bitmap at.
 
