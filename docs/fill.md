@@ -8,7 +8,7 @@ bitmaps.create(0,0).fill(0)
 
 ## Parameters
 
-* **c**: the [number](/types/number) of the color to set all the pixels in bitmap to. Color numbers are value between `0` and `15` which select a color from the current palette of colors.
+* **c**: the [number](/types/number) of the color to set all the pixels in bitmap to. Color numbers are value between `0` and `15` which select a color from the current palette of colors
 
 ## Example #example
 

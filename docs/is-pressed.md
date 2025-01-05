@@ -8,7 +8,7 @@ controller.A.isPressed()
 
 ## Returns
 
-* a [boolean](types/boolean): `true` if the button is pressed, `false` if the button is not pressed.
+* a [boolean](types/boolean): `true` if the button is pressed, `false` if the button is not pressed
 
 ## Example #example
 

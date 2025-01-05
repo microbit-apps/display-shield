@@ -8,12 +8,12 @@ bitmaps.create(0, 0).getPixel(0, 0)
 
 # Parameters
 
-* **x**: a [number](/types/number) that's the horziontal position of the pixel.
-* **y**: a [number](/types/number) that's the vertical position of the pixel.
+* **x**: a [number](/types/number), the horziontal position of the pixel
+* **y**: a [number](/types/number), the vertical position of the pixel
 
 ## Returns
 
-* a [number](/types/number) that's the color of the pixel at location **x** and **y** in the bitmap. The color number is a value between `0` and `15`.
+* a [number](/types/number), the color of the pixel at location **x** and **y** in the bitmap. The color number is a value between `0` and `15`.
 
 ## Example #example
 

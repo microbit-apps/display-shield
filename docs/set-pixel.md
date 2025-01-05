@@ -1,6 +1,6 @@
 # set Pixel
 
-Set the color of a pixel location in a bitmap.
+Set the color of a pixel in a bitmap.
 
 ```sig
 bitmaps.create(0,0).setPixel(0,0,0)
@@ -10,9 +10,9 @@ Pixels are an individual point of color in an bitmap. Pixels are arraged in colu
 
 ## Parameters
 
-* **x**: the column [number](/types/number) of the pixel location.
-* **y**: the row [number](/types/number) of the pixel location.
-* **c**: the [number](/types/number) of the new color to set for the pixel location of **x** and **y**. Color numbers are value between `0` and `15` which select a color from the current palette of colors.
+* **x**: the column [number](/types/number) of the pixel location
+* **y**: the row [number](/types/number) of the pixel location
+* **c**: the [number](/types/number) of the new color to set for the pixel location of **x** and **y**. Color numbers are value between `0` and `15` which select a color from the current palette of colors
 
 ## Example #example
 

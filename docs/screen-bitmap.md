@@ -8,7 +8,7 @@ bitmap.screenBitmap()
 
 ## Returns
 
-* an [bitmap](/types/bitmap) of everything displayed on the screen.
+* a bitmap of everything displayed on the screen
 
 ## Example #example
 

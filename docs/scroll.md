@@ -12,8 +12,8 @@ Scrolling is a _destructive_ operation. This means that the pixels scrolled outs
 
 ## Parameters
 
-* **dx**: the [number](/types/number) of pixels to scroll the bitmap to the left or right Use a negative value to scroll to the left.
-* **dy**: the [number](/types/number) of pixels to scroll the bitmap up or down. Use a negative value to scroll up.
+* **dx**: the [number](/types/number) of pixels to scroll the bitmap to the left or right. Use a negative value to scroll to the left
+* **dy**: the [number](/types/number) of pixels to scroll the bitmap up or down. Use a negative value to scroll up
 
 ## Examples #example
 
