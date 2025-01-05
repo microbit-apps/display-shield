@@ -55,7 +55,8 @@
         "docs/on-shield-event.md",
         "docs/is-pressed.md",
         "docs/draw-bitmap.md",
-        "docs/draw-circle.md"
+        "docs/draw-circle.md",
+        "tutorials/getting-started.md"
     ],
     "testFiles": [
         "test.ts"

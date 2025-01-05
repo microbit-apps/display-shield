@@ -1,6 +1,6 @@
 # get Pixel
 
-Get the color number of a pixel at a location in an .
+Get the color number of a pixel at a location in a bitmap
 
 ```sig
 bitmaps.create(0, 0).getPixel(0, 0)
@@ -17,17 +17,17 @@ bitmaps.create(0, 0).getPixel(0, 0)
 
 ## Example #example
 
-Randomly fill a bitmap with different colors. Change the color of a pixel in the middle if it's yellow.
+Randomly fill a bitmap with different colors. Change the color of a pixel in the middle if it's white.
 
 ```blocks
 let randoColors = bitmaps.create(16, 16)
-for (let y = 0; y <= 15 - 1; y++) {
-    for (let x = 0; x <= 15 - 1; x++) {
+for (let y = 0; y < 16; y++) {
+    for (let x = 0; x < 16; x++) {
         randoColors.setPixel(x, y, Math.randomRange(0, 15))
     }
 }
-if (randoColors.getPixel(8, 8) == 14) {
-    randoColors.setPixel(8, 8, 1)
+if (randoColors.getPixel(8, 8) == 1) {
+    randoColors.setPixel(8, 8, 2)
 }
 screen().drawBitmap(randoColors, 0, 0)    
 ```
