@@ -16,7 +16,7 @@ screen().fill(4)
 
 ## Draw some lines @showhint
 
-Drag the `||drawing:draw line||` twice to create two diagonal libes.
+Drag the `||drawing:draw line||` twice to create two diagonal lines.
 
 ```block
 screen().fill(4)
@@ -27,6 +27,8 @@ screen().drawLine(159, 0, 0, 119, 5)
 ```
 
 ## Draw a filled circle @showhint
+
+Drag the `||drawing:fill circle||` to create a filled yellow circle at the center of the screeb.
 
 ```block
 screen().fill(4)
