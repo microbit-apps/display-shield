@@ -9,7 +9,7 @@ namespace bitmaps {
     //% weight=78
     //% group="Create"
     //% blockAliasFor="bitmaps.create"
-    //% help=github:pxt-arcadeshield/docs/create
+    //% help=github:arcadeshield/docs/create
     export function _create(width: number, height: number): Bitmap {
         return bitmaps.create(width, height);
     }
@@ -42,7 +42,7 @@ namespace bitmaps {
     //% bitmap.fieldOptions.decompileArgumentAsString="true"
     //% weight=85
     //% group="Create"
-    //% help=github:pxt-arcadeshield/docs/bitmap
+    //% help=github:arcadeshield/docs/bitmap
     //% blockAliasFor="bitmaps.create"
     //% blockNamespace="drawing"
     export function _bitmap(bitmap: Bitmap): Bitmap {

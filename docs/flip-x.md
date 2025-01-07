@@ -33,5 +33,5 @@ for (let i = 0; i < 10; i++) {
 
 
 ```package
-pxt-arcadeshield=github:microbit-apps/pxt-arcadeshield
+arcadeshield=github:microbit-apps/arcadeshield
 ```

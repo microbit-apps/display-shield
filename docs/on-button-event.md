@@ -42,5 +42,5 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 ```
 
 ```package
-pxt-arcadeshield=github:microbit-apps/pxt-arcadeshield
+arcadeshield=github:microbit-apps/arcadeshield
 ```

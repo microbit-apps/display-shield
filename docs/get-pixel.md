@@ -34,5 +34,5 @@ screen().drawBitmap(randoColors, 0, 0)
 
 
 ```package
-pxt-arcadeshield=github:microbit-apps/pxt-arcadeshield
+arcadeshield=github:microbit-apps/arcadeshield
 ```

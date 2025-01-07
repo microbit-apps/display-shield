@@ -7,7 +7,7 @@ a Bitmap abstraction with numerous drawing primitives
 Bitmaps also can be created using the built-in
 image editor in MakeCode.
 
-> **NOTE: This extension will only work in https://makecode.microbit.org/beta**. The extension is still under development and is subject to changes. Please file issues at https://github.com/microbit-apps/pxt-arcadeshield/issues 
+> **NOTE: This extension will only work in https://makecode.microbit.org/beta**. The extension is still under development and is subject to changes. Please file issues at https://github.com/microbit-apps/arcadeshield/issues 
 
 ## Arcade Shields for the micro:bit V2
 
@@ -21,13 +21,13 @@ Various Arcade shields for the micro:bit V2 are available on the market today, i
 ## Using this extension
 
 -   Open https://makecode.microbit.org/beta 
--   Add this extension to your project by adding url [https://github.com/microbit-apps/pxt-arcadeshield](https://github.com/microbit-apps/pxt-arcadeshield)
+-   Add this extension to your project by adding url [https://github.com/microbit-apps/arcadeshield](https://github.com/microbit-apps/arcadeshield)
 
 ## Tutorials
 
--   [Getting started](https://makecode.microbit.org/beta#tutorial:github:microbit-apps/pxt-arcadeshield/tutorials/getting-started)
+-   [Getting started](https://makecode.microbit.org/beta#tutorial:github:microbit-apps/arcadeshield/tutorials/getting-started)
 
-## [This page with block rendering](https://makecode.microbit.org/pkg/microbit-apps/pxt-arcadeshield)
+## [This page with block rendering](https://makecode.microbit.org/pkg/microbit-apps/arcadeshield)
 
 ## Simulator support
 
@@ -38,7 +38,7 @@ D-pad, see arrow buttons).  Blocks
 for the shield are under the toolbox categories `Controller` and
 `Drawing` and are described further below.
 
-![MakeCode with Arcade Shield Simulator](https://github.com/microbit-apps/pxt-arcadeshield/blob/master/assets/shieldSim.png?raw=true)
+![MakeCode with Arcade Shield Simulator](https://github.com/microbit-apps/arcadeshield/blob/master/assets/shieldSim.png?raw=true)
 
 ## Overview of API
 

@@ -51,7 +51,7 @@ namespace controller {
      * Run some code when shield is absent/present
      */
     //% weight=30
-    //% help=github:pxt-arcadeshield/docs/on-shield-event
+    //% help=github:arcadeshield/docs/on-shield-event
     //% blockId=shieldEvent block="on shield $event"
     export function onShieldEvent(event: ControllerShieldEvent, handler: () => void) {
         context.onEvent(event, 0, handler);
@@ -137,7 +137,7 @@ namespace controller {
          * Run some code when a button is pressed, released, or held
          */
         //% weight=99 blockGap=8 
-        //% help=github:pxt-arcadeshield/docs/on-button-event
+        //% help=github:arcadeshield/docs/on-button-event
         //% blockId=keyonevent block="on $this **button** $event"
         onEvent(event: ControllerButtonEvent, handler: () => void) {
             const eventHandler = this.getOrCreateHandlerForEvent(event);
@@ -196,7 +196,7 @@ namespace controller {
          * Indicates if the button is currently pressed
          */
         //% weight=96 blockGap=8
-        //% help=github:pxt-arcadeshield/docs/is-pressed
+        //% help=github:arcadeshield/docs/is-pressed
         //% blockId=keyispressed block="is $this **button** pressed"
         isPressed() {
             return this._pressed;

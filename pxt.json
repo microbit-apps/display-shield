@@ -1,5 +1,5 @@
 {
-    "name": "pxt-arcadeshield",
+    "name": "arcadeshield",
     "version": "0.1.15",
     "description": "Arcade Shield extension for MakeCode micro:bit",
     "dependencies": {

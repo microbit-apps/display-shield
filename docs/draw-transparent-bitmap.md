@@ -50,5 +50,5 @@ screen().drawTransparentBitmap(greenBall, 0, 0)
 To see the difference, change the second call from `drawTransparentBitmap` to `drawBitmap`.
 
 ```package
-pxt-arcadeshield=github:microbit-apps/pxt-arcadeshield
+arcadeshield=github:microbit-apps/arcadeshield
 ```

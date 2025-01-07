@@ -1,8 +1,8 @@
 {
-  "name": "@pxt-arcadeshield/simx",
+  "name": "@arcadeshield/simx",
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://github.com/microbit-apps/pxt-arcadeshield",
+  "homepage": "https://github.com/microbit-apps/arcadeshield",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,7 +14,7 @@
     "prettier": "prettier --write ./src"
   },
   "dependencies": {
-    "pxt-arcadeshield": "file:../",
+    "arcadeshield": "file:../",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-svg": "^16.1.34"

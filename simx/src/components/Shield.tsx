@@ -58,7 +58,7 @@ function postMessagePacket(msg: any) {
     window.parent.postMessage(
         {
             type: "messagepacket",
-            channel: "microbit-apps/pxt-arcadeshield",
+            channel: "microbit-apps/arcadeshield",
             data: payload,
         },
         "*"
