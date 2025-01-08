@@ -1,6 +1,8 @@
 name: Simulator Build
 on:
     push:
+        branches:
+            - master
         paths:
             - "simx/**"
         tags:
