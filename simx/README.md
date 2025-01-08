@@ -20,9 +20,9 @@ This starts the simx's local development server.
 ### Load into the MakeCode editor
 
 1. Open the MakeCode editor for BBC micro:bit (https://makecode.microbit.org/beta)
-2. Add the URL parameter `localhostmessagesims=1`
+2. Add the URL parameter `simxdev=1`
 3. Create a project
 4. Add the arcadeshield extension to your project
 
-The `localhostmessagesims=1` parameter will cause sim messages to be routed to your locally running development server.
+The `simxdev=1` parameter will cause sim messages to be routed to your locally running development server.
 
