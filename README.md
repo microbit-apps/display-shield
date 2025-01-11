@@ -18,6 +18,9 @@ Various Arcade shields for the micro:bit V2 are available on the market today, i
 * [ICShopping's Game:bit Arcade shield](https://www.icshop.com.tw/products/368112100137?locale=en): No assembly required. Large screen and 3d-printed enclosure with LiPo battery inside. Two [Jacdac](https://aka.ms/jacdac) ports.
 * [Kitronik's Arcade for BBC micro:bit](https://kitronik.co.uk/products/56116-kitronik-arcade-for-bbc-micro-bit-makecode-arcade): No assembly required. Small screen. Battery holder on back. No Jacdac port.
 
+![MakeCode Arcade Shields](https://github.com/microbit-apps/arcadeshield/blob/master/assets/shields.png?raw=true)
+
+
 ## Simulator support
 
 As shown below, the extension provides a simulator for the display,
