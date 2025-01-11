@@ -38,7 +38,7 @@ for the shield are under the toolbox categories `Controller` and
 -  Create a new project
 -  Add an extension via the "Extensions" item in the gear wheel (upper right)
 -  Type "arcade" into the search box
--  Select the "Arcade Shield" extension, as shown below
+-  Select the **arcadeshield** extension, as shown below
 
 ![MakeCode extension dialog](https://github.com/microbit-apps/arcadeshield/blob/master/assets/extensions.png?raw=true)
 
