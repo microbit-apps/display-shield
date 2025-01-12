@@ -182,7 +182,8 @@ Bitmaps are have a set height (number of rows) and width (number of columns). Wh
 
 #### Bitmap editor
 
-The easiest way to create a bitmap is with the bitmap editor, which is accessible both from blocks and text view.  Here is the block view of an apple:
+The easiest way to create a bitmap is with the bitmap editor, which is accessible both from blocks and text view.  Here is the block view of an 
+16x16 bitmap of an apple:
 
 ```block
 screen().fill(6)
@@ -215,7 +216,6 @@ Here is the bitmap editor, which appears when you click on the icon in bitmap bl
 The bitmap also is represented as a text literal, as shown below
 
 ```
-```block
 screen().fill(6)
 let apple = bmp`
     . . . . . . . e c 7 . . . . . . 
