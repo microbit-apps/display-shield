@@ -1,6 +1,6 @@
 {
     "name": "arcadeshield",
-    "version": "0.1.17",
+    "version": "0.1.18",
     "description": "Arcade Shield extension for MakeCode micro:bit",
     "dependencies": {
         "core": "*",
