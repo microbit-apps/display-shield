@@ -85,7 +85,7 @@ coordinate where the line should start, while the next
 two parameters are the (x',y') coordinate where the line
 should end. The final parameter is the color to draw. Here is
 the code in JavaScript:
-```typescript
+```
 screen().drawLine(0, 0, 159, 119, 2)
 screen().drawLine(159, 0, 0, 119, 5)
 ```
@@ -146,7 +146,7 @@ that can later be retrieved.
 
 #### Drawing shapes
 
-You can draw a recentangle by first specifying the upper left
+You can draw a rectangle by first specifying the upper left
 corner with the first two parameters to the `drawRect` 
 function, followed by the width and the height of the
 rectangle, and ending with the draw color:
