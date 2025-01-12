@@ -90,7 +90,7 @@ screen().drawLine(0, 0, 159, 119, 2)
 screen().drawLine(159, 0, 0, 119, 5)
 ```
 
-### Drawing out of bounds
+#### Drawing out of bounds
 
 You don't need to worry (for any drawing command) about drawing off
 the screen. So, for example,
@@ -179,6 +179,66 @@ screen().drawCircle(10, 10, 8, 5)
 Let's dig into bitmaps, which you can create yourself (the screen is represented by a bitmap, as we have seen already). A bitmap is some number of rows and columns of color pixels that make up rectangular picture. A _pixel_ is a single point of color inside the bitmap. 
 
 Bitmaps are have a set height (number of rows) and width (number of columns). When a bitmap is declared, or created, the height and width are specified either by the _layout_ of the bitmap or as parameters to it's `create` method.
+
+#### Bitmap editor
+
+The easiest way to create a bitmap is with the bitmap editor, which is accessible both from blocks and text view.  Here is the block view of an apple:
+
+```block
+screen().fill(6)
+let apple = bmp`
+    . . . . . . . e c 7 . . . . . . 
+    . . . . e e e c 7 7 e e . . . . 
+    . . c e e e e c 7 e 2 2 e e . . 
+    . c e e e e e c 6 e e 2 2 2 e . 
+    . c e e e 2 e c c 2 4 5 4 2 e . 
+    c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
+    . e e e 2 2 2 2 2 2 2 2 2 4 e . 
+    . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
+    . . 2 e e 2 2 2 2 2 4 4 2 e . . 
+    . . . 2 2 e e 4 4 4 2 e e . . . 
+    . . . . . 2 2 e e e e . . . . . 
+    `
+screen().drawTransparentBitmap(apple, 70, 50)
+```
+
+Here is the bitmap editor, which appears when you click on the icon in bitmap block
+
+![MakeCode Arcade Shields](https://github.com/microbit-apps/arcadeshield/blob/master/assets/appleBitmapEditor.png?raw=true)
+
+
+The bitmap also is represented as a text literal, as shown below
+
+```
+```block
+screen().fill(6)
+let apple = bmp`
+    . . . . . . . e c 7 . . . . . . 
+    . . . . e e e c 7 7 e e . . . . 
+    . . c e e e e c 7 e 2 2 e e . . 
+    . c e e e e e c 6 e e 2 2 2 e . 
+    . c e e e 2 e c c 2 4 5 4 2 e . 
+    c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
+    . e e e 2 2 2 2 2 2 2 2 2 4 e . 
+    . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
+    . . 2 e e 2 2 2 2 2 4 4 2 e . . 
+    . . . 2 2 e e 4 4 4 2 e e . . . 
+    . . . . . 2 2 e e e e . . . . . 
+    `
+screen().drawTransparentBitmap(apple, 70, 50)
+```
+
+
 
 #### Bitmap layout
 
