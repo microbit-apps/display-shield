@@ -94,15 +94,15 @@ screen().drawLine(159, 0, 0, 119, 5)
 
 You don't need to worry (for any drawing command) about drawing off
 the screen. So, for example,
-```typescript
+```block
 screen().drawLine(-10, -10, 10, 10, 2)
 ```
 has the same effect as 
-```typescript
+```block
 screen().drawLine(0, 0, 10, 10, 2)
 ```
 While the following code won't display anything on the screen at all:
-```typescript
+```block
 screen().drawLine(-1, -1, -10, -10, 2)
 ```
 
@@ -122,15 +122,15 @@ screen().setPixel(80, 60, 1)
 You can pass floating point numbers to any drawing command that takes 
 a coordinate. For efficiency, the underlying representation is fixed point 
 in the MakeCode runtime. Fractional values are ignored when setting a pixel in a bitmap, so
-```typescript
+```block
 screen().setPixel(79.6, 59.6, 1)
 ```
 has the same effect as 
-```typescript
+```block
 screen().setPixel(79.4, 59.4, 1)
 ```
 which has the same effect as
-```typescript
+```block
 screen().setPixel(79, 59, 1)
 ```
 #### Getting a pixel's (color index) value
@@ -159,7 +159,7 @@ screen().drawRect(10, 0, 20, 10, 4)
 ```
 
 You can have the rectangle filled with the specified color instead:
-```typescript
+```block
 screen().fillRect(0, 0, 10, 10, 1)
 screen().fillRect(10, 10, 20, 20, 2)
 screen().fillRect(0, 10, 10, 20, 3)
@@ -186,13 +186,13 @@ You _declare_ a bitmap by creating a layout. This is done in JavaScript with the
 
 To make a bitmap with some size, just set the pixel characters in the rows of the **bmp** string. A bitmap that is 1 pixel high by 1 pixel wide (1 x 1) is:
 
-```typescript
+```
 let oneByOne = bmp`.`
 ```
 
 A bitmap that is 2 x 2 is declared like this:
 
-```typescript
+```
 let twoBytwo = bmp`
 . .
 . .
@@ -213,7 +213,7 @@ You'll notice that they look the same. That's because the pixel colors are not s
 
 Bitmaps don't have to be exactly square. The height and width can be different. Here's a 6 x 2 bitmap:
 
-```typescript
+```
 let sixByTwo = bmp`
 . . . . . .
 . . . . . .
@@ -250,19 +250,19 @@ Besides the empty, or transparent pixel `.`, there are 16 color pixels you can u
 
 A 1 x 1 bitmap with a red pixel is declared as:
 
-```typescript
+```
 let oneRed = bmp`2`
 ```
 
 As a block it looks like this:
 
-```block
+```
 let oneRed = bmp`2`
 ```
 
 We can make 4 x 4 bitmap that uses all of the colors:
 
-```typescript
+```
 let allColors = bmp`
 0 1 2 3
 4 5 6 7
@@ -288,7 +288,7 @@ Let's see how transparency works with bitmaps. A `.` means that a pixel is trans
 
 Our first bitmap is a green circle inside a 8 x 8 rectangle. All of the pixels around the circle are transparent.
 
-```typescript
+```
 let greenBall = bmp`
 . . . . . . . .
 . . . 6 6 . . .
@@ -303,18 +303,7 @@ let greenBall = bmp`
 
 The other bitmap is the same size but with all yellow pixels.
 
-```block
-let greenBall = bmp`
-. . . . . . . .
-. . . 6 6 . . .
-. . 6 6 6 6 . .
-. 6 6 6 6 6 6 .
-. 6 6 6 6 6 6 .
-. . 6 6 6 6 . .
-. . . 6 6 . . .
-. . . . . . . .
-`
-
+```
 let yellowSquare = bmp`
 5 5 5 5 5 5 5 5
 5 5 5 5 5 5 5 5
