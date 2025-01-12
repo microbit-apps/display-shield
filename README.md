@@ -238,6 +238,9 @@ let apple = bmp`
 screen().drawTransparentBitmap(apple, 70, 50)
 ```
 
+Click on the painter's palette icon next to the bitmap literal in the text view to bring up the bitmap editor
+
+![MakeCode Arcade Shields](https://github.com/microbit-apps/arcadeshield/blob/master/assets/bitmapEditorFromText.png?raw=true)
 
 
 #### Bitmap layout
