@@ -46,6 +46,34 @@ for the shield are under the toolbox categories `Controller` and
 
 ![MakeCode extension dialog](https://github.com/microbit-apps/arcadeshield/blob/master/assets/extensions.png?raw=true)
 
+## Mashup!!!
+
+With this extension, you have access to **all** the MakeCode APIs for the micro:bit, and the new ability to plot data or create your own user interface. For example, one very cool thing about the micro:bit is it's (X,Y,Z) accelerometer, which senses motion in three dimensions.  Below is a program that maps the three accelerometer values to a scrolling line graph:
+```blocks
+let x = 0, old_x = 0
+let y = 0, old_y = 0
+let z = 0, old_z = 0
+let t = 0
+basic.forever(function () {
+    x = Math.map(input.acceleration(Dimension.X), -1024, 1024, 120, 0)
+    y = Math.map(input.acceleration(Dimension.Y), -1024, 1024, 120, 0)
+    z = Math.map(input.acceleration(Dimension.Z), -1024, 1024, 120, 0)
+    screen().drawLine(t, x, t - 1, old_x, 3)
+    screen().drawLine(t, y, t - 1, old_y, 4)
+    screen().drawLine(t, z, t - 1, old_z, 5)
+    t = t + 1
+    if (t == 160) {
+        screen().scroll(-1, 0)
+        t = 159
+    }
+    old_x = x
+    old_y = y
+    old_z = z
+})
+```
+
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S82867-73191-89330-76938)
+
 ## Tutorials
 
 -   [Getting started](https://makecode.microbit.org/beta#tutorial:github:microbit-apps/arcadeshield/tutorials/getting-started)
