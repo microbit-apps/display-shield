@@ -8,6 +8,7 @@ interface Bitmap {
     //% help=github:arcadeshield/docs/fill
     //% this.shadow="theScreen"
     //% weight=100
+    //% c.defl=15
     fill(c: int32): void;
 
     /**
@@ -19,6 +20,9 @@ interface Bitmap {
     //% help=github:arcadeshield/docs/set-pixel
     //% this.shadow="theScreen"
     //% weight=96
+    //% x.defl=80
+    //% y.defl=60
+    //% c.defl=1
     setPixel(x: int32, y: int32, c: int32): void;
 
     /**
@@ -30,6 +34,8 @@ interface Bitmap {
     //% help=github:arcadeshield/docs/get-pixel
     //% this.shadow="theScreen"
     //% weight=92
+    //% x.defl=80
+    //% y.defl=60
     getPixel(x: int32, y: int32): int32;
 
     /**
@@ -41,6 +47,11 @@ interface Bitmap {
     //% help=github:arcadeshield/docs/draw-line
     //% this.shadow="theScreen"
     //% weight=88
+    //% x0.defl=0
+    //% y0.defl=0
+    //% x1.defl=159
+    //% y2.defl=119
+    //% c.defl=1
     drawLine(x0: number, y0: number, x1: number, y1: number, c: color): void;
 
     /**
@@ -52,6 +63,11 @@ interface Bitmap {
     //% help=github:arcadeshield/docs/draw-rect
     //% this.shadow="theScreen"
     //% weight=84
+    //% x.defl=0
+    //% y.defl=0
+    //% w.defl=159
+    //% h.defl=119
+    //% c.defl=1
     drawRect(x: number, y: number, w: number, h: number, c: color): void;
 
     /**
@@ -63,6 +79,11 @@ interface Bitmap {
     //% help=github:arcadeshield/docs/fill-rect
     //% this.shadow="theScreen"
     //% weight=80
+    //% x.defl=0
+    //% y.defl=0
+    //% w.defl=79
+    //% h.defl=59
+    //% c.defl=1
     fillRect(x: number, y: number, w: number, h: number, c: color): void;
 
     /**
@@ -83,9 +104,13 @@ interface Bitmap {
     //% weight=78
     //% blockNamespace="drawing"
     //% group="Drawing"
+    //% cx.defl=80
+    //% cy.defl=60
+    //% r.defl=10
+    //% c.defl=1
     drawCircle(cx: number, cy: number, r: number, c: color): void;
 
-        /**
+    /**
      * Fills a circle
      *
      * @param cx The center x coordinate of the circle
@@ -103,6 +128,10 @@ interface Bitmap {
     //% weight=77
     //% blockNamespace="drawing"
     //% group="Drawing"
+    //% cx.defl=80
+    //% cy.defl=60
+    //% r.defl=10
+    //% c.defl=1
     fillCircle(cx: number, cy: number, r: number, c: color): void;
 
     /**
@@ -120,7 +149,6 @@ interface Bitmap {
     //% from.defl="bitmap"
     //% weight=76
     drawBitmap(from: Bitmap, x: int32, y: int32): void;
-
 
     /**
      * Draw given bitmap with transparent background on the current bitmap
