@@ -10,6 +10,8 @@ namespace bitmaps {
     //% group="Create"
     //% blockAliasFor="bitmaps.create"
     //% help=github:arcadeshield/docs/create
+    //% width.defl=16
+    //% height.defl=16
     export function _create(width: number, height: number): Bitmap {
         return bitmaps.create(width, height);
     }

@@ -8,7 +8,7 @@ interface Bitmap {
     //% help=github:arcadeshield/docs/fill
     //% this.shadow="theScreen"
     //% weight=100
-    //% c.defl=15
+    //% c.defl=8
     fill(c: int32): void;
 
     /**
@@ -50,7 +50,7 @@ interface Bitmap {
     //% x0.defl=0
     //% y0.defl=0
     //% x1.defl=159
-    //% y2.defl=119
+    //% y1.defl=119
     //% c.defl=1
     drawLine(x0: number, y0: number, x1: number, y1: number, c: color): void;
 
@@ -65,8 +65,8 @@ interface Bitmap {
     //% weight=84
     //% x.defl=0
     //% y.defl=0
-    //% w.defl=159
-    //% h.defl=119
+    //% w.defl=79
+    //% h.defl=59
     //% c.defl=1
     drawRect(x: number, y: number, w: number, h: number, c: color): void;
 
@@ -197,6 +197,7 @@ interface Bitmap {
     //% block="scroll $this by x $dx y $dy"
     //% blockId=bitmapScroll
     //% weight=64
+    //% dy.defl=1
     scroll(dx: int32, dy: int32): void;
 
     /**
@@ -258,5 +259,7 @@ declare namespace bitmaps {
     //% weight=80
     //% blockSetVariable=bitmap
     //% help=github:arcadeshield/docs/create
+    //% width.defl=16
+    //% height.defl=16
     function create(width: number, height: number): Bitmap;
 }
