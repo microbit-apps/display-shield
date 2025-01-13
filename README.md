@@ -32,7 +32,9 @@ for the shield are under the toolbox categories `Controller` and
 
 ![MakeCode with Arcade Shield Simulator](https://github.com/microbit-apps/arcadeshield/blob/master/assets/shieldSim.png?raw=true)
 
+
 > [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S07267-08481-73083-11887)
+
 
 ## Using this extension
 
