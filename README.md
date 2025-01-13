@@ -77,9 +77,12 @@ right of the screen is coordinate (159,119).  We draw two lines
 to the screen bitmap to show the four corners of the screen:
 
 ```block
+screen().fill(8)
 screen().drawLine(0, 0, 159, 119, 2)
 screen().drawLine(159, 0, 0, 119, 5)
 ```
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:_YUjfs96dvY55)
+
 The first two parameters to the function are the (x,y)
 coordinate where the line should start, while the next
 two parameters are the (x',y') coordinate where the line
