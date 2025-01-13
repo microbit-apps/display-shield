@@ -49,7 +49,7 @@ for the shield are under the toolbox categories `Controller` and
 ## Mashup!!!
 
 With this extension, you have access to **all** the MakeCode APIs for the micro:bit, and the new ability to plot data or create your own user interface. For example, one very cool thing about the micro:bit is it's (X,Y,Z) accelerometer, which senses motion in three dimensions.  Below is a program that maps the three accelerometer values to a scrolling line graph:
-```blocks
+```block
 let x = 0, old_x = 0
 let y = 0, old_y = 0
 let z = 0, old_z = 0
