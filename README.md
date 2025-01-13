@@ -32,6 +32,8 @@ for the shield are under the toolbox categories `Controller` and
 
 ![MakeCode with Arcade Shield Simulator](https://github.com/microbit-apps/arcadeshield/blob/master/assets/shieldSim.png?raw=true)
 
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S07267-08481-73083-11887)
+
 ## Using this extension
 
 -  Open https://makecode.microbit.org/beta 
@@ -67,6 +69,8 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 ```
 
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S24163-00898-21210-28197)
+
 ### Drawing into the screen bitmap
 
 #### Screen coordinates and lines
@@ -81,7 +85,7 @@ screen().fill(8)
 screen().drawLine(0, 0, 159, 119, 2)
 screen().drawLine(159, 0, 0, 119, 5)
 ```
-> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:_YUjfs96dvY55)
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S31225-91260-81293-38509)
 
 The first two parameters to the function are the (x,y)
 coordinate where the line should start, while the next
@@ -121,6 +125,8 @@ screen().setPixel(80, 59, 1)
 screen().setPixel(79, 60, 1)
 screen().setPixel(80, 60, 1)
 ```
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S39837-99945-78225-07627)
+
 
 You can pass floating point numbers to any drawing command that takes 
 a coordinate. For efficiency, the underlying representation is fixed point 
@@ -144,6 +150,8 @@ stored in the pixel:
 screen().setPixel(80, 60, 2)
 basic.showNumber(screen().getPixel(80, 60))
 ```
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S94864-19590-01546-54083)
+
 So we can see that each pixel is like a variable that stores a value (in the range 0-15)
 that can later be retrieved.
 
@@ -160,6 +168,7 @@ screen().drawRect(10, 10, 20, 20, 2)
 screen().drawRect(0, 10, 10, 20, 3)
 screen().drawRect(10, 0, 20, 10, 4)
 ```
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S56084-26336-76246-44233)
 
 You can have the rectangle filled with the specified color instead:
 ```block
@@ -168,6 +177,7 @@ screen().fillRect(10, 10, 20, 20, 2)
 screen().fillRect(0, 10, 10, 20, 3)
 screen().fillRect(10, 0, 20, 10, 4)
 ```
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S26194-20440-49967-42648)
 
 To draw a circle, first specify the coordinate
 of the center of the circle, followed by the radius
@@ -177,6 +187,8 @@ to fill the circle or just draw its outline:
 screen().fillCircle(10, 10, 8, 2)
 screen().drawCircle(10, 10, 8, 5)
 ```
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S07238-98044-95681-08339)
+
 ### Bitmap
 
 Let's dig into bitmaps, which you can create yourself (the screen is represented by a bitmap, as we have seen already). A bitmap is some number of rows and columns of color pixels that make up rectangular picture. A _pixel_ is a single point of color inside the bitmap. 
@@ -210,6 +222,7 @@ let apple = bmp`
     `
 screen().drawTransparentBitmap(apple, 70, 50)
 ```
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S09276-36456-18209-30086)
 
 Here is the bitmap editor, which appears when you click on the icon in bitmap block
 
@@ -335,10 +348,11 @@ let allColors = bmp`
 8 9 a b
 c d e f
 `
+let larger4x = allColors.doubled().doubled()
+screen().drawBitmap(larger4x, 0, 0)
 ```
 
 This the same bitmap as a block:
-
 ```block
 let allColors = bmp`
 0 1 2 3
@@ -346,7 +360,10 @@ let allColors = bmp`
 8 9 a b
 c d e f
 `
+let larger4x = allColors.doubled().doubled()
+screen().drawBitmap(larger4x, 0, 0)
 ```
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S45330-31711-15419-66725)
 
 #### Transparency and overlap
 
@@ -411,6 +428,7 @@ let yellowSquare = bmp`
 screen().drawBitmap(yellowSquare, 0, 0)
 screen().drawTransparentBitmap(greenBall, 0, 0)
 ```
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S29479-80151-27505-97683)
 
 #### Setting pixels at locations
 
@@ -424,9 +442,11 @@ for (let i = 0; i <= 31; i++) {
     orangeBox.setPixel(i, 31, 4)
     orangeBox.setPixel(31, i, 4)
 }
+screen().fill(8)
 screen().drawTransparentBitmap(orangeBox, 0, 0)
 screen().drawTransparentBitmap(orangeBox, 32, 32)
 ```
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S62195-40202-75476-02422)
 
 #### Drawing to a bitmap
 
@@ -439,9 +459,12 @@ orangeBox.drawLine(0, 0, 31, 0, 4)
 orangeBox.drawLine(0, 0, 0, 31, 4)
 orangeBox.drawLine(0, 31, 31, 31, 4)
 orangeBox.drawLine(31, 0, 31, 31, 4)
+screen().fill(8)
 screen().drawTransparentBitmap(orangeBox, 0, 0)
 screen().drawTransparentBitmap(orangeBox, 32, 32)
 ```
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S29084-47427-55388-74348)
+
 
 # Supported targets
 
