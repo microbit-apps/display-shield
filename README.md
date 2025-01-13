@@ -448,7 +448,7 @@ screen().fill(8)
 screen().drawTransparentBitmap(orangeBox, 0, 0)
 screen().drawTransparentBitmap(orangeBox, 32, 32)
 ```
-> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S62195-40202-75476-02422)
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S25149-03569-03166-64971)
 
 #### Drawing to a bitmap
 
