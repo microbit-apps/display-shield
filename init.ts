@@ -18,7 +18,10 @@ namespace __screen_internal {
             shieldhelpers.displayWidth(), // control.getConfigValue(DAL.CFG_DISPLAY_WIDTH, 160)
             shieldhelpers.displayHeight() // control.getConfigValue(DAL.CFG_DISPLAY_HEIGHT, 120)
         )
+
         control.__screen.setupUpdate(() => shieldhelpers.updateScreen(img))
+        radioControlRxLoop();
+
         return img as Bitmap;
     }
 }
