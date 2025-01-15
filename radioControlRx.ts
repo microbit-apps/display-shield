@@ -92,7 +92,7 @@ function setup() {
 
         // Process each row of the bitmap into a single asset:
         radio.onReceivedBuffer((onReceivedBuffer: Buffer) => {
-            basic.showString("B")
+            // basic.showString("B")
 
             if (assetBuffer == null)
                 assetBuffer = onReceivedBuffer
@@ -100,21 +100,21 @@ function setup() {
                 assetBuffer = Buffer.concat([assetBuffer, onReceivedBuffer])
             rowsReceived++;
             // basic.showString("A")
-            radio.sendString("ACK")
-            basic.showNumber(rowsReceived % 10);
+            // radio.sendString("ACK")
+            // basic.showNumber(rowsReceived % 10);
         })
 
         // basic.showString("C")
         // basic.showNumber(rowsReceived % 10);
         while (rowsReceived < bitmapHeight)
-            basic.pause(25)
+            basic.pause(5)
         // basic.showString("D")
 
         // Rebinding for safety - since we're going back to only responding to .onReceivedString() at the top of this loop:
         radio.onReceivedBuffer(_ => { })
     }
 
-    basic.showString("ALL DONE")
+    basic.showString("D")
 }
 
 function radioControlRxLoop() {
@@ -149,7 +149,11 @@ function radioControlRxLoop() {
             case SCREEN_FN_ID_FILL_RECT: { screen().fillRect(params[0], params[1], params[2], params[3], params[4]); break; }
             case SCREEN_FN_ID_SET_PIXEL: { screen().setPixel(params[0], params[1], params[2]); break; }
 
-            case SCREEN_FN_ID_PRINT: { screen().print(latestString, params[0], params[1], params[2]); break; }
+            case SCREEN_FN_ID_PRINT: {
+                // basic.showNumber(params[0])
+                // basic.showNumber(params[1])
+                screen().print(latestString, params[0] - (screen().width >> 1), params[1] - (screen().height >> 1), params[2]); break;
+            }
 
             default: { break; }
         }
