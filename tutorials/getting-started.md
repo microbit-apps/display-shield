@@ -2,12 +2,12 @@
 
 ## Getting started @showdialog
 
-In this tutorial, you will learn to draw on the screen of a micro:bit Arcade shield.
-Let's go!
+In this tutorial, you will learn to draw on the screen of a micro:bit Arcade shield with 
+a variety of drawing blocks. Let's go!
 
 ## Fill the screen with a color @showhint
 
-Drag the `||drawing:fill||` block to the start of `||basic:on start||`. After restarting, you should also see the arcade shield simulator.
+Drag the `||drawing:fill||` block to the start of `||basic:on start||`. You should see the arcade shield simulator and the display should turn blue:
 
 ```blocks
 // @highlight
@@ -16,7 +16,7 @@ screen().fill(8)
 
 ## Set a pixel to white @showhint
 
-Drag the `||drawing:set pixel||` block to the end to plot a single point:
+Drag the `||drawing:set pixel||` block to plot a single point:
 
 ```block
 screen().fill(8)
@@ -35,18 +35,6 @@ screen().setPixel(80, 60, 1)
 screen().drawLine(0, 0, 159, 119, 1)
 ```
 
-## Draw a rectangle @showhint
-
-Drag the `||drawing: draw rectangle||` to draw a rectangle outline in the upper-left quadrant of the display:
-
-```block
-screen().fill(8)
-screen().setPixel(80, 60, 1)
-screen().drawLine(0, 0, 159, 119, 1)
-// @highlight
-screen().drawRect(0, 0, 79, 59, 1)
-```
-
 ## Fill a rectangle @showhint
 
 Drag the `||drawing: fill rectangle||` to fill the rectangle in the upper-left quadrant of the display:
@@ -55,38 +43,48 @@ Drag the `||drawing: fill rectangle||` to fill the rectangle in the upper-left q
 screen().fill(8)
 screen().setPixel(80, 60, 1)
 screen().drawLine(0, 0, 159, 119, 1)
-screen().drawRect(0, 0, 79, 59, 1)
 // @highlight
-screen().fillRect(0, 0, 79, 59, 1)
+screen().fillRect(0, 0, 79, 59, 6)
 ```
+## Draw a rectangle @showhint
 
-## Draw a circle @showhint
-
-Drag the `||drawing: draw dircle||` to draw a circular outline in the center of the display:
+Drag the `||drawing: draw rectangle||` to draw a rectangle outline in the upper-left quadrant of the display:
 
 ```block
 screen().fill(8)
 screen().setPixel(80, 60, 1)
 screen().drawLine(0, 0, 159, 119, 1)
-screen().drawRect(0, 0, 79, 59, 1)
-screen().fillRect(0, 0, 79, 59, 1)
+screen().fillRect(0, 0, 79, 59, 6)
 // @highlight
-screen().drawCircle(80, 60, 10, 1)
+screen().drawRect(0, 0, 79, 59, 5)
 ```
 
 ## Fill a circle @showhint
 
 Drag the `||drawing: fill dircle||` to fill a circle in the center of the display:
+```block
+screen().fill(8)
+screen().setPixel(80, 60, 1)
+screen().drawLine(0, 0, 159, 119, 1)
+screen().fillRect(0, 0, 79, 59, 6)
+screen().drawRect(0, 0, 79, 59, 5)
+// @highlight
+screen().fillCircle(80, 60, 10, 10)
+```
+
+## Draw a circle @showhint
+
+Drag the `||drawing: draw dircle||` to draw a circular outline at the center of the display:
 
 ```block
 screen().fill(8)
 screen().setPixel(80, 60, 1)
 screen().drawLine(0, 0, 159, 119, 1)
-screen().drawRect(0, 0, 79, 59, 1)
-screen().fillRect(0, 0, 79, 59, 1)
-screen().drawCircle(80, 60, 10, 1)
+screen().fillRect(0, 0, 79, 59, 6)
+screen().drawRect(0, 0, 79, 59, 5)
+screen().fillCircle(80, 60, 10, 10)
 // @highlight
-screen().fillCircle(80, 60, 10, 1)
+screen().drawCircle(80, 60, 10, 9)
 ```
 
 # Create a bitmap with the bitmap editor @showhint
@@ -97,10 +95,10 @@ Drag the `||drawing: set bitmap||` block to create a new variable holding a bitm
 screen().fill(8)
 screen().setPixel(80, 60, 1)
 screen().drawLine(0, 0, 159, 119, 1)
-screen().drawRect(0, 0, 79, 59, 1)
-screen().fillRect(0, 0, 79, 59, 1)
-screen().drawCircle(80, 60, 10, 1)
-screen().fillCircle(80, 60, 10, 1)
+screen().fillRect(0, 0, 79, 59, 6)
+screen().drawRect(0, 0, 79, 59, 5)
+screen().fillCircle(80, 60, 10, 10)
+screen().drawCircle(80, 60, 10, 9)
 // @highlight
 let bitmap = bmp`
     . . . . . . . . . . . . . . . . 
@@ -130,10 +128,10 @@ Drag the `||drawing: draw bitmap||` to draw the bitmap you created without trans
 screen().fill(8)
 screen().setPixel(80, 60, 1)
 screen().drawLine(0, 0, 159, 119, 1)
-screen().drawRect(0, 0, 79, 59, 1)
-screen().fillRect(0, 0, 79, 59, 1)
-screen().drawCircle(80, 60, 10, 1)
-screen().fillCircle(80, 60, 10, 1)
+screen().fillRect(0, 0, 79, 59, 6)
+screen().drawRect(0, 0, 79, 59, 5)
+screen().fillCircle(80, 60, 10, 10)
+screen().drawCircle(80, 60, 10, 9)
 let bitmap = bmp`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -164,10 +162,10 @@ Drag the `||drawing: draw bitmap transparent||` to draw the bitmap you created w
 screen().fill(8)
 screen().setPixel(80, 60, 1)
 screen().drawLine(0, 0, 159, 119, 1)
-screen().drawRect(0, 0, 79, 59, 1)
-screen().fillRect(0, 0, 79, 59, 1)
-screen().drawCircle(80, 60, 10, 1)
-screen().fillCircle(80, 60, 10, 1)
+screen().fillRect(0, 0, 79, 59, 6)
+screen().drawRect(0, 0, 79, 59, 5)
+screen().fillCircle(80, 60, 10, 10)
+screen().drawCircle(80, 60, 10, 9)
 let bitmap = bmp`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
