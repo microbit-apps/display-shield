@@ -9,7 +9,8 @@ const SCREEN_FN_ID_SET_PIXEL: number = 21;
 const SCREEN_FN_ID_PRINT: number = 23;
 
 
-function radioControlRxLoop() {
+
+function setup() {
     let latestString: string = "";
 
     // radio.sendString("ASSET_TX_START" + ", " + iconNames.length)
@@ -114,16 +115,22 @@ function radioControlRxLoop() {
     }
 
     basic.showString("ALL DONE")
+}
 
+function radioControlRxLoop() {
+    setup();
+
+    let latestString: string = ""; // setup via radio.onReceivedString from setup()
+
+
+    // Main loop; listen for draw commands:
     radio.onReceivedBuffer((buffer: Buffer) => {
         const fn_id: number = buffer[0];
         const params: Buffer = buffer.slice(1);
 
-        const half_height = screen().height >> 1;
-        const half_width = screen().width >> 1;
-
         // basic.showString("R")
 
+        // basic.showNumber(fn_id)
         switch (fn_id) {
             // case SCREEN_FN_ID_ASSET_SETUP: { break;}
             // case SCREEN_FN_ID_RESET_SCREEN_IMAGE: { screen().resetscreenImage(); break; }
@@ -136,16 +143,17 @@ function radioControlRxLoop() {
                 break;
             }
 
-            case SCREEN_FN_ID_DRAW_LINE: { screen().drawLine(params[0] - half_width, params[1] - half_height, params[2] - half_width, params[3] - half_height, params[4]); break; }
-            case SCREEN_FN_ID_DRAW_RECT: { screen().drawRect(params[0] - half_width, params[1] - half_height, params[2], params[3], params[4]); break; }
+            case SCREEN_FN_ID_DRAW_LINE: { screen().drawLine(params[0], params[1], params[2], params[3], params[4]); break; }
+            case SCREEN_FN_ID_DRAW_RECT: { screen().drawRect(params[0], params[1], params[2], params[3], params[4]); break; }
             case SCREEN_FN_ID_FILL: { screen().fill(params[0]); break; }
-            case SCREEN_FN_ID_FILL_RECT: { screen().fillRect(params[0] - half_width, params[1] - half_height, params[2], params[3], params[4]); break; }
-            case SCREEN_FN_ID_SET_PIXEL: { screen().setPixel(params[0] - half_width, params[1] - half_height, params[2]); break; }
+            case SCREEN_FN_ID_FILL_RECT: { screen().fillRect(params[0], params[1], params[2], params[3], params[4]); break; }
+            case SCREEN_FN_ID_SET_PIXEL: { screen().setPixel(params[0], params[1], params[2]); break; }
 
-            case SCREEN_FN_ID_PRINT: { screen().print(latestString, params[0] - half_width, params[1] - half_height, params[2]); break; }
+            case SCREEN_FN_ID_PRINT: { screen().print(latestString, params[0], params[1], params[2]); break; }
 
             default: { break; }
         }
         basic.clearScreen()
     })
 }
+
