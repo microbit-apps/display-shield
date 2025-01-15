@@ -7,87 +7,186 @@ Let's go!
 
 ## Fill the screen with a color @showhint
 
-Drag the `||drawing:fill||` at the start of `||basic:on start||`. After restarting, you should also see the arcade shield simulator.
+Drag the `||drawing:fill||` block to the start of `||basic:on start||`. After restarting, you should also see the arcade shield simulator.
 
 ```blocks
 // @highlight
-screen().fill(4)
+screen().fill(8)
 ```
 
-## Draw some lines @showhint
+## Set a pixel to white @showhint
 
-Drag the `||drawing:draw line||` twice to create two diagonal lines.
+Drag the `||drawing:set pixel||` block to the end to plot a single point:
 
 ```block
-screen().fill(4)
+screen().fill(8)
 // @highlight
-screen().drawLine(0, 0, 159, 119, 2)
-// @highlight
-screen().drawLine(159, 0, 0, 119, 5)
+screen().setPixel(80, 60, 1)
 ```
 
-## Draw a filled circle @showhint
+## Draw a diagonal line @showhint
 
-Drag the `||drawing:fill circle||` to create a filled yellow circle at the center of the screeb.
+Drag the `||drawing: draw line||` to draw a line from the upper-left of the display to the lower-right:
 
 ```block
-screen().fill(4)
-screen().drawLine(0, 0, 159, 119, 2)
-screen().drawLine(159, 0, 0, 119, 5)
+screen().fill(8)
+screen().setPixel(80, 60, 1)
 // @highlight
-screen().fillCircle(80, 60, 20, 5)
+screen().drawLine(0, 0, 159, 119, 1)
 ```
 
 ## Draw a rectangle @showhint
 
-```block
-screen().fill(4)
-screen().drawLine(0, 0, 159, 119, 2)
-screen().drawLine(159, 0, 0, 119, 5)
-screen().fillCircle(80, 60, 20, 5)
-screen().drawRect(70, 50, 20, 20, 10)
-```
-
-## Create a bitmap
+Drag the `||drawing: draw rectangle||` to draw a rectangle outline in the upper-left quadrant of the display:
 
 ```block
-screen().fill(4)
-screen().drawLine(0, 0, 159, 119, 2)
-screen().drawLine(159, 0, 0, 119, 5)
-screen().fillCircle(80, 60, 20, 5)
-screen().drawRect(70, 50, 20, 20, 10)
+screen().fill(8)
+screen().setPixel(80, 60, 1)
+screen().drawLine(0, 0, 159, 119, 1)
 // @highlight
-let bitmap = bitmaps.create(32, 32)
+screen().drawRect(0, 0, 79, 59, 1)
 ```
 
-## Draw into the bitmap
+## Fill a rectangle @showhint
+
+Drag the `||drawing: fill rectangle||` to fill the rectangle in the upper-left quadrant of the display:
 
 ```block
-screen().fill(4)
-screen().drawLine(0, 0, 159, 119, 2)
-screen().drawLine(159, 0, 0, 119, 5)
-screen().fillCircle(80, 60, 20, 5)
-screen().drawRect(70, 50, 20, 20, 10)
-let bitmap = bitmaps.create(32, 32)
+screen().fill(8)
+screen().setPixel(80, 60, 1)
+screen().drawLine(0, 0, 159, 119, 1)
+screen().drawRect(0, 0, 79, 59, 1)
 // @highlight
-bitmap.fillCircle(16, 16, 15, 5)
-// @highlight
-bitmap.drawRect(6, 6, 21, 21, 10)
-screen().drawBitmap(bitmap, 0, 0)
+screen().fillRect(0, 0, 79, 59, 1)
 ```
 
-# Draw the bitmap to the screen
+## Draw a circle @showhint
+
+Drag the `||drawing: draw dircle||` to draw a circular outline in the center of the display:
 
 ```block
-screen().fill(4)
-screen().drawLine(0, 0, 159, 119, 2)
-screen().drawLine(159, 0, 0, 119, 5)
-screen().fillCircle(80, 60, 20, 5)
-screen().drawRect(70, 50, 20, 20, 10)
-let bitmap = bitmaps.create(32, 32)
-bitmap.fillCircle(16, 16, 15, 5)
-bitmap.drawRect(6, 6, 21, 21, 10)
+screen().fill(8)
+screen().setPixel(80, 60, 1)
+screen().drawLine(0, 0, 159, 119, 1)
+screen().drawRect(0, 0, 79, 59, 1)
+screen().fillRect(0, 0, 79, 59, 1)
 // @highlight
-screen().drawBitmap(bitmap, 0, 0)
+screen().drawCircle(80, 60, 10, 1)
 ```
 
+## Fill a circle @showhint
+
+Drag the `||drawing: fill dircle||` to fill a circle in the center of the display:
+
+```block
+screen().fill(8)
+screen().setPixel(80, 60, 1)
+screen().drawLine(0, 0, 159, 119, 1)
+screen().drawRect(0, 0, 79, 59, 1)
+screen().fillRect(0, 0, 79, 59, 1)
+screen().drawCircle(80, 60, 10, 1)
+// @highlight
+screen().fillCircle(80, 60, 10, 1)
+```
+
+# Create a bitmap with the bitmap editor @showhint
+
+Drag the `||drawing: set bitmap||` block to create a new variable holding a bitmap. Click on the bitmp block to open the bitmap editor and paint an image:
+
+```block
+screen().fill(8)
+screen().setPixel(80, 60, 1)
+screen().drawLine(0, 0, 159, 119, 1)
+screen().drawRect(0, 0, 79, 59, 1)
+screen().fillRect(0, 0, 79, 59, 1)
+screen().drawCircle(80, 60, 10, 1)
+screen().fillCircle(80, 60, 10, 1)
+// @highlight
+let bitmap = bmp`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . 7 7 7 7 . . . . . . . 
+    . . . 7 7 7 2 2 7 7 7 . . . . . 
+    . . . 7 2 2 2 2 2 2 7 . . . . . 
+    . . 7 7 2 2 2 2 2 2 7 7 . . . . 
+    . . 7 7 2 2 2 2 2 2 2 7 . . . . 
+    . . 7 7 2 2 2 2 2 2 2 7 7 . . . 
+    . . 7 7 2 2 2 2 2 2 2 2 7 . . . 
+    . . . 7 2 2 2 2 2 2 2 2 7 . . . 
+    . . . 7 2 2 2 2 2 2 2 2 7 . . . 
+    . . . 7 7 2 2 2 2 2 2 7 7 . . . 
+    . . . . . 7 7 2 2 7 7 7 . . . . 
+    . . . . . . 7 7 7 7 . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `
+```
+
+# Draw the bitmap (no transparency)
+
+Drag the `||drawing: draw bitmap||` to draw the bitmap you created without transparency (transparent pixels appear black):
+
+```block
+screen().fill(8)
+screen().setPixel(80, 60, 1)
+screen().drawLine(0, 0, 159, 119, 1)
+screen().drawRect(0, 0, 79, 59, 1)
+screen().fillRect(0, 0, 79, 59, 1)
+screen().drawCircle(80, 60, 10, 1)
+screen().fillCircle(80, 60, 10, 1)
+let bitmap = bmp`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . 7 7 7 7 . . . . . . . 
+    . . . 7 7 7 2 2 7 7 7 . . . . . 
+    . . . 7 2 2 2 2 2 2 7 . . . . . 
+    . . 7 7 2 2 2 2 2 2 7 7 . . . . 
+    . . 7 7 2 2 2 2 2 2 2 7 . . . . 
+    . . 7 7 2 2 2 2 2 2 2 7 7 . . . 
+    . . 7 7 2 2 2 2 2 2 2 2 7 . . . 
+    . . . 7 2 2 2 2 2 2 2 2 7 . . . 
+    . . . 7 2 2 2 2 2 2 2 2 7 . . . 
+    . . . 7 7 2 2 2 2 2 2 7 7 . . . 
+    . . . . . 7 7 2 2 7 7 7 . . . . 
+    . . . . . . 7 7 7 7 . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `
+// @highlight
+screen().drawBitmap(bitmap, 72, 52)
+```
+
+# Draw the bitmap (with transparency)
+
+Drag the `||drawing: draw bitmap transparent||` to draw the bitmap you created with transparency (background color shows through transparent pixels):
+
+```block
+screen().fill(8)
+screen().setPixel(80, 60, 1)
+screen().drawLine(0, 0, 159, 119, 1)
+screen().drawRect(0, 0, 79, 59, 1)
+screen().fillRect(0, 0, 79, 59, 1)
+screen().drawCircle(80, 60, 10, 1)
+screen().fillCircle(80, 60, 10, 1)
+let bitmap = bmp`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . 7 7 7 7 . . . . . . . 
+    . . . 7 7 7 2 2 7 7 7 . . . . . 
+    . . . 7 2 2 2 2 2 2 7 . . . . . 
+    . . 7 7 2 2 2 2 2 2 7 7 . . . . 
+    . . 7 7 2 2 2 2 2 2 2 7 . . . . 
+    . . 7 7 2 2 2 2 2 2 2 7 7 . . . 
+    . . 7 7 2 2 2 2 2 2 2 2 7 . . . 
+    . . . 7 2 2 2 2 2 2 2 2 7 . . . 
+    . . . 7 2 2 2 2 2 2 2 2 7 . . . 
+    . . . 7 7 2 2 2 2 2 2 7 7 . . . 
+    . . . . . 7 7 2 2 7 7 7 . . . . 
+    . . . . . . 7 7 7 7 . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `
+screen().drawBitmap(bitmap, 72, 52)
+// @highlight
+screen().drawTransparentBitmap(bitmap, 32, 22)
+```
