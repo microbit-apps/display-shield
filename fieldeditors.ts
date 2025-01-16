@@ -9,7 +9,7 @@ namespace bitmaps {
     //% weight=78
     //% group="Create"
     //% blockAliasFor="bitmaps.create"
-    //% help=github:arcadeshield/docs/create
+    //% help=github:display-shield/docs/create
     //% width.defl=16
     //% height.defl=16
     export function _create(width: number, height: number): Bitmap {
@@ -44,7 +44,7 @@ namespace bitmaps {
     //% bitmap.fieldOptions.decompileArgumentAsString="true"
     //% weight=85
     //% group="Create"
-    //% help=github:arcadeshield/docs/bitmap
+    //% help=github:display-shield/docs/bitmap
     //% blockAliasFor="bitmaps.create"
     //% blockNamespace="drawing"
     export function _bitmap(bitmap: Bitmap): Bitmap {

@@ -42,5 +42,5 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 ```
 
 ```package
-arcadeshield=github:microbit-apps/arcadeshield
+display-shield=github:microbit-apps/display-shield
 ```

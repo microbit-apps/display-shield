@@ -6,7 +6,7 @@ function postMessage(msg: protocol.ArcadeShieldMessage) {
     window.parent.postMessage(
         {
             type: "messagepacket",
-            channel: "microbit-apps/arcadeshield",
+            channel: "microbit-apps/display-shield",
             data: payload,
         },
         "*"
@@ -42,7 +42,7 @@ export function useShieldService(
         function handleMessagePacket(msg: any) {
             const srcFrameIndex = (msg.srcFrameIndex as number) ?? -1
             switch (msg.channel) {
-                case "microbit-apps/arcadeshield":
+                case "microbit-apps/display-shield":
                     return handleShieldMessage(msg.data, srcFrameIndex)
                 case "jacdac":
                     return
@@ -77,7 +77,7 @@ export function useShieldService(
                 case "set-palette":
                     return handleSetPaletteMessage(msg as protocol.SetPaletteMessage)
                 default:
-                    console.log(`unknown arcadeshield message: ${JSON.stringify(msg)}`)
+                    console.log(`unknown display-shield message: ${JSON.stringify(msg)}`)
             }
         }
         function handleShowImageMessage(msg: protocol.ShowImageMessage) {

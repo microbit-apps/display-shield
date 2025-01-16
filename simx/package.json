@@ -1,8 +1,8 @@
 {
-  "name": "@arcadeshield/simx",
+  "name": "@display-shield/simx",
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://github.com/microbit-apps/arcadeshield",
+  "homepage": "https://github.com/microbit-apps/display-shield",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,7 +14,7 @@
     "prettier": "prettier --write ./src"
   },
   "dependencies": {
-    "arcadeshield": "file:../",
+    "display-shield": "file:../",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-svg": "^16.1.34"

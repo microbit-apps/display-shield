@@ -21,5 +21,5 @@ controller.onShieldEvent(ControllerShieldEvent.Present, function () {
 ```
 
 ```package
-arcadeshield=github:microbit-apps/arcadeshield
+display-shield=github:microbit-apps/display-shield
 ```

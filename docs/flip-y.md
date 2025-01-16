@@ -37,5 +37,5 @@ for (let i = 0; i < 10; i++) {
 ```
 
 ```package
-arcadeshield=github:microbit-apps/arcadeshield
+display-shield=github:microbit-apps/display-shield
 ```

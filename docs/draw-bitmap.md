@@ -28,5 +28,5 @@ screen().drawBitmap(doubleRect,10,10)
 ```
 
 ```package
-arcadeshield=github:microbit-apps/arcadeshield
+display-shield=github:microbit-apps/display-shield
 ```

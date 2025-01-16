@@ -55,7 +55,7 @@ namespace shieldhelpers {
         }
 
         private sendMessage(msg: string) {
-            control.simmessages.send("microbit-apps/arcadeshield", Buffer.fromUTF8(msg) , false)
+            control.simmessages.send("microbit-apps/display-shield", Buffer.fromUTF8(msg) , false)
         }
 
         initSim() {
@@ -101,7 +101,7 @@ namespace shieldhelpers {
 
     //% shim=TD_NOOP
     function startSim() {
-        control.simmessages.onReceived("microbit-apps/arcadeshield", handleShieldMessage)
+        control.simmessages.onReceived("microbit-apps/display-shield", handleShieldMessage)
         _screenState.initSim()
         while (!_screenState.gotSimMessage) {
             basic.pause(0)
@@ -199,7 +199,7 @@ namespace shieldhelpers {
     //% blockId=shieldPresent block="shield present?"
     //% blockNamespace="Controller"
     //% weight=0
-    //% help=github:arcadeshield/docs/shield-resent
+    //% help=github:display-shield/docs/shield-resent
     export function shieldPresent(): boolean {
         __present = undefined
         while (__present === undefined) {

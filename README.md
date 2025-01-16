@@ -1,13 +1,13 @@
-# MakeCode extension: Arcade Shield for BBC micro:bit (V2)
+# MakeCode extension: Display shield for BBC micro:bit (V2)
 
-This MakeCode extension allows you to use any of the  MakeCode Arcade shields with the MakeCode for BBC micro:bit editor. The extension provides access 
-to the screen and buttons on the shield, and has
+This MakeCode extension allows you to use any of the  MakeCode Arcade shields with the MakeCode for BBC micro:bit editor. 
+The extension provides access to the screen and buttons on the shield, and has
 a Bitmap abstraction with numerous drawing primitives
 (draw line, circle, square, etc).
 Bitmaps also can be created using the built-in
 image editor in MakeCode.
 
-> **NOTE: This extension will only work in https://makecode.microbit.org/beta**. The extension is still under development and is subject to changes. Please file issues at https://github.com/microbit-apps/arcadeshield/issues 
+> **NOTE: This extension will only work in https://makecode.microbit.org/beta**. The extension is still under development and is subject to changes. Please file issues at https://github.com/microbit-apps/display-shield/issues 
 
 ## Arcade Shields for the micro:bit V2
 
@@ -18,7 +18,7 @@ Various Arcade shields for the micro:bit V2 are available on the market today, i
 * [ICShopping's Game:bit Arcade shield](https://www.icshop.com.tw/products/368112100137?locale=en): No assembly required. Large screen and 3d-printed enclosure with LiPo battery inside. Two [Jacdac](https://aka.ms/jacdac) ports.
 * [Kitronik's Arcade for BBC micro:bit](https://kitronik.co.uk/products/56116-kitronik-arcade-for-bbc-micro-bit-makecode-arcade): No assembly required. Small screen. Battery holder on back. No Jacdac port.
 
-![MakeCode Arcade Shields](https://github.com/microbit-apps/arcadeshield/blob/master/assets/shields.png?raw=true)
+![MakeCode Arcade Shields](https://github.com/microbit-apps/display-shield/blob/master/assets/shields.png?raw=true)
 
 
 ## Simulator support
@@ -30,7 +30,7 @@ D-pad, see arrow buttons).  Blocks
 for the shield are under the toolbox categories `Controller` and
 `Drawing` and are described further below.
 
-![MakeCode with Arcade Shield Simulator](https://github.com/microbit-apps/arcadeshield/blob/master/assets/shieldSim.png?raw=true)
+![MakeCode with Display Shield Simulator](https://github.com/microbit-apps/display-shield/blob/master/assets/shieldSim.png?raw=true)
 
 
 > [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S07267-08481-73083-11887)
@@ -41,10 +41,10 @@ for the shield are under the toolbox categories `Controller` and
 -  Open https://makecode.microbit.org/beta 
 -  Create a new project
 -  Add an extension via the "Extensions" item in the gear wheel (upper right)
--  Type "arcade" into the search box
--  Select the **arcadeshield** extension, as shown below
+-  Type "display shield" into the search box
+-  Select the **display-shield** extension, as shown below
 
-![MakeCode extension dialog](https://github.com/microbit-apps/arcadeshield/blob/master/assets/extensions.png?raw=true)
+![MakeCode extension dialog](https://github.com/microbit-apps/display-shield/blob/master/assets/extensions.png?raw=true)
 
 ## Mashup!!!
 
@@ -76,13 +76,13 @@ basic.forever(function () {
 
 ## Tutorials
 
--   [Getting started](https://makecode.microbit.org/beta#tutorial:github:microbit-apps/arcadeshield/tutorials/getting-started)
+-   [Getting started](https://makecode.microbit.org/beta#tutorial:github:microbit-apps/display-shield/tutorials/getting-started)
 
 ## Overview of API
 
 The examples below are illustrative. All blocks have their own
 detailed help pages, available from the MakeCode editor. 
-[This page with block rendering](https://makecode.microbit.org/pkg/microbit-apps/arcadeshield). More APIs are available via TypeScript. 
+[This page with block rendering](https://makecode.microbit.org/pkg/microbit-apps/display-shield). More APIs are available via TypeScript. 
 
 ### Controller
 
@@ -256,7 +256,7 @@ screen().drawTransparentBitmap(apple, 70, 50)
 
 Here is the bitmap editor, which appears when you click on the icon in bitmap block
 
-![MakeCode Arcade Shields](https://github.com/microbit-apps/arcadeshield/blob/master/assets/appleBitmapEditor.png?raw=true)
+![MakeCode Arcade Shields](https://github.com/microbit-apps/display-shield/blob/master/assets/appleBitmapEditor.png?raw=true)
 
 
 The bitmap also is represented as a text literal, as shown below
@@ -286,7 +286,7 @@ screen().drawTransparentBitmap(apple, 70, 50)
 
 Click on the painter's palette icon next to the bitmap literal in the text view to bring up the bitmap editor
 
-![MakeCode Arcade Shields](https://github.com/microbit-apps/arcadeshield/blob/master/assets/bitmapEditorFromText.png?raw=true)
+![MakeCode Arcade Shields](https://github.com/microbit-apps/display-shield/blob/master/assets/bitmapEditorFromText.png?raw=true)
 
 
 #### Bitmap layout

@@ -36,5 +36,5 @@ screen().drawTransparentBitmap(orangeBox, 0, 0)
 ```
 
 ```package
-arcadeshield=github:microbit-apps/arcadeshield
+display-shield=github:microbit-apps/display-shield
 ```
