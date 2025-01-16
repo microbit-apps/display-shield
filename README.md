@@ -1,4 +1,4 @@
-# MakeCode extension: Display shield for BBC micro:bit (V2)
+# MakeCode extension: Display shield for BBC micro:bit
 
 This MakeCode extension allows you to use any of the  MakeCode Arcade shields with the MakeCode for BBC micro:bit editor. 
 The extension provides access to the screen and buttons on the shield, and has
