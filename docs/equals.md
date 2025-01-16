@@ -66,5 +66,5 @@ if (secondBitmap.equals(firstBitmap)) {
 
 
 ```package
-arcadeshield=github:microbit-apps/arcadeshield
+display-shield=github:microbit-apps/display-shield
 ```

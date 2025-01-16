@@ -1,13 +1,13 @@
-# Micro:bit Arcade Shield Getting Started
+# Micro:bit Display Shield Getting Started
 
 ## Getting started @showdialog
 
-In this tutorial, you will learn to draw on the screen of a micro:bit Arcade shield with 
+In this tutorial, you will learn to draw on the screen of a micro:bit display shield with 
 a variety of drawing blocks. Let's go!
 
 ## Fill the screen with a color @showhint
 
-Drag the `||drawing:fill||` block to the start of `||basic:on start||`. You should see the arcade shield simulator and the display should turn blue:
+Drag the `||drawing:fill||` block to the start of `||basic:on start||`. You should see the display shield simulator and the display should turn blue:
 
 ```blocks
 // @highlight

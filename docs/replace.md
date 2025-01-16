@@ -31,5 +31,5 @@ basic.forever(() => {
 
 
 ```package
-arcadeshield=github:microbit-apps/arcadeshield
+display-shield=github:microbit-apps/display-shield
 ```

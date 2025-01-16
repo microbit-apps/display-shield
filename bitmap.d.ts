@@ -5,7 +5,7 @@ interface Bitmap {
     //% shim=BitmapMethods::fill blockNamespace="drawing" group="Drawing"
     //% blockId=bitmapFill
     //% block="fill $this with $c=colorindexpicker"
-    //% help=github:arcadeshield/docs/fill
+    //% help=github:display-shield/docs/fill
     //% this.shadow="theScreen"
     //% weight=100
     //% c.defl=8
@@ -17,7 +17,7 @@ interface Bitmap {
     //% shim=BitmapMethods::setPixel blockNamespace="drawing" group="Drawing"
     //% block="set $this color at x $x y $y to $c=colorindexpicker"
     //% blockId=bitmapSetPixel
-    //% help=github:arcadeshield/docs/set-pixel
+    //% help=github:display-shield/docs/set-pixel
     //% this.shadow="theScreen"
     //% weight=96
     //% x.defl=80
@@ -31,7 +31,7 @@ interface Bitmap {
     //% shim=BitmapMethods::getPixel blockNamespace="drawing" group="Drawing"
     //% block="$this color at x $x y $y"
     //% blockId=bitmapGetPixel
-    //% help=github:arcadeshield/docs/get-pixel
+    //% help=github:display-shield/docs/get-pixel
     //% this.shadow="theScreen"
     //% weight=92
     //% x.defl=80
@@ -44,7 +44,7 @@ interface Bitmap {
     //% helper=imageDrawLine blockNamespace="drawing" inlineInputMode="inline" group="Drawing"
     //% block="draw line in $this from x $x0 y $y0 to x $x1 y $y1 $c=colorindexpicker"
     //% blockId=bitmapDrawLine
-    //% help=github:arcadeshield/docs/draw-line
+    //% help=github:display-shield/docs/draw-line
     //% this.shadow="theScreen"
     //% weight=88
     //% x0.defl=0
@@ -60,7 +60,7 @@ interface Bitmap {
     //% helper=imageDrawRect blockNamespace="drawing" inlineInputMode="inline" group="Drawing"
     //% block="draw rectangle in $this at x $x y $y width $w height $h $c=colorindexpicker"
     //% blockId=bitmapDrawRect
-    //% help=github:arcadeshield/docs/draw-rect
+    //% help=github:display-shield/docs/draw-rect
     //% this.shadow="theScreen"
     //% weight=84
     //% x.defl=0
@@ -76,7 +76,7 @@ interface Bitmap {
     //% helper=imageFillRect blockNamespace="drawing" inlineInputMode="inline" group="Drawing"
     //% block="fill rectangle in $this at x $x y $y width $w height $h $c=colorindexpicker"
     //% blockId=bitmapFillRect
-    //% help=github:arcadeshield/docs/fill-rect
+    //% help=github:display-shield/docs/fill-rect
     //% this.shadow="theScreen"
     //% weight=80
     //% x.defl=0
@@ -142,7 +142,7 @@ interface Bitmap {
     //% group="Drawing"
     //% block="draw $from in $this at x $x y $y"
     //% blockId=bitmapDrawBitmap
-    //% help=github:arcadeshield/docs/draw-bitmap
+    //% help=github:display-shield/docs/draw-bitmap
     //% this.shadow="theScreen"
     //% this.defl=bitmap
     //% from.shadow=variables_get
@@ -158,7 +158,7 @@ interface Bitmap {
     //% blockId=bitmapDrawTransparentBitmap
     //% group="Drawing"
     //% block="draw $from transparent in $this at x $x y $y"
-    //% help=github:arcadeshield/docs/draw-transparent-bitmap
+    //% help=github:display-shield/docs/draw-transparent-bitmap
     //% this.shadow="theScreen"
     //% this.defl=bitmap
     //% from.shadow=variables_get
@@ -172,7 +172,7 @@ interface Bitmap {
     //% shim=BitmapMethods::flipX blockNamespace="drawing" group="Transformations"
     //% block="flip $this horizontally"
     //% blockId=bitmapFlipX
-    //% help=github:arcadeshield/docs/flip-x
+    //% help=github:display-shield/docs/flip-x
     //% this.shadow="theScreen"
     //% weight=72
     flipX(): void;
@@ -183,7 +183,7 @@ interface Bitmap {
     //% shim=BitmapMethods::flipY blockNamespace="drawing" group="Transformations"
     //% block="flip $this vertically"
     //% blockId=bitmapFlipY
-    //% help=github:arcadeshield/docs/flip-y
+    //% help=github:display-shield/docs/flip-y
     //% this.shadow="theScreen"
     //% weight=68
     flipY(): void;
@@ -192,7 +192,7 @@ interface Bitmap {
      * Every pixel in bitmap is moved by (dx,dy)
      */
     //% shim=BitmapMethods::scroll blockNamespace="drawing" group="Transformations"
-    //% help=github:arcadeshield/docs/scroll
+    //% help=github:display-shield/docs/scroll
     //% this.shadow="theScreen"
     //% block="scroll $this by x $dx y $dy"
     //% blockId=bitmapScroll
@@ -207,7 +207,7 @@ interface Bitmap {
     //% block="change color in $this from $from=colorindexpicker to $to=colorindexpicker"
     //% blockId=bitmapReplace
     //% help=bitmaps/bitmap/replace
-    //% help=github:arcadeshield/docs/replace
+    //% help=github:display-shield/docs/replace
     //% this.shadow="theScreen"
     //% weight=60 
     replace(from: int32, to: int32): void;
@@ -224,7 +224,7 @@ interface Bitmap {
     //% other.shadow=variables_get
     //% this.defl="bitmap"
     //% other.defl="bitmap2"
-    //% help=github:arcadeshield/docs/equals
+    //% help=github:display-shield/docs/equals
     equals(other: Bitmap): boolean;
 
     //% shim=BitmapMethods::isStatic
@@ -246,7 +246,7 @@ interface Bitmap {
     //% weight=40
     //% block="clone $this"
     //% blockId=bitmapClone
-    //% help=github:arcadeshield/docs/clone
+    //% help=github:display-shield/docs/clone
     //% this.shadow=variables_get
     //% this.defl="bitmap"
     clone(): Bitmap;
@@ -258,7 +258,7 @@ declare namespace bitmaps {
     //% block="create bitmap width $width height $height" group="Create"
     //% weight=80
     //% blockSetVariable=bitmap
-    //% help=github:arcadeshield/docs/create
+    //% help=github:display-shield/docs/create
     //% width.defl=16
     //% height.defl=16
     function create(width: number, height: number): Bitmap;
