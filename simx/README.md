@@ -26,3 +26,8 @@ This starts the simx's local development server.
 
 The `simxdev=1` parameter will cause sim messages to be routed to your locally running development server.
 
+## More info
+
+See https://github.com/microsoft/pxt-simx-sample/blob/master/simx/README.md
+
+
