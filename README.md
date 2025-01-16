@@ -33,7 +33,7 @@ for the shield are under the toolbox categories `Controller` and
 ![MakeCode with Display Shield Simulator](https://github.com/microbit-apps/display-shield/blob/master/assets/shieldSim.png?raw=true)
 
 
-> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S07267-08481-73083-11887)
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S80683-78265-58968-34229)
 
 
 ## Using this extension
@@ -99,7 +99,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 ```
 
-> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S24163-00898-21210-28197)
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S64613-82831-68506-89974)
 
 ### Drawing into the screen bitmap
 
@@ -115,7 +115,7 @@ screen().fill(8)
 screen().drawLine(0, 0, 159, 119, 2)
 screen().drawLine(159, 0, 0, 119, 5)
 ```
-> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S31225-91260-81293-38509)
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S96327-83750-33845-21213)
 
 The first two parameters to the function are the (x,y)
 coordinate where the line should start, while the next
@@ -458,7 +458,7 @@ let yellowSquare = bmp`
 screen().drawBitmap(yellowSquare, 0, 0)
 screen().drawTransparentBitmap(greenBall, 0, 0)
 ```
-> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S29479-80151-27505-97683)
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S62195-40202-75476-02422)
 
 #### Setting pixels at locations
 
@@ -493,7 +493,7 @@ screen().fill(8)
 screen().drawTransparentBitmap(orangeBox, 0, 0)
 screen().drawTransparentBitmap(orangeBox, 32, 32)
 ```
-> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S29084-47427-55388-74348)
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S62672-77446-94897-23460)
 
 
 # Supported targets
