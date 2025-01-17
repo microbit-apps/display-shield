@@ -1,7 +1,7 @@
-# MakeCode extension: Display shield for BBC micro:bit
+# Display shield MakeCode extension for BBC micro:bit
 
-This MakeCode extension allows you to use any of the  MakeCode Arcade shields with the MakeCode for BBC micro:bit editor. 
-The extension provides access to the screen and buttons on the shield, and has
+This MakeCode extension allows you to use any of the MakeCode Arcade shields with the MakeCode for BBC micro:bit editor. 
+The extension provides access to the color display and buttons on the shield, and has
 a Bitmap abstraction with numerous drawing primitives
 (draw line, circle, square, etc).
 Bitmaps also can be created using the built-in
@@ -9,16 +9,16 @@ image editor in MakeCode.
 
 > **NOTE: This extension will only work in https://makecode.microbit.org/beta**. The extension is still under development and is subject to changes. Please file issues at https://github.com/microbit-apps/display-shield/issues 
 
-## Arcade Shields for the micro:bit V2
+## Arcade shields for the micro:bit V2
 
-Various Arcade shields for the micro:bit V2 are available on the market today, including:
+Various Arcade (display) shields for the micro:bit V2 are available on the market today, including:
 
 * [Kittenbot's newbit Arcade shield](https://www.kittenbot.cc/products/newbit-arcade-shield): No assembly required Small screen and nice enclosure with LiPo battery inside. One [Jacdac](https://aka.ms/jacdac) port.
 * [ELECFREAK's micro:bit Arcade shield](https://www.kittenbot.cc/products/newbit-arcade-shield): Assembly required. Small screen. AAA Battery pack on back. One [Jacdac](https://aka.ms/jacdac) port.
 * [ICShopping's Game:bit Arcade shield](https://www.icshop.com.tw/products/368112100137?locale=en): No assembly required. Large screen and 3d-printed enclosure with LiPo battery inside. Two [Jacdac](https://aka.ms/jacdac) ports.
 * [Kitronik's Arcade for BBC micro:bit](https://kitronik.co.uk/products/56116-kitronik-arcade-for-bbc-micro-bit-makecode-arcade): No assembly required. Small screen. Battery holder on back. No Jacdac port.
 
-![MakeCode Arcade Shields](https://github.com/microbit-apps/display-shield/blob/master/assets/shields.png?raw=true)
+![MakeCode Arcade shields](https://github.com/microbit-apps/display-shield/blob/master/assets/shields.png?raw=true)
 
 
 ## Simulator support
@@ -31,7 +31,6 @@ for the shield are under the toolbox categories `Controller` and
 `Drawing` and are described further below.
 
 ![MakeCode with Display Shield Simulator](https://github.com/microbit-apps/display-shield/blob/master/assets/shieldSim.png?raw=true)
-
 
 > [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S80683-78265-58968-34229)
 
@@ -48,7 +47,7 @@ for the shield are under the toolbox categories `Controller` and
 
 ## Mashup!!!
 
-With this extension, you have access to **all** the MakeCode APIs for the micro:bit, and the new ability to plot data or create your own user interface. For example, one very cool thing about the micro:bit is it's (X,Y,Z) accelerometer, which senses motion in three dimensions.  Below is a program that maps the three accelerometer values to a scrolling line graph:
+With this extension, you have access to **all** the MakeCode APIs for the micro:bit, and the new ability to plot data or create your own user interface. For example, one very cool thing about the micro:bit is its (X,Y,Z) accelerometer, which senses motion in three dimensions.  Below is a program that maps the three accelerometer values to a scrolling line graph:
 ```block
 let x = 0, old_x = 0
 let y = 0, old_y = 0
@@ -221,13 +220,12 @@ screen().drawCircle(10, 10, 8, 5)
 
 ### Bitmap
 
-Let's dig into bitmaps, which you can create yourself (the screen is represented by a bitmap, as we have seen already). A bitmap is some number of rows and columns of color pixels that make up rectangular picture. A _pixel_ is a single point of color inside the bitmap. 
-
-Bitmaps are have a set height (number of rows) and width (number of columns). When a bitmap is declared, or created, the height and width are specified either by the _layout_ of the bitmap or as parameters to it's `create` method.
+Let's dig into bitmaps, which you can create yourself (the screen is represented by a bitmap, as we have seen already). A bitmap is some number of rows and columns of color pixels that make up rectangular picture. A _pixel_ is a single point of color inside the bitmap. A bitmap has a fixed height (number of rows) and width (number of columns). When a bitmap is declared, or created, the height and width are specified either by the _layout_ of the bitmap or as parameters to its `create` method.
 
 #### Bitmap editor
 
-The easiest way to create a bitmap is with the bitmap editor, which is accessible both from blocks and text view.  Here is the block view of an 
+The easiest way to create a bitmap is with the bitmap editor, 
+which is accessible both from blocks and text view.  Here is the block view of an 
 16x16 bitmap of an apple:
 
 ```block
@@ -259,7 +257,7 @@ Here is the bitmap editor, which appears when you click on the icon in bitmap bl
 ![MakeCode Arcade Shields](https://github.com/microbit-apps/display-shield/blob/master/assets/appleBitmapEditor.png?raw=true)
 
 
-The bitmap also is represented as a text literal, as shown below
+A bitmap is represented in code as a text literal, as shown below
 
 ```
 screen().fill(6)
@@ -333,7 +331,7 @@ let sixByTwo = bmp`
 
 ##### Transparent pixels
 
-A pixel value of `.` means an empty pixel. This pixel has no color and that pixel _location_ in the bitmap is _transparent_. Being transparent means that if this bitmap is on top of another bitmap (overlapping) that has some pixel color, then the color of the pixel in the bitmap underneath shows through to the bitmap above it.
+A pixel value of `.` denotes a transparent pixel. This pixel has no color and that pixel _location_ in the bitmap is _transparent_. Being transparent means that if this bitmap is on top of another bitmap (overlapping) that has some pixel color, then the color of the pixel in the bitmap underneath shows through to the bitmap above it.
 
 ##### Pixel colors
 
@@ -365,7 +363,7 @@ let oneRed = bmp`2`
 
 As a block it looks like this:
 
-```
+```block
 let oneRed = bmp`2`
 ```
 
