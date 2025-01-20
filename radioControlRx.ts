@@ -151,8 +151,14 @@ function radioControlRxLoop() {
 
             case SCREEN_FN_ID_PRINT: {
                 // basic.showNumber(params[0])
+                // basic.showString("A")
+                // basic.showNumber(screen().width)
+                // basic.showString("B")
+                // basic.showNumber(screen().height)
+                // basic.showString("C")
                 // basic.showNumber(params[1])
-                screen().print(latestString, params[0] - (screen().width >> 1), params[1] - (screen().height >> 1), params[2]); break;
+                // basic.showString("D")
+                screen().print(latestString, params[0], params[1] - (screen().height >> 1), params[2]); break;
             }
 
             default: { break; }
