@@ -25,7 +25,7 @@ class WDisplay {
     ST7735 *lcd;
     JDDisplay *smart;
 
-    uint32_t currPalette[16];
+    uint32_t currPalette[32];
     bool present;
     bool newPalette;
     bool inUpdate;
@@ -161,7 +161,6 @@ class WDisplay {
 
         uint32_t configId = (hc & 0xe0) >> 5;
 
-
         switch (configId) {
         case 1:
             *cfg1 = 0x0603; // ST7735
@@ -175,7 +174,7 @@ class WDisplay {
             *cfg0 |= 0x1000000; // inverted colors
             break;
         default:
-            target_panic(129);  // PANIC_SCREEN_ERROR
+            target_panic(129); // PANIC_SCREEN_ERROR
             break;
         }
 
@@ -266,9 +265,11 @@ void setPalette(Buffer buf) {
     if (!display)
         return;
 
-    if (48 != buf->length)
+    if (48 != buf->length && 96 != buf->length)
         target_panic(130); // PANIC_SCREEN_ERROR
-    for (int i = 0; i < 16; ++i) {
+
+    const int numberOfColors = buf->length / 3;
+    for (int i = 0; i < numberOfColors; ++i) {
         display->currPalette[i] =
             (buf->data[i * 3] << 16) | (buf->data[i * 3 + 1] << 8) | (buf->data[i * 3 + 2] << 0);
         display->currPalette[i] ^= display->palXOR;
@@ -314,9 +315,9 @@ void updateScreen(Bitmap_ img) {
     auto mult = display->doubleSize ? 2 : 1;
 
     if (img) {
-        if (img->bpp() != 4 || img->width() * mult != display->width ||
+        if ((img->bpp() != 4 && img->bpp() != 8) || img->width() * mult != display->width ||
             img->height() * mult != display->displayHeight)
-            target_panic(131);  // PANIC_SCREEN_ERROR
+            target_panic(131); // PANIC_SCREEN_ERROR
 
         // DMESG("wait for done");
         display->waitForSendDone();
