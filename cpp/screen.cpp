@@ -185,9 +185,9 @@ public:
     DMESG("config type: %d; cfg0=%x cfg1=%x", configId, *cfg0, *cfg1);
 
     // for some reason, setting SPI frequency to 32 doesn't
-    // work with ST77735 in pxt-microbit
-    *cfg2 = 32; // Damn the torpedoes! 32MHz
-
+    // work with ST77735 in pxt-microbit, whereas it does work
+    // in pxt-arcade; this might be explained by different runtimes
+    *cfg2 = 16; // Damn the torpedoes! 32MHz
 
     return DISPLAY_TYPE_ST7735;
   }
