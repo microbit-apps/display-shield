@@ -5,6 +5,8 @@
 //% groups=["0.","1#","2T","3t","4N","5n","6G","7g","8","9","aAR","bBP","cCp","dDO","eEY","fFW"]
 function bmp(lits: any, ...args: any[]): Bitmap { return null; }
 
+control.waitMicros(300000)
+
 // set palette before creating screen, which initializes the display
 shieldhelpers.setPalette(hex`000000ffffffff2121ff93c4ff8135fff609249ca378dc52003fad87f2ff8e2ec4a4839f5c406ce5cdc491463d000000`)
 

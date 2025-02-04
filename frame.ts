@@ -18,7 +18,7 @@ namespace control.__screen {
     control.runInParallel(() => {
         while (true) {
             __updated = false
-            pause(200)
+            pause(20)
             if (!__updated) {
                 __screen.update();
                 __updated = true
