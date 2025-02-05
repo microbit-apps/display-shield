@@ -100,6 +100,7 @@ public:
     if (lcd) {
       auto bl = LOOKUP_PIN(DISPLAY_BL);
       if (bl) {
+        bl->setHighDrive(true);
         bl->setDigitalValue(1);
       }
 
