@@ -234,11 +234,7 @@ namespace shieldhelpers {
             if (msg.type === "button-down" || msg.type === "button-up") {
                 const button = getButton((<ButtonMessage>msg).buttonId)
                 if (button) {
-                    if (msg.type === "button-down") {
-                        button.setPressed(true)
-                    } else {
-                        button.setPressed(false)
-                    }
+                    button.setPressed(msg.type === "button-down")
                 }
             } else if (msg.type === "display-on") {
                 getScreenState()
