@@ -235,9 +235,9 @@ namespace shieldhelpers {
                 const button = getButton((<ButtonMessage>msg).buttonId)
                 if (button) {
                     if (msg.type === "button-down") {
-                        button.raiseButtonDown()
+                        button.setPressed(true)
                     } else {
-                        button.raiseButtonUp()
+                        button.setPressed(false)
                     }
                 }
             } else if (msg.type === "display-on") {
