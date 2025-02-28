@@ -38,12 +38,12 @@ public:
   uint32_t palXOR;
 
   WDisplay() {
-    uint32_t cfg2 = MY_DISPLAY_CFG2;
+    uint32_t cfg2 = getConfig(DISPLAY_CFG2, 8);
 
-    uint32_t cfg0 = MY_DISPLAY_CFG0;
-    uint32_t frmctr1 = MY_DISPLAY_CFG1;
+    uint32_t cfg0 = getConfig(DISPLAY_CFG0, 0x02000080);
+    uint32_t frmctr1 = getConfig(DISPLAY_CFG1 0x00000603); 
 
-    int dispTp = MY_DISPLAY_TYPE;
+    int dispTp = getConfig(DISPLAY_TYPE,4242);
 
     doubleSize = false;
     smart = NULL;

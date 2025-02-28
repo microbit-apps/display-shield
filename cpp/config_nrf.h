@@ -7,11 +7,6 @@
 #define CODAL_PIN NRF52Pin
 #define CODAL_SPI NRF52SPI
 
-#define MY_DISPLAY_TYPE 4242 // smart shield
-#define MY_DISPLAY_CFG0 0x02000080 // allow execution without shield plugged in
-#define MY_DISPLAY_CFG1 0x00000603
-#define MY_DISPLAY_CFG2 8    // maximum SPI frequency for smart shield
-
 #define MY_PIN_BTNMX_LATCH &uBit.io.P9      // DAL.P0_9
 #define MY_PIN_BTNMX_CLOCK &uBit.io.P20     // DAL.P1_0
 #define MY_PIN_BTNMX_DATA &uBit.io.P14      // DAL.P0_1
