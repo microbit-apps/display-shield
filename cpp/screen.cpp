@@ -41,7 +41,7 @@ public:
     uint32_t cfg2 = getConfig(CFG_DISPLAY_CFG2, 8);
 
     uint32_t cfg0 = getConfig(CFG_DISPLAY_CFG0, 0x02000080);
-    uint32_t frmctr1 = getConfig(CFG_DISPLAY_CFG1 0x00000603); 
+    uint32_t frmctr1 = getConfig(CFG_DISPLAY_CFG1, 0x00000603); 
 
     int dispTp = getConfig(CFG_DISPLAY_TYPE,4242);
 
