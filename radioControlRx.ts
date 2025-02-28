@@ -9,161 +9,236 @@ const SCREEN_FN_ID_SET_PIXEL: number = 21;
 const SCREEN_FN_ID_PRINT: number = 23;
 
 
+function setup(): Bitmap[] {
+    let bitmaps: Bitmap[] = []
 
-function setup() {
-    let latestString: string = "";
+    //--------------------------------------------------
+    // Get the number of bitmaps the Tx will be sending:
+    //--------------------------------------------------
 
-    // radio.sendString("ASSET_TX_START" + ", " + iconNames.length)
-    // iconNames.forEach(name => {
-    //     screen().sendBitmap(name, icons.get(name))
-    // })
-
-    // radio.sendString("ASSET_TX_END")
-    // basic.showString("Done")
-
-
-    //-------------------------
-    // Wait for ASSET_TX_START:
-    //-------------------------
-
-
-    radio.setGroup(5)
-    radio.setTransmitPower(7)
-    radio.setFrequencyBand(14)
-
-    // First message should be an ASSET_TX_START + "," + number of assets
-    // Then asset_name + "," + bitmap.height (number of rows of this asset)
-
-    let receivedStartAssetTransferRequest = false;
-    let numberOfAssetsExpected: number = 0;
-
-    radio.onReceivedString((receivedString: string) => {
-        numberOfAssetsExpected = +receivedString.split(",")[1];
-        // basic.showString("A: " + numberOfAssetsExpected)
-        // basic.showNumber(numberOfAssetsExpected % 10)
-        receivedStartAssetTransferRequest = true
-        radio.sendString("ACK")
-    });
-
-    // basic.showString("S")
-    while (!receivedStartAssetTransferRequest) { basic.pause(25) }
-    // basic.showString("D: " + numberOfAssetsExpected % 10)
-    // basic.showString("D")
-
-    // Now get the [bitmapName, bitmapHeight], followed by each row of the bitmap
-    let bitmapName: string;
-    let bitmapHeight: number;
-    let received = false;
-
-    // Reconstruct each of these assets from the following:
-    // Header of [bitmap name, bitmap height] -> row of bitmap data
-    for (let i = 0; i < numberOfAssetsExpected; i++) {
-
-        //--------------------------
-        // Get bitmap name & height:
-        //--------------------------
-        radio.onReceivedString((receivedString: string) => {
-            basic.showString("R")
-
-            bitmapName = receivedString.split(",")[0]
-            bitmapHeight = +receivedString.split(",")[1]
-
-            // basic.showString("A: " + bitmapHeight);
-            // basic.showNumber(bitmapHeight % 10)
-            radio.sendString("ACK")
-            received = true;
-        })
-
-        // basic.showString("W")
-        while (!received) {
-            basic.pause(25)
+    let numberOfBitmaps = 0;
+    radio.onReceivedString((header: String) => {
+        if (header.split(",")[0] == "BITMAPS") {
+            numberOfBitmaps = +header.split(",")[1];
         }
-        basic.showString("D")
+    })
 
-        // Finally: unbind for safety - since we're done with this part - but a spurious string reception would mess up control flow/variables
-        radio.onReceivedString(_ => { })
+    while (numberOfBitmaps == 0) {
+        basic.pause(3);
+    }
+    radio.sendString("ACK");
 
-        //------------------
-        // Proccessing rows:
-        //------------------
 
-        let rowsReceived: number = 0;
-        let assetBuffer: Buffer = null;
+    //----------------------------
+    // Get the bitmaps one by one:
+    //----------------------------
 
-        // Process each row of the bitmap into a single asset:
-        radio.onReceivedBuffer((onReceivedBuffer: Buffer) => {
-            // basic.showString("B")
+    for (let i = 0; i < numberOfBitmaps; i++) {
+        // Send the number of lines:
+        let maxPacketBufferSize = 0;
+        let bitmapWidth = 0;
+        let bitmapHeight = 0;
 
-            if (assetBuffer == null)
-                assetBuffer = onReceivedBuffer
-            else
-                assetBuffer = Buffer.concat([assetBuffer, onReceivedBuffer])
-            rowsReceived++;
-            // basic.showString("A")
-            // radio.sendString("ACK")
-            // basic.showNumber(rowsReceived % 10);
+        //---------------------------
+        // Get the bitmap dimensions:
+        //---------------------------
+
+        radio.onReceivedString((str: String) => {
+            maxPacketBufferSize = +str.split(",")[0]
+            bitmapWidth = +str.split(",")[1]
+            bitmapHeight = +str.split(",")[2]
+
+            // basic.showNumber(maxPacketBufferSize)
+            // basic.showNumber(bitmapWidth)
+            // basic.showNumber(bitmapHeight)
+
+            radio.sendString("ACK");
         })
 
-        // basic.showString("C")
-        // basic.showNumber(rowsReceived % 10);
-        while (rowsReceived < bitmapHeight)
-            basic.pause(5)
+        while (maxPacketBufferSize == 0) {
+            basic.pause(3);
+        }
+
+        //-----------------------------------------
+        // Calculate the number of incoming chunks:
+        //-----------------------------------------
+
+        const numberOfChunks: number =
+            (bitmapWidth * bitmapHeight) / maxPacketBufferSize;
+
+        //----------------------------------
+        // Concatenate the incoming buffers:
+        //----------------------------------
+
+        let bitmapBuf: Buffer = null;
+        let bitmapBufIsSet = false;
+        let bufferReceived = false;
+        radio.onReceivedBuffer((buf: Buffer) => {
+            if (!bitmapBufIsSet) {
+                bitmapBuf = buf;
+                bitmapBufIsSet = true;
+            } else {
+                bitmapBuf = bitmapBuf.concat(buf);
+            }
+
+            radio.sendString("ACK");
+            bufferReceived = true;
+        })
+
+
+        // Wait to receive all these chunks:
+        for (let j = 0; j < numberOfChunks; j++) {
+            while (!bufferReceived) {
+                basic.pause(3)
+            }
+            bufferReceived = false;
+        }
+
+        //---------------------------------
+        // Rebuild the bitmap from buffers:
+        //---------------------------------
+
+        bitmaps.push(rebuildBitmap(bitmapBuf, bitmapWidth, bitmapHeight));
+
+        // // Now rebuild the original bitmap from these buffers:
+        // const img = rebuildBitmap(bitmapBuf, bitmapWidth, bitmapHeight);
+        // const x = -(screen().width >> 1) + ((screen().width - img.width) >> 1);
+
+        // screen().drawBitmap(
+        //     img,
+        //     10,
+        //     (screen().height >> 1) - 10
+        // )
+
         // basic.showString("D")
 
+        // bitmaps.push(img);
+
         // Rebinding for safety - since we're going back to only responding to .onReceivedString() at the top of this loop:
-        radio.onReceivedBuffer(_ => { })
+        // radio.onReceivedBuffer(_ => { })
     }
 
-    basic.showString("D")
+    radio.onReceivedString((_: string) => { })
+    radio.onReceivedBuffer((_: Buffer) => { })
+    basic.showString("F")
+    return bitmaps;
+}
+
+
+function rebuildBitmap(buf: Buffer, bitmapWidth: number, bitmapHeight: number): Bitmap {
+    let img: Bitmap = bitmaps.create(bitmapWidth, bitmapHeight);
+
+    // basic.showString("B")
+    // basic.showNumber(bitmapWidth)
+    // basic.showNumber(img.width)
+
+    // basic.showNumber(bitmapHeight)
+    // basic.showNumber(img.height)
+
+    // basic.showNumber(buf.length)
+
+    for (let j = 0; j < bitmapHeight; j++) {
+        img.setRows(j, buf.slice(j * bitmapWidth, bitmapWidth));
+    }
+
+    return img;
+}
+
+
+function handshake() {
+    let receivedHandshake = false;
+    radio.onReceivedString((receivedString: string) => {
+        if (receivedString == "HANDSHAKE") {
+            receivedHandshake = true;
+            radio.sendString("ACK")
+        }
+    })
+
+    while (!receivedHandshake) { basic.pause(3) }
+    radio.onReceivedString((_: string) => { })
 }
 
 function radioControlRxLoop() {
-    setup();
+    radio.setGroup(5)
+    handshake();
+    const bitmaps: Bitmap[] = setup();
 
-    let latestString: string = ""; // setup via radio.onReceivedString from setup()
+    // const x = -(screen().width >> 1) + ((screen().width - img.width) >> 1);
 
+    // basic.showNumber(img.width)
+    // basic.showNumber(img.height)
+
+    // basic.showString("R")
+
+    // basic.showNumber(img.width)
+    // basic.showNumber(img.height)
+
+    // for (let i = 0; i < img.height; i++) {
+    //     for (let j = 0; j < img.width; j++) {
+    //         basic.showString("L")
+    //         basic.showNumber(img.getPixel(j, i))
+    //         basic.showString(",")
+    //         basic.showNumber(green_tick.getPixel(j, i))
+    //     }
+    // }
+
+    let latestString = ""
+    radio.onReceivedString((str: string) => {
+        latestString = str
+    })
 
     // Main loop; listen for draw commands:
-    radio.onReceivedBuffer((buffer: Buffer) => {
-        const fn_id: number = buffer[0];
-        const params: Buffer = buffer.slice(1);
+    radio.onReceivedBuffer((buf: Buffer) => {
+        const fn_id: number = buf[0];
+        const params: Buffer = buf.slice(1);
 
-        // basic.showString("R")
-
-        // basic.showNumber(fn_id)
         switch (fn_id) {
             // case SCREEN_FN_ID_ASSET_SETUP: { break;}
             // case SCREEN_FN_ID_RESET_SCREEN_IMAGE: { screen().resetscreenImage(); break; }
             // case SCREEN_FN_ID_SET_IMAGE_SIZE: { screen().setImageSize(params[0], params[1]); break; }
 
-            // semi-cheat; the assets are pre-loaded.
             case SCREEN_FN_ID_DRAW_TRANSPARENT_IMAGE: {
-                // const from: Bitmap = microdata.icons.get(latestString);
-                // screen().drawTransparentImage(from, params[1] - half_width, params[2] - half_height);
+                const img = bitmaps[params[0]];
+                screen().drawBitmap(
+                    img,
+                    params[1],
+                    params[2]
+                )
+                radio.sendString("ACK");
                 break;
             }
 
             case SCREEN_FN_ID_DRAW_LINE: { screen().drawLine(params[0], params[1], params[2], params[3], params[4]); break; }
             case SCREEN_FN_ID_DRAW_RECT: { screen().drawRect(params[0], params[1], params[2], params[3], params[4]); break; }
-            case SCREEN_FN_ID_FILL: { screen().fill(params[0]); break; }
+
+            case SCREEN_FN_ID_FILL: {
+                // let startTime = input.runningTime();
+
+                // basic.showNumber(fn_id)
+                screen().fill(params[0]);
+                radio.sendString("ACK");
+
+                // screen().drawBitmap(
+                //     bitmaps[0],
+                //     params[1],
+                //     params[2]
+                // )
+
+                // let endTime = input.runningTime();
+                // basic.showNumber(endTime - startTime)
+                break;
+            }
+
             case SCREEN_FN_ID_FILL_RECT: { screen().fillRect(params[0], params[1], params[2], params[3], params[4]); break; }
             case SCREEN_FN_ID_SET_PIXEL: { screen().setPixel(params[0], params[1], params[2]); break; }
 
             case SCREEN_FN_ID_PRINT: {
-                // basic.showNumber(params[0])
-                // basic.showString("A")
-                // basic.showNumber(screen().width)
-                // basic.showString("B")
-                // basic.showNumber(screen().height)
-                // basic.showString("C")
-                // basic.showNumber(params[1])
-                // basic.showString("D")
+                basic.showString("P")
                 screen().print(latestString, params[0], params[1] - (screen().height >> 1), params[2]); break;
             }
 
             default: { break; }
         }
-        basic.clearScreen()
     })
 }
 

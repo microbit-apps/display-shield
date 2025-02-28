@@ -20,7 +20,9 @@ namespace __screen_internal {
         )
 
         control.__screen.setupUpdate(() => shieldhelpers.updateScreen(img))
+        // control.inBackground(() => {
         radioControlRxLoop();
+        // })
 
         return img as Bitmap;
     }
