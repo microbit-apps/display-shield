@@ -1,6 +1,6 @@
 // namespace config {
-    export const DISPLAY_CFG0 = 0x02030180 // allow execution without shield plugged in
-}
+//    export const DISPLAY_CFG0 = 0x02030180 // allow execution without shield plugged in
+// }
 
 // tests go here; this will not be compiled when this package is used as an extension.
 
