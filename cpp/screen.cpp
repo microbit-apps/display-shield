@@ -38,12 +38,12 @@ public:
   uint32_t palXOR;
 
   WDisplay() {
-    uint32_t cfg2 = MY_DISPLAY_CFG2;
+    uint32_t cfg2 = getConfig(CFG_DISPLAY_CFG2, 8);
 
-    uint32_t cfg0 = MY_DISPLAY_CFG0;
-    uint32_t frmctr1 = MY_DISPLAY_CFG1;
+    uint32_t cfg0 = getConfig(CFG_DISPLAY_CFG0, 0x02000080);
+    uint32_t frmctr1 = getConfig(CFG_DISPLAY_CFG1, 0x00000603); 
 
-    int dispTp = MY_DISPLAY_TYPE;
+    int dispTp = getConfig(CFG_DISPLAY_TYPE,4242);
 
     doubleSize = false;
     smart = NULL;
@@ -139,9 +139,8 @@ public:
       fiber_sleep(100);
 
       // the device will run without shield when the following is specified in
-      // user program: namespace userconfig { export const DISPLAY_CFG0 =
-      // 0x02000080 }
-      if (*cfg0 & 0x2000000) {
+      // user program: namespace config { export const DISPLAY_CFG0 = 0x02000080 }
+      if (*cfg0 & 0x02000000) {
         DMESG("74HC: no wait requested");
         return DISPLAY_TYPE_ST7735;
       }
