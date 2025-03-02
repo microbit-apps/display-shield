@@ -185,13 +185,26 @@ function radioControlRxLoop() {
     let latestString = ""
     radio.onReceivedString((str: string) => {
         latestString = str
+        radio.sendString("ACK");
     })
+
+
+    // let triggered = false;
+
+    // if (!triggered)
+    //     screen().fill(5);
+
+    // triggered = true;
 
     // Main loop; listen for draw commands:
     radio.onReceivedBuffer((buf: Buffer) => {
+        radio.sendString("ACK");
         const fn_id: number = buf[0];
         const params: Buffer = buf.slice(1);
 
+        // basic.showNumber(fn_id)
+
+        // control.inBackground(() => {
         switch (fn_id) {
             // case SCREEN_FN_ID_ASSET_SETUP: { break;}
             // case SCREEN_FN_ID_RESET_SCREEN_IMAGE: { screen().resetscreenImage(); break; }
@@ -203,42 +216,52 @@ function radioControlRxLoop() {
                     img,
                     params[1],
                     params[2]
-                )
-                radio.sendString("ACK");
+                );
                 break;
             }
 
-            case SCREEN_FN_ID_DRAW_LINE: { screen().drawLine(params[0], params[1], params[2], params[3], params[4]); break; }
-            case SCREEN_FN_ID_DRAW_RECT: { screen().drawRect(params[0], params[1], params[2], params[3], params[4]); break; }
+            case SCREEN_FN_ID_DRAW_LINE: {
+                screen().drawLine(params[0], params[1], params[2], params[3], params[4]);
+                break;
+            }
+
+            case SCREEN_FN_ID_DRAW_RECT: {
+                screen().drawRect(params[0], params[1], params[2], params[3], params[4]);
+                break;
+            }
 
             case SCREEN_FN_ID_FILL: {
                 // let startTime = input.runningTime();
 
                 // basic.showNumber(fn_id)
                 screen().fill(params[0]);
-                radio.sendString("ACK");
-
-                // screen().drawBitmap(
-                //     bitmaps[0],
-                //     params[1],
-                //     params[2]
-                // )
 
                 // let endTime = input.runningTime();
                 // basic.showNumber(endTime - startTime)
                 break;
             }
 
-            case SCREEN_FN_ID_FILL_RECT: { screen().fillRect(params[0], params[1], params[2], params[3], params[4]); break; }
-            case SCREEN_FN_ID_SET_PIXEL: { screen().setPixel(params[0], params[1], params[2]); break; }
-
-            case SCREEN_FN_ID_PRINT: {
-                basic.showString("P")
-                screen().print(latestString, params[0], params[1] - (screen().height >> 1), params[2]); break;
+            case SCREEN_FN_ID_FILL_RECT: {
+                screen().fillRect(params[0], params[1], params[2], params[3], params[4]);
+                break;
+            }
+            case SCREEN_FN_ID_SET_PIXEL: {
+                screen().setPixel(params[0], params[1], params[2]);
+                break;
             }
 
-            default: { break; }
+            case SCREEN_FN_ID_PRINT: {
+                screen().print(latestString, params[0], params[1], params[2]);
+                break;
+            }
+
+            default: {
+                basic.showString("D")
+                break;
+            }
         }
+        // basic.pause(20);
+        // })
     })
 }
 
