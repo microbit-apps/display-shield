@@ -3,7 +3,7 @@
 namespace config {
 
     // the following are the default values used in C++ 
-    // uncomment and change to get different value
+    // add to your code, uncomment and change to get different value
     // export const DISPLAY_TYPE = 4242 // smart shield
     // export const DISPLAY_CFG0 = 0x02000080 // allow execution without shield plugged in
     // export const DISPLAY_CFG1 = 0x00000603

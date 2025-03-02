@@ -139,9 +139,8 @@ public:
       fiber_sleep(100);
 
       // the device will run without shield when the following is specified in
-      // user program: namespace userconfig { export const DISPLAY_CFG0 =
-      // 0x02000080 }
-      if (*cfg0 & 0x2000000) {
+      // user program: namespace config { export const DISPLAY_CFG0 = 0x02000080 }
+      if (*cfg0 & 0x02000000) {
         DMESG("74HC: no wait requested");
         return DISPLAY_TYPE_ST7735;
       }
@@ -160,9 +159,9 @@ public:
 
     // SER pin (or first bit of second HC) is orientation
     if (hc & 0x0010)
-      *cfg0 = 0x80;
+      *cfg0 |= 0x80;
     else
-      *cfg0 = 0x40;
+      *cfg0 |= 0x40;
 
     uint32_t configId = (hc & 0xe0) >> 5;
 
