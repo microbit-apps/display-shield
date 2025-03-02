@@ -1,4 +1,4 @@
-namespace config {
+// namespace config {
     export const DISPLAY_CFG0 = 0x02030180 // allow execution without shield plugged in
 }
 
