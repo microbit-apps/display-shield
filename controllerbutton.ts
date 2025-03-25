@@ -56,7 +56,7 @@ namespace controller {
     export function onShieldEvent(event: ControllerShieldEvent, handler: () => void) {
         context.onEvent(event, 0, handler);
     }
-    
+
     let _userEventsEnabled = true;
     let defaultRepeatDelay = 500;
     let defaultRepeatInterval = 30;
@@ -71,7 +71,7 @@ namespace controller {
     }
 
     export class ButtonEventHandlerState {
-        constructor(public id: number) {};
+        constructor(public id: number) { };
 
         public user: ButtonHandler[];
         public system: ButtonHandler[];
