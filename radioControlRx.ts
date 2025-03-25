@@ -9,7 +9,29 @@ const SCREEN_FN_ID_SET_PIXEL: number = 21;
 const SCREEN_FN_ID_PRINT: number = 23;
 
 
-function setup(): Bitmap[] {
+namespace controller {
+    export function bindButtonsForWDS(): void {
+        // Presume _userEventsEnabled
+
+        const controllerButtonEvents = [ControllerButtonEvent.Pressed, ControllerButtonEvent.Released, ControllerButtonEvent.Repeated];
+        const controllerKeys: number[] = [2048, 2049, 2054];
+        const btns = [controller.up, controller.down, controller.left, controller.right];
+
+        for (let i = 0; i < controllerButtonEvents.length; i++) {
+            btns.forEach((btn: controller.Button) => {
+                control.onEvent(
+                    controllerButtonEvents[i],
+                    btn.id,
+                    () => {
+                        radio.sendBuffer(Buffer.fromArray([BUTTON_PRESS_RADIO_ID, controllerKeys[i], btn.id]))
+                    }
+                )
+            })
+        }
+    }
+}
+
+function recvBitmaps(): Bitmap[] {
     let bitmaps: Bitmap[] = []
 
     //--------------------------------------------------
@@ -48,9 +70,9 @@ function setup(): Bitmap[] {
             bitmapWidth = +str.split(",")[1]
             bitmapHeight = +str.split(",")[2]
 
-            // basic.showNumber(maxPacketBufferSize)
-            // basic.showNumber(bitmapWidth)
-            // basic.showNumber(bitmapHeight)
+            // basic.showNumber(maxPacketBufferSize);
+            // basic.showNumber(bitmapWidth);
+            // basic.showNumber(bitmapHeight);
 
             radio.sendString("ACK");
         })
@@ -83,7 +105,7 @@ function setup(): Bitmap[] {
 
             radio.sendString("ACK");
             bufferReceived = true;
-        })
+        });
 
 
         // Wait to receive all these chunks:
@@ -93,6 +115,8 @@ function setup(): Bitmap[] {
             }
             bufferReceived = false;
         }
+
+        // basic.showString("C")
 
         //---------------------------------
         // Rebuild the bitmap from buffers:
@@ -161,26 +185,9 @@ function handshake() {
 function radioControlRxLoop() {
     radio.setGroup(5)
     handshake();
-    const bitmaps: Bitmap[] = setup();
+    const bitmaps: Bitmap[] = recvBitmaps();
+    controller.bindButtonsForWDS();
 
-    // const x = -(screen().width >> 1) + ((screen().width - img.width) >> 1);
-
-    // basic.showNumber(img.width)
-    // basic.showNumber(img.height)
-
-    // basic.showString("R")
-
-    // basic.showNumber(img.width)
-    // basic.showNumber(img.height)
-
-    // for (let i = 0; i < img.height; i++) {
-    //     for (let j = 0; j < img.width; j++) {
-    //         basic.showString("L")
-    //         basic.showNumber(img.getPixel(j, i))
-    //         basic.showString(",")
-    //         basic.showNumber(green_tick.getPixel(j, i))
-    //     }
-    // }
 
     let latestString = ""
     radio.onReceivedString((str: string) => {
@@ -188,24 +195,15 @@ function radioControlRxLoop() {
         radio.sendString("ACK");
     })
 
-
-    // let triggered = false;
-
-    // if (!triggered)
-    //     screen().fill(5);
-
-    // triggered = true;
-
-    // Main loop; listen for draw commands:
     radio.onReceivedBuffer((buf: Buffer) => {
         radio.sendString("ACK");
-        const fn_id: number = buf[0];
+        const request: number = buf[0];
         const params: Buffer = buf.slice(1);
 
         // basic.showNumber(fn_id)
 
         // control.inBackground(() => {
-        switch (fn_id) {
+        switch (request) {
             // case SCREEN_FN_ID_ASSET_SETUP: { break;}
             // case SCREEN_FN_ID_RESET_SCREEN_IMAGE: { screen().resetscreenImage(); break; }
             // case SCREEN_FN_ID_SET_IMAGE_SIZE: { screen().setImageSize(params[0], params[1]); break; }

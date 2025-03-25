@@ -41,11 +41,11 @@ enum ControllerShieldEvent {
 }
 
 
-// Used by radioControlRx to distinguish this event from a screen() fn request (see user-interface-base/screen.ts)
-export const BUTTON_PRESS_RADIO_ID = 1;
-
-
 namespace controller {
+    // Used by radioControlRx to distinguish this event from a screen() fn request (see user-interface-base/screen.ts)
+    export const BUTTON_PRESS_RADIO_ID = 1;
+
+
     export class Controller {
         constructor(no: number, v: any) { }
         connected: boolean
@@ -60,6 +60,7 @@ namespace controller {
     export function onShieldEvent(event: ControllerShieldEvent, handler: () => void) {
         context.onEvent(event, 0, handler);
     }
+
 
     let _userEventsEnabled = true;
     let defaultRepeatDelay = 500;
@@ -126,8 +127,9 @@ namespace controller {
 
         raiseButtonDown(overRadio = false) {
             const k = _userEventsEnabled ? ControllerKeys.KEY_DOWN : ControllerKeys.SYSTEM_KEY_DOWN;
-            if (overRadio)
-                radio.sendBuffer(Buffer.fromArray([BUTTON_PRESS_RADIO_ID, k, this.id])
+            if (overRadio) {
+                radio.sendBuffer(Buffer.fromArray([BUTTON_PRESS_RADIO_ID, k, this.id]))
+            }
             else
                 control.raiseEvent(k, this.id);
         }
