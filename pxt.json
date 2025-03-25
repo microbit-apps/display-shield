@@ -24,6 +24,7 @@
         "ns.ts",
         "shieldhelpers.ts",
         "text.ts",
+        "radioControlTx.ts",
         "cpp/config_nrf.h",
         "cpp/arcadegamepad.h",
         "cpp/indexedscreen.h",
