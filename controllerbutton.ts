@@ -41,6 +41,10 @@ enum ControllerShieldEvent {
 }
 
 
+// Used by radioControlRx to distinguish this event from a screen() fn request (see user-interface-base/screen.ts)
+export const BUTTON_PRESS_RADIO_ID = 1;
+
+
 namespace controller {
     export class Controller {
         constructor(no: number, v: any) { }
@@ -56,7 +60,7 @@ namespace controller {
     export function onShieldEvent(event: ControllerShieldEvent, handler: () => void) {
         context.onEvent(event, 0, handler);
     }
-    
+
     let _userEventsEnabled = true;
     let defaultRepeatDelay = 500;
     let defaultRepeatInterval = 30;
@@ -71,7 +75,7 @@ namespace controller {
     }
 
     export class ButtonEventHandlerState {
-        constructor(public id: number) {};
+        constructor(public id: number) { };
 
         public user: ButtonHandler[];
         public system: ButtonHandler[];
@@ -112,25 +116,28 @@ namespace controller {
             }
         }
 
-        raiseButtonUp() {
-            if (_userEventsEnabled)
-                control.raiseEvent(ControllerKeys.KEY_UP, this.id)
+        raiseButtonUp(overRadio = false) {
+            const k = _userEventsEnabled ? ControllerKeys.KEY_UP : ControllerKeys.SYSTEM_KEY_UP;
+            if (overRadio)
+                radio.sendBuffer(Buffer.fromArray([BUTTON_PRESS_RADIO_ID, k, this.id]))
             else
-                control.raiseEvent(ControllerKeys.SYSTEM_KEY_UP, this.id);
+                control.raiseEvent(k, this.id);
         }
 
-        raiseButtonDown() {
-            if (_userEventsEnabled)
-                control.raiseEvent(ControllerKeys.KEY_DOWN, this.id)
+        raiseButtonDown(overRadio = false) {
+            const k = _userEventsEnabled ? ControllerKeys.KEY_DOWN : ControllerKeys.SYSTEM_KEY_DOWN;
+            if (overRadio)
+                radio.sendBuffer(Buffer.fromArray([BUTTON_PRESS_RADIO_ID, k, this.id])
             else
-                control.raiseEvent(ControllerKeys.SYSTEM_KEY_DOWN, this.id)
+                control.raiseEvent(k, this.id);
         }
 
-        private raiseButtonRepeat() {
-            if (_userEventsEnabled)
-                control.raiseEvent(ControllerKeys.KEY_REPEAT, this.id)
+        private raiseButtonRepeat(overRadio = false) {
+            const k = _userEventsEnabled ? ControllerKeys.KEY_REPEAT : ControllerKeys.SYSTEM_KEY_REPEAT;
+            if (overRadio)
+                radio.sendBuffer(Buffer.fromArray([BUTTON_PRESS_RADIO_ID, k, this.id]))
             else
-                control.raiseEvent(ControllerKeys.SYSTEM_KEY_REPEAT, this.id)
+                control.raiseEvent(k, this.id);
         }
 
         /**
@@ -166,6 +173,7 @@ namespace controller {
 
             handlerState.system.push(new ButtonHandler(event, handler));
         }
+
 
         /**
          * Removes an event handler registered with addEventListener.
