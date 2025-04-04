@@ -1,6 +1,6 @@
 {
     "name": "display-shield",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "Display shield extension for MakeCode micro:bit",
     "dependencies": {
         "core": "*",
