@@ -11,14 +11,38 @@
 #define MY_PIN_BTNMX_CLOCK &uBit.io.P20     // DAL.P1_0
 #define MY_PIN_BTNMX_DATA &uBit.io.P14      // DAL.P0_1
 
-#define MY_PIN_DISPLAY_SCK &uBit.io.P13     // DAL.P0_17
-#define MY_PIN_DISPLAY_MOSI &uBit.io.P15    // DAL.P0_13
-#define MY_PIN_DISPLAY_MISO &uBit.io.P14    // DAL.P0_1
-#define MY_PIN_DISPLAY_BL &uBit.io.P19      // DAL.P0_26
-#define MY_PIN_DISPLAY_DC &uBit.io.P8       // DAL.P0_10
-#define MY_PIN_DISPLAY_RST &uBit.io.P16     // DAL.P1_2
-#define MY_PIN_DISPLAY_CS ((CODAL_PIN*)NULL) // not connected
-#define MY_PIN_LED  ((CODAL_PIN*)NULL)      // not connected
+// #define MY_PIN_DISPLAY_SCK &uBit.io.P13     // DAL.P0_17
+// #define MY_PIN_DISPLAY_SCK &uBit.io.P12     // DAL.P0_17
+// #define MY_PIN_DISPLAY_MOSI &uBit.io.P15    // DAL.P0_13
+// // #define MY_PIN_DISPLAY_MOSI &uBit.io.P13    // DAL.P0_13
+// #define MY_PIN_DISPLAY_DC &uBit.io.P8       // DAL.P0_10
+// #define MY_PIN_DISPLAY_RST &uBit.io.P16     // DAL.P1_2
+
+
+#define MY_PIN_DISPLAY_SCK &uBit.io.P0        // DAL.P0_02
+// #define MY_PIN_DISPLAY_MOSI &uBit.io.P28      // DAL.P0.28
+#define MY_PIN_DISPLAY_MOSI &uBit.io.P4      // DAL.P0.28
+#define MY_PIN_DISPLAY_RST &uBit.io.P10       // DAL.P1_0
+// #define MY_PIN_DISPLAY_RST &uBit.io.P30       // DAL.P1_0
+
+// #define MY_PIN_DISPLAY_DC &uBit.io.P13        // DAL.P0_29
+// #define MY_PIN_DISPLAY_DC &uBit.io.P21        // DAL.P0_29
+// #define MY_PIN_DISPLAY_DC &uBit.io.row1        // DAL.P0_29
+// #define MY_PIN_DISPLAY_DC ((CODAL_PIN *)NULL)        // DAL.P0_29
+// #define MY_PIN_DISPLAY_DC &uBit.io.P3 
+#define MY_PIN_DISPLAY_DC &uBit.io.P29 
+
+
+#define MY_PIN_DISPLAY_BL &uBit.io.P31 
+// #define MY_PIN_DISPLAY_BL ((CODAL_PIN *)NULL) // not connected
+// #define MY_PIN_DISPLAY_BL &uBit.io.row1 
+// #define MY_PIN_DISPLAY_BL &uBit.io.P19 // not connected
+
+
+#define MY_PIN_DISPLAY_MISO ((CODAL_PIN *)NULL) // not connected
+#define MY_PIN_DISPLAY_CS ((CODAL_PIN *)NULL) // not connected
+#define MY_PIN_LED ((CODAL_PIN *)NULL)        // not connected
+
 
 #undef DEV_NUM_PINS
 #define DEV_NUM_PINS 48

@@ -12,6 +12,7 @@ shieldhelpers.setPalette(hex`000000ffffffff2121ff93c4ff8135fff609249ca378dc52003
 
 const theScreen: Bitmap = __screen_internal.createScreen();
 theScreen.fill(15)
+__screen_internal.loop()
 
 namespace __screen_internal {
 
@@ -22,5 +23,17 @@ namespace __screen_internal {
         )
         control.__screen.setupUpdate(() => shieldhelpers.updateScreen(img))
         return img as Bitmap;
+    }
+
+    export function loop() {
+
+        let i = 0;
+        while (true) {
+            basic.showNumber(i)
+            screen().fill(i % 16)
+            i += 1
+
+            basic.pause(500)
+        }
     }
 }

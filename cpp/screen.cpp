@@ -61,6 +61,13 @@ public:
     if (dispTp == DISPLAY_TYPE_ST7735) {
       width = 160;
       height = 128;
+
+      // auto dc = LOOKUP_PIN(DISPLAY_DC);
+      // if (dc) {
+        // dc->setHighDrive(true);
+        // dc->setDigitalValue(1);
+      // }
+
       lcd = new ST7735(*io, *LOOKUP_PIN(DISPLAY_CS), *LOOKUP_PIN(DISPLAY_DC));
     } else if (dispTp == DISPLAY_TYPE_SMART) {
       lcd = NULL;
@@ -107,6 +114,7 @@ public:
       lcd->init();
       lcd->configure(madctl, frmctr1);
     }
+
 
     displayHeight = height;
     setAddrMain();
@@ -341,6 +349,11 @@ void updateScreen(Bitmap_ img) {
     // DMESG("send");
     display->sendIndexedImage(display->screenBuf, img->width(), img->height(),
                               palette);
+
+    // volatile bool a = true;
+    // while (a) {
+    //   a = true;
+    // }
   }
 
   display->inUpdate = false;
