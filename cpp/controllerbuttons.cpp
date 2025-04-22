@@ -9,7 +9,6 @@
 
 namespace pxt {
 
-
 class PressureButton : public codal::Button {
   public:
     PressureButton(Pin &pin, uint16_t id,
@@ -122,46 +121,50 @@ static void sendBtnUp(Event ev) {
 
 //% expose
 void setupButton(int buttonId, int key) {
-    int pin = getConfig(key);
-    if (pin == -1)
-        return;
-
-    unsigned highflags = (unsigned)pin >> 16;
-    int flags = BUTTON_ACTIVE_LOW_PULL_UP;
-    if (highflags & 0xff)
-        flags = highflags & 0xff;
-
-    pin &= 0xffff;
-
-    auto cpid = DEVICE_ID_FIRST_BUTTON + buttonId;
-    auto btn = (PressureButton *)lookupComponent(cpid);
-    if (btn == NULL) {
-        if (registerMultiplexedButton(pin, buttonId))
+    if (IN_WDS_MODE) {
+        
+    } else {
+        int pin = getConfig(key);
+        if (pin == -1)
             return;
 
-        if (1100 <= pin && pin < 1300) {
-            pin -= 1100;
-            int thr = getConfig(CFG_ANALOG_BUTTON_THRESHOLD, 300);
-            if (pin >= 100) {
-                thr = -thr;
-                pin -= 100;
+        unsigned highflags = (unsigned)pin >> 16;
+        int flags = BUTTON_ACTIVE_LOW_PULL_UP;
+        if (highflags & 0xff)
+            flags = highflags & 0xff;
+
+        pin &= 0xffff;
+
+        auto cpid = DEVICE_ID_FIRST_BUTTON + buttonId;
+        auto btn = (PressureButton *)lookupComponent(cpid);
+        if (btn == NULL) {
+            if (registerMultiplexedButton(pin, buttonId))
+                return;
+
+            if (1100 <= pin && pin < 1300) {
+                pin -= 1100;
+                int thr = getConfig(CFG_ANALOG_BUTTON_THRESHOLD, 300);
+                if (pin >= 100) {
+                    thr = -thr;
+                    pin -= 100;
+                }
+                btn = new AnalogButton(lookupAnalogCache(myLookupPin(pin)), cpid, thr);
+            } else {
+                auto pull = PullMode::None;
+                if ((flags & 0xf0) == 0x10)
+                    pull = PullMode::Down;
+                else if ((flags & 0xf0) == 0x20)
+                    pull = PullMode::Up;
+                else if ((flags & 0xf0) == 0x30)
+                    pull = PullMode::None;
+                else
+                    oops(3);
+                btn = new PressureButton(*myLookupPin(pin), cpid, DEVICE_BUTTON_ALL_EVENTS,
+                                         (ButtonPolarity)(flags & 0xf), pull);
             }
-            btn = new AnalogButton(lookupAnalogCache(myLookupPin(pin)), cpid, thr);
-        } else {
-            auto pull = PullMode::None;
-            if ((flags & 0xf0) == 0x10)
-                pull = PullMode::Down;
-            else if ((flags & 0xf0) == 0x20)
-                pull = PullMode::Up;
-            else if ((flags & 0xf0) == 0x30)
-                pull = PullMode::None;
-            else
-                oops(3);
-            btn = new PressureButton(*myLookupPin(pin), cpid, DEVICE_BUTTON_ALL_EVENTS,
-                                     (ButtonPolarity)(flags & 0xf), pull);
+            EventModel::defaultEventBus->listen(btn->id, DEVICE_BUTTON_EVT_DOWN, sendBtnDown);
+            EventModel::defaultEventBus->listen(btn->id, DEVICE_BUTTON_EVT_UP, sendBtnUp);
         }
-        EventModel::defaultEventBus->listen(btn->id, DEVICE_BUTTON_EVT_DOWN, sendBtnDown);
-        EventModel::defaultEventBus->listen(btn->id, DEVICE_BUTTON_EVT_UP, sendBtnUp);
     }
 }
 
