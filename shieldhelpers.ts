@@ -112,7 +112,7 @@ namespace shieldhelpers {
     function getScreenState() {
         if (!_screenState) {
             _screenState = new ScreenState()
-            startSim()       
+            startSim()
         }
     }
 
@@ -120,7 +120,7 @@ namespace shieldhelpers {
     function simUpdateScreen(img: Bitmap) {
         getScreenState();
         if (_screenState)
-            _screenState.showImage(img);        
+            _screenState.showImage(img);
     }
 
     export function updateScreen(img: Bitmap) {
@@ -155,7 +155,7 @@ namespace shieldhelpers {
     // getters
 
     let __height = 0
-    
+
     //% shim=TD_NOOP
     function simDisplayHeight() {
         __height = 120
@@ -163,7 +163,7 @@ namespace shieldhelpers {
         if (_screenState)
             __height = _screenState.displayHeight();
     }
-    
+
     export function displayHeight(): number {
         __height = __screenhelpers.displayHeight()
         simDisplayHeight()
@@ -171,7 +171,7 @@ namespace shieldhelpers {
     }
 
     let __width = 0
-    
+
     //% shim=TD_NOOP
     function simDisplayWidth() {
         __width = 160
@@ -187,7 +187,7 @@ namespace shieldhelpers {
     }
 
     let __present = undefined
-    
+
     //% shim=TD_NOOP
     function simDisplayPresent() {
         __present = undefined
@@ -210,6 +210,11 @@ namespace shieldhelpers {
         return __present
     }
 
+
+    export function WDSPresent(): boolean {
+        return true;
+    }
+
     function getButton(id: ArcadeButtonId): controller.Button {
         switch (id) {
             case "left": return controller.left
@@ -226,6 +231,11 @@ namespace shieldhelpers {
     function handleShieldMessage(b: Buffer) {
         const s = b.toString()
         const msg = <ArcadeShieldMessage>JSON.parse(s)
+
+        // Presume WDS setup (group & handshake) is done
+        const wds = WDSPresent() // Just returns true
+
+
         if (msg) {
             console.log(msg.type)
             getScreenState();
@@ -234,18 +244,22 @@ namespace shieldhelpers {
             if (msg.type === "button-down" || msg.type === "button-up") {
                 const button = getButton((<ButtonMessage>msg).buttonId)
                 if (button) {
-                    button.setPressed(msg.type === "button-down")
+//                     button.setPressed(msg.type === "button-down")
+                    if (msg.type === "button-down")
+                        button.raiseButtonDown(wds)
+                    else
+                        button.raiseButtonUp(wds)
                 }
             } else if (msg.type === "display-on") {
                 getScreenState()
                 _screenState.displayOn = true
                 basic.pause(0)
-                control.raiseEvent(ControllerShieldEvent.Present,0)
+                control.raiseEvent(ControllerShieldEvent.Present, 0)
             } else if (msg.type === "display-off") {
                 getScreenState()
                 _screenState.displayOn = false
                 basic.pause(0)
-                control.raiseEvent(ControllerShieldEvent.Absent,0)
+                control.raiseEvent(ControllerShieldEvent.Absent, 0)
             }
         }
     }
