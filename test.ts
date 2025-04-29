@@ -26,11 +26,7 @@
 //     }
 // }
 
-
-// let i = 0;
-// while (true) {
-//     screen().fill(i % 16)
-//     i += 1
-
-//     basic.pause(500)
-// }
+// screen().fill(3)
+// radio.onReceivedNumber(function (receivedNumber) {
+//     screen().fill(receivedNumber);
+// })

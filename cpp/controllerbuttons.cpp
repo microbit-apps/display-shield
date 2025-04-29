@@ -119,10 +119,34 @@ static void sendBtnUp(Event ev) {
     Event(PXT_INTERNAL_KEY_UP, ev.source - DEVICE_ID_FIRST_BUTTON);
 }
 
+
 //% expose
 void setupButton(int buttonId, int key) {
     if (IN_WDS_MODE) {
-        
+        codal::Pin* pin;
+        switch (buttonId) {
+            case 1:
+                pin = MY_PIN_WDS_LEFT_BTN;
+                break;
+            case 2:
+                pin = MY_PIN_WDS_TOP_BTN;
+                break;
+            case 3:
+                pin = MY_PIN_WDS_RIGHT_BTN;
+                break;
+            case 4:
+                pin = MY_PIN_WDS_BOT_BTN;
+                break;
+            default:
+                return;
+        }
+
+        auto pull = PullMode::Down;
+        auto cpid = DEVICE_ID_FIRST_BUTTON + buttonId;
+
+        auto btn = new PressureButton(*pin, cpid, DEVICE_BUTTON_ALL_EVENTS, ButtonPolarity::ACTIVE_HIGH, pull);
+        EventModel::defaultEventBus->listen(btn->id, DEVICE_BUTTON_EVT_DOWN, sendBtnDown);
+        EventModel::defaultEventBus->listen(btn->id, DEVICE_BUTTON_EVT_UP, sendBtnUp);
     } else {
         int pin = getConfig(key);
         if (pin == -1)

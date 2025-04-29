@@ -7,22 +7,20 @@
 #define CODAL_PIN NRF52Pin
 #define CODAL_SPI NRF52SPI
 
-// #define MY_PIN_BTNMX_LATCH &uBit.io.P9      // DAL.P0_9
-// #define MY_PIN_BTNMX_CLOCK &uBit.io.P20     // DAL.P1_0
-// #define MY_PIN_BTNMX_DATA &uBit.io.P14      // DAL.P0_1
 
 #define IN_WDS_MODE true
 
 #define MY_PIN_BTNMX_LATCH ((CODAL_PIN *)NULL)
 #define MY_PIN_BTNMX_CLOCK ((CODAL_PIN *)NULL)
-#define MY_PIN_BTNMX_DATA ((CODAL_PIN *)NULL)
+#define MY_PIN_BTNMX_DATA  ((CODAL_PIN *)NULL)
 
 
 // Buttons:
-#define MY_PIN_WDS_TOP_BTN &uBit.io.P1   // Pin 31 DAL.P0.00
-#define MY_PIN_WDS_BOT_BTN &uBit.io.P2   // Pin 4 DAL.P0.04
-#define MY_PIN_WDS_LEFT_BTN &uBit.io.P21  // Pin 2 DAL.P0.00  (used by speaker)
-#define MY_PIN_WDS_RIGHT_BTN &uBit.io.P22 // Pin 17 DAL.P0.20 (used by runmic)
+#define MY_PIN_WDS_TOP_BTN   &uBit.io.P2   // Pin 31 DAL.P0.04
+#define MY_PIN_WDS_BOT_BTN   &uBit.io.P1   // Pin 4 DAL.P0.00
+#define MY_PIN_WDS_LEFT_BTN  &uBit.io.P22  // Pin 2 DAL.P0.20  (prev. used by speaker)
+#define MY_PIN_WDS_RIGHT_BTN &uBit.io.P21  // Pin 17 DAL.P0.00 (prev. used by runmic)
+
 
 // Screen:
 #define MY_PIN_DISPLAY_SCK &uBit.io.P0  // DAL.P0_02
@@ -34,7 +32,6 @@
 #define MY_PIN_DISPLAY_MISO ((CODAL_PIN *)NULL) // not connected
 #define MY_PIN_DISPLAY_CS ((CODAL_PIN *)NULL)   // not connected
 #define MY_PIN_LED ((CODAL_PIN *)NULL)          // not connected
-
 
 
 #undef DEV_NUM_PINS
