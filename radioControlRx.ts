@@ -188,7 +188,6 @@ function radioControlRxLoop() {
     const bitmaps: Bitmap[] = recvBitmaps();
     controller.bindButtonsForWDS();
 
-
     let latestString = ""
     radio.onReceivedString((str: string) => {
         latestString = str

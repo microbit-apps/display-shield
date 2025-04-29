@@ -3,11 +3,11 @@
     "version": "1.0.2",
     "description": "Arcade Shield extension for MakeCode micro:bit",
     "dependencies": {
-        "core": "*",
-        "radio": "*",
-        "microphone": "*",
-        "bitmap": "*",
-        "fonts": "*"
+        "core": "file:../core",
+        "radio": "file:../radio",
+        "microphone": "file:../microphone",
+        "bitmap": "file:../bitmap",
+        "fonts": "file:../fonts"
     },
     "files": [
         "README.md",
@@ -70,6 +70,7 @@
     "supportedTargets": [
         "microbit"
     ],
+    "preferredEditor": "tsprj",
     "disablesVariants": [
         "mbdal"
     ],
@@ -79,7 +80,6 @@
             "DMESG_SERIAL_DEBUG": 1
         }
     },
-    "preferredEditor": "tsprj",
     "tests": [
         "test.ts"
     ],
