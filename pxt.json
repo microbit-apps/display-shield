@@ -1,7 +1,7 @@
 {
     "name": "display-shield",
-    "version": "1.0.2",
-    "description": "Arcade Shield extension for MakeCode micro:bit",
+    "version": "1.0.6",
+    "description": "Display shield extension for MakeCode micro:bit",
     "dependencies": {
         "core": "file:../core",
         "radio": "file:../radio",

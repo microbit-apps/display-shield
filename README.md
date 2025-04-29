@@ -1,24 +1,24 @@
-# MakeCode extension: Arcade Shield for BBC micro:bit (V2)
+# Display shield MakeCode extension for BBC micro:bit
 
-This MakeCode extension allows you to use any of the  MakeCode Arcade shields with the MakeCode for BBC micro:bit editor. The extension provides access 
-to the screen and buttons on the shield, and has
+This MakeCode extension allows you to use any of the MakeCode Arcade shields with the MakeCode for BBC micro:bit editor. 
+The extension provides access to the color display and buttons on the shield, and has
 a Bitmap abstraction with numerous drawing primitives
 (draw line, circle, square, etc).
 Bitmaps also can be created using the built-in
 image editor in MakeCode.
 
-> **NOTE: This extension will only work in https://makecode.microbit.org/beta**. The extension is still under development and is subject to changes. Please file issues at https://github.com/microbit-apps/arcadeshield/issues 
+> **NOTE: This extension will only work in https://makecode.microbit.org/beta**. The extension is still under development and is subject to changes. Please file issues at https://github.com/microbit-apps/display-shield/issues 
 
-## Arcade Shields for the micro:bit V2
+## Arcade shields for the micro:bit V2
 
-Various Arcade shields for the micro:bit V2 are available on the market today, including:
+Various Arcade (display) shields for the micro:bit V2 are available on the market today, including:
 
 * [Kittenbot's newbit Arcade shield](https://www.kittenbot.cc/products/newbit-arcade-shield): No assembly required Small screen and nice enclosure with LiPo battery inside. One [Jacdac](https://aka.ms/jacdac) port.
 * [ELECFREAK's micro:bit Arcade shield](https://www.kittenbot.cc/products/newbit-arcade-shield): Assembly required. Small screen. AAA Battery pack on back. One [Jacdac](https://aka.ms/jacdac) port.
 * [ICShopping's Game:bit Arcade shield](https://www.icshop.com.tw/products/368112100137?locale=en): No assembly required. Large screen and 3d-printed enclosure with LiPo battery inside. Two [Jacdac](https://aka.ms/jacdac) ports.
 * [Kitronik's Arcade for BBC micro:bit](https://kitronik.co.uk/products/56116-kitronik-arcade-for-bbc-micro-bit-makecode-arcade): No assembly required. Small screen. Battery holder on back. No Jacdac port.
 
-![MakeCode Arcade Shields](https://github.com/microbit-apps/arcadeshield/blob/master/assets/shields.png?raw=true)
+![MakeCode Arcade shields](https://github.com/microbit-apps/display-shield/blob/master/assets/shields.png?raw=true)
 
 
 ## Simulator support
@@ -30,10 +30,9 @@ D-pad, see arrow buttons).  Blocks
 for the shield are under the toolbox categories `Controller` and
 `Drawing` and are described further below.
 
-![MakeCode with Arcade Shield Simulator](https://github.com/microbit-apps/arcadeshield/blob/master/assets/shieldSim.png?raw=true)
+![MakeCode with Display Shield Simulator](https://github.com/microbit-apps/display-shield/blob/master/assets/shieldSim.png?raw=true)
 
-
-> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S07267-08481-73083-11887)
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S80683-78265-58968-34229)
 
 
 ## Using this extension
@@ -41,14 +40,14 @@ for the shield are under the toolbox categories `Controller` and
 -  Open https://makecode.microbit.org/beta 
 -  Create a new project
 -  Add an extension via the "Extensions" item in the gear wheel (upper right)
--  Type "arcade" into the search box
--  Select the **arcadeshield** extension, as shown below
+-  Type "display shield" into the search box
+-  Select the **display-shield** extension, as shown below
 
-![MakeCode extension dialog](https://github.com/microbit-apps/arcadeshield/blob/master/assets/extensions.png?raw=true)
+![MakeCode extension dialog](https://github.com/microbit-apps/display-shield/blob/master/assets/extensions.png?raw=true)
 
 ## Mashup!!!
 
-With this extension, you have access to **all** the MakeCode APIs for the micro:bit, and the new ability to plot data or create your own user interface. For example, one very cool thing about the micro:bit is it's (X,Y,Z) accelerometer, which senses motion in three dimensions.  Below is a program that maps the three accelerometer values to a scrolling line graph:
+With this extension, you have access to **all** the MakeCode APIs for the micro:bit, and the new ability to plot data or create your own user interface. For example, one very cool thing about the micro:bit is its (X,Y,Z) accelerometer, which senses motion in three dimensions.  Below is a program that maps the three accelerometer values to a scrolling line graph:
 ```block
 let x = 0, old_x = 0
 let y = 0, old_y = 0
@@ -76,13 +75,13 @@ basic.forever(function () {
 
 ## Tutorials
 
--   [Getting started](https://makecode.microbit.org/beta#tutorial:github:microbit-apps/arcadeshield/tutorials/getting-started)
+-   [Getting started](https://makecode.microbit.org/beta#tutorial:github:microbit-apps/display-shield/tutorials/getting-started)
 
 ## Overview of API
 
 The examples below are illustrative. All blocks have their own
 detailed help pages, available from the MakeCode editor. 
-[This page with block rendering](https://makecode.microbit.org/pkg/microbit-apps/arcadeshield). More APIs are available via TypeScript. 
+[This page with block rendering](https://makecode.microbit.org/pkg/microbit-apps/display-shield). More APIs are available via TypeScript. 
 
 ### Controller
 
@@ -99,7 +98,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 ```
 
-> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S24163-00898-21210-28197)
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S64613-82831-68506-89974)
 
 ### Drawing into the screen bitmap
 
@@ -115,7 +114,7 @@ screen().fill(8)
 screen().drawLine(0, 0, 159, 119, 2)
 screen().drawLine(159, 0, 0, 119, 5)
 ```
-> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S31225-91260-81293-38509)
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S96327-83750-33845-21213)
 
 The first two parameters to the function are the (x,y)
 coordinate where the line should start, while the next
@@ -221,13 +220,12 @@ screen().drawCircle(10, 10, 8, 5)
 
 ### Bitmap
 
-Let's dig into bitmaps, which you can create yourself (the screen is represented by a bitmap, as we have seen already). A bitmap is some number of rows and columns of color pixels that make up rectangular picture. A _pixel_ is a single point of color inside the bitmap. 
-
-Bitmaps are have a set height (number of rows) and width (number of columns). When a bitmap is declared, or created, the height and width are specified either by the _layout_ of the bitmap or as parameters to it's `create` method.
+Let's dig into bitmaps, which you can create yourself (the screen is represented by a bitmap, as we have seen already). A bitmap is some number of rows and columns of color pixels that make up rectangular picture. A _pixel_ is a single point of color inside the bitmap. A bitmap has a fixed height (number of rows) and width (number of columns). When a bitmap is declared, or created, the height and width are specified either by the _layout_ of the bitmap or as parameters to its `create` method.
 
 #### Bitmap editor
 
-The easiest way to create a bitmap is with the bitmap editor, which is accessible both from blocks and text view.  Here is the block view of an 
+The easiest way to create a bitmap is with the bitmap editor, 
+which is accessible both from blocks and text view.  Here is the block view of an 
 16x16 bitmap of an apple:
 
 ```block
@@ -256,10 +254,10 @@ screen().drawTransparentBitmap(apple, 70, 50)
 
 Here is the bitmap editor, which appears when you click on the icon in bitmap block
 
-![MakeCode Arcade Shields](https://github.com/microbit-apps/arcadeshield/blob/master/assets/appleBitmapEditor.png?raw=true)
+![MakeCode Arcade Shields](https://github.com/microbit-apps/display-shield/blob/master/assets/appleBitmapEditor.png?raw=true)
 
 
-The bitmap also is represented as a text literal, as shown below
+A bitmap is represented in code as a text literal, as shown below
 
 ```
 screen().fill(6)
@@ -286,7 +284,7 @@ screen().drawTransparentBitmap(apple, 70, 50)
 
 Click on the painter's palette icon next to the bitmap literal in the text view to bring up the bitmap editor
 
-![MakeCode Arcade Shields](https://github.com/microbit-apps/arcadeshield/blob/master/assets/bitmapEditorFromText.png?raw=true)
+![MakeCode Arcade Shields](https://github.com/microbit-apps/display-shield/blob/master/assets/bitmapEditorFromText.png?raw=true)
 
 
 #### Bitmap layout
@@ -333,7 +331,7 @@ let sixByTwo = bmp`
 
 ##### Transparent pixels
 
-A pixel value of `.` means an empty pixel. This pixel has no color and that pixel _location_ in the bitmap is _transparent_. Being transparent means that if this bitmap is on top of another bitmap (overlapping) that has some pixel color, then the color of the pixel in the bitmap underneath shows through to the bitmap above it.
+A pixel value of `.` denotes a transparent pixel. This pixel has no color and that pixel _location_ in the bitmap is _transparent_. Being transparent means that if this bitmap is on top of another bitmap (overlapping) that has some pixel color, then the color of the pixel in the bitmap underneath shows through to the bitmap above it.
 
 ##### Pixel colors
 
@@ -365,7 +363,7 @@ let oneRed = bmp`2`
 
 As a block it looks like this:
 
-```
+```block
 let oneRed = bmp`2`
 ```
 
@@ -458,7 +456,7 @@ let yellowSquare = bmp`
 screen().drawBitmap(yellowSquare, 0, 0)
 screen().drawTransparentBitmap(greenBall, 0, 0)
 ```
-> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S29479-80151-27505-97683)
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S62195-40202-75476-02422)
 
 #### Setting pixels at locations
 
@@ -493,7 +491,7 @@ screen().fill(8)
 screen().drawTransparentBitmap(orangeBox, 0, 0)
 screen().drawTransparentBitmap(orangeBox, 32, 32)
 ```
-> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S29084-47427-55388-74348)
+> [Open in MakeCode](https://makecode.microbit.org/beta/#pub:S62672-77446-94897-23460)
 
 
 # Supported targets

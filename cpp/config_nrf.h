@@ -7,23 +7,32 @@
 #define CODAL_PIN NRF52Pin
 #define CODAL_SPI NRF52SPI
 
-#define MY_DISPLAY_TYPE 4242 // smart shield
-#define MY_DISPLAY_CFG0 0x02000080 // allow execution without shield plugged in
-#define MY_DISPLAY_CFG1 0x00000603
-#define MY_DISPLAY_CFG2 8    // maximum SPI frequency for smart shield
 
-#define MY_PIN_BTNMX_LATCH &uBit.io.P9      // DAL.P0_9
-#define MY_PIN_BTNMX_CLOCK &uBit.io.P20     // DAL.P1_0
-#define MY_PIN_BTNMX_DATA &uBit.io.P14      // DAL.P0_1
+#define IN_WDS_MODE true
 
-#define MY_PIN_DISPLAY_SCK &uBit.io.P13     // DAL.P0_17
-#define MY_PIN_DISPLAY_MOSI &uBit.io.P15    // DAL.P0_13
-#define MY_PIN_DISPLAY_MISO &uBit.io.P14    // DAL.P0_1
-#define MY_PIN_DISPLAY_BL &uBit.io.P19      // DAL.P0_26
-#define MY_PIN_DISPLAY_DC &uBit.io.P8       // DAL.P0_10
-#define MY_PIN_DISPLAY_RST &uBit.io.P16     // DAL.P1_2
-#define MY_PIN_DISPLAY_CS ((CODAL_PIN*)NULL) // not connected
-#define MY_PIN_LED  ((CODAL_PIN*)NULL)      // not connected
+#define MY_PIN_BTNMX_LATCH ((CODAL_PIN *)NULL)
+#define MY_PIN_BTNMX_CLOCK ((CODAL_PIN *)NULL)
+#define MY_PIN_BTNMX_DATA  ((CODAL_PIN *)NULL)
+
+
+// Buttons:
+#define MY_PIN_WDS_TOP_BTN   &uBit.io.P2   // Pin 31 DAL.P0.04
+#define MY_PIN_WDS_BOT_BTN   &uBit.io.P1   // Pin 4 DAL.P0.00
+#define MY_PIN_WDS_LEFT_BTN  &uBit.io.P22  // Pin 2 DAL.P0.20  (prev. used by speaker)
+#define MY_PIN_WDS_RIGHT_BTN &uBit.io.P21  // Pin 17 DAL.P0.00 (prev. used by runmic)
+
+
+// Screen:
+#define MY_PIN_DISPLAY_SCK &uBit.io.P0  // DAL.P0_02
+#define MY_PIN_DISPLAY_MOSI &uBit.io.P4 // DAL.P0.28
+#define MY_PIN_DISPLAY_RST &uBit.io.P10 // DAL.P1_00
+#define MY_PIN_DISPLAY_DC &uBit.io.P23  // DAL.P0_29
+#define MY_PIN_DISPLAY_BL &uBit.io.P3   // DAL.P0_31
+
+#define MY_PIN_DISPLAY_MISO ((CODAL_PIN *)NULL) // not connected
+#define MY_PIN_DISPLAY_CS ((CODAL_PIN *)NULL)   // not connected
+#define MY_PIN_LED ((CODAL_PIN *)NULL)          // not connected
+
 
 #undef DEV_NUM_PINS
 #define DEV_NUM_PINS 48
@@ -60,10 +69,9 @@ typedef DevicePin *PwmOnlyPin;
 #define BUTTON_ACTIVE_LOW_PULL_UP 32
 
 namespace pxt {
-    uint32_t readButtonMultiplexer(int bits);
-    void disableButtonMultiplexer();
-    DevicePin *myLookupPin(int pinName);
-    CodalComponent *lookupComponent(int id);
-    int pressureLevelByButtonId(int btnId, int codalId);
-}
-
+uint32_t readButtonMultiplexer(int bits);
+void disableButtonMultiplexer();
+DevicePin *myLookupPin(int pinName);
+CodalComponent *lookupComponent(int id);
+int pressureLevelByButtonId(int btnId, int codalId);
+} // namespace pxt
