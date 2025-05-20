@@ -12,6 +12,9 @@ shieldhelpers.setPalette(hex`000000ffffffff2121ff93c4ff8135fff609249ca378dc52003
 
 const theScreen: Bitmap = __screen_internal.createScreen();
 theScreen.fill(15)
+// control.inBackground(() => {
+    radioControlRxLoop();
+// })
 // __screen_internal.loop()
 
 namespace __screen_internal {
@@ -23,12 +26,10 @@ namespace __screen_internal {
         )
 
         control.__screen.setupUpdate(() => shieldhelpers.updateScreen(img))
-        // control.inBackground(() => {
-        radioControlRxLoop();
-        // })
 
         return img as Bitmap;
     }
+
 
     export function loop() {
 

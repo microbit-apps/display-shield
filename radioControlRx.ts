@@ -1,3 +1,4 @@
+const SCREEN_FN_ID_HANDSHAKE: number = 0;
 const SCREEN_FN_ID_RESET_SCREEN_IMAGE: number = 5;
 const SCREEN_FN_ID_SET_IMAGE_SIZE: number = 6;
 const SCREEN_FN_ID_DRAW_TRANSPARENT_IMAGE: number = 7;
@@ -23,6 +24,7 @@ namespace controller {
                     controllerButtonEvents[i],
                     btn.id,
                     () => {
+                        // screen().fill(btn.id)
                         radio.sendBuffer(Buffer.fromArray([BUTTON_PRESS_RADIO_ID, controllerKeys[i], btn.id]))
                     }
                 )
@@ -48,7 +50,9 @@ function recvBitmaps(): Bitmap[] {
     while (numberOfBitmaps == 0) {
         basic.pause(3);
     }
+
     radio.sendString("ACK");
+    // screen().fill(6);
 
 
     //----------------------------
@@ -80,6 +84,7 @@ function recvBitmaps(): Bitmap[] {
         while (maxPacketBufferSize == 0) {
             basic.pause(3);
         }
+        // screen().fill(3);
 
         //-----------------------------------------
         // Calculate the number of incoming chunks:
@@ -140,11 +145,12 @@ function recvBitmaps(): Bitmap[] {
 
         // Rebinding for safety - since we're going back to only responding to .onReceivedString() at the top of this loop:
         // radio.onReceivedBuffer(_ => { })
+        // screen().fill(3);
     }
 
     radio.onReceivedString((_: string) => { })
     radio.onReceivedBuffer((_: Buffer) => { })
-    basic.showString("F")
+    // basic.showString("F")
     return bitmaps;
 }
 
@@ -169,22 +175,25 @@ function rebuildBitmap(buf: Buffer, bitmapWidth: number, bitmapHeight: number): 
 }
 
 
-function handshake() {
-    let receivedHandshake = false;
-    radio.onReceivedString((receivedString: string) => {
-        if (receivedString == "HANDSHAKE") {
-            receivedHandshake = true;
-            radio.sendString("ACK")
-        }
-    })
+function handshake(): number {
+    let device_id: number = null;
 
-    while (!receivedHandshake) { basic.pause(3) }
-    radio.onReceivedString((_: string) => { })
+    radio.onReceivedBuffer((buf: Buffer) => {
+       if (buf[0] == SCREEN_FN_ID_HANDSHAKE) {
+          device_id = buf[1];
+          radio.sendString("ACK")
+       }
+    });
+
+    while (device_id == null) { basic.pause(10) }
+    radio.onReceivedBuffer((_: Buffer) => { })
+    return device_id;
 }
 
 function radioControlRxLoop() {
     radio.setGroup(5)
-    handshake();
+
+    const device_id = handshake();
     const bitmaps: Bitmap[] = recvBitmaps();
     controller.bindButtonsForWDS();
 
@@ -195,10 +204,12 @@ function radioControlRxLoop() {
     })
 
     radio.onReceivedBuffer((buf: Buffer) => {
-        radio.sendString("ACK");
+
+        // radio.sendString("ACK");
         const request: number = buf[0];
         const params: Buffer = buf.slice(1);
 
+        // screen().printCenter(""+request, 0);
         // basic.showNumber(fn_id)
 
         // control.inBackground(() => {
@@ -233,6 +244,8 @@ function radioControlRxLoop() {
                 // basic.showNumber(fn_id)
                 screen().fill(params[0]);
 
+                // screen().fill(3);
+
                 // let endTime = input.runningTime();
                 // basic.showNumber(endTime - startTime)
                 break;
@@ -253,12 +266,13 @@ function radioControlRxLoop() {
             }
 
             default: {
-                basic.showString("D")
                 break;
             }
         }
-        // basic.pause(20);
-        // })
-    })
+    }) // end of radio.onReceivedBuffer()
+
+    while (true) {
+        basic.pause(3)
+    }
 }
 
