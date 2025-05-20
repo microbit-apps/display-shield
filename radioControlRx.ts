@@ -97,21 +97,23 @@ function recvBitmaps(): Bitmap[] {
         // Concatenate the incoming buffers:
         //----------------------------------
 
-        let bitmapBuf: Buffer = null;
-        let bitmapBufIsSet = false;
+        // let bitmapBuf: Buffer = null;
+        let bitmapBufs: Buffer[] = []
+        // let bitmapBufIsSet = false;
         let bufferReceived = false;
         radio.onReceivedBuffer((buf: Buffer) => {
-            if (!bitmapBufIsSet) {
-                bitmapBuf = buf;
-                bitmapBufIsSet = true;
-            } else {
-                bitmapBuf = bitmapBuf.concat(buf);
-            }
+            // if (!bitmapBufIsSet) {
+            //     bitmapBuf = buf;
+            //     bitmapBufIsSet = true;
+            // } else {
+            //     bitmapBuf = bitmapBuf.concat(buf);
+            // }
+
+            bitmapBufs.push(buf)
 
             radio.sendString("ACK");
             bufferReceived = true;
         });
-
 
         // Wait to receive all these chunks:
         for (let j = 0; j < numberOfChunks; j++) {
@@ -121,42 +123,36 @@ function recvBitmaps(): Bitmap[] {
             bufferReceived = false;
         }
 
-        // basic.showString("C")
 
         //---------------------------------
         // Rebuild the bitmap from buffers:
         //---------------------------------
-
-        bitmaps.push(rebuildBitmap(bitmapBuf, bitmapWidth, bitmapHeight));
-
-        // // Now rebuild the original bitmap from these buffers:
-        // const img = rebuildBitmap(bitmapBuf, bitmapWidth, bitmapHeight);
-        // const x = -(screen().width >> 1) + ((screen().width - img.width) >> 1);
-
-        // screen().drawBitmap(
-        //     img,
-        //     10,
-        //     (screen().height >> 1) - 10
-        // )
-
-        // basic.showString("D")
-
-        // bitmaps.push(img);
-
-        // Rebinding for safety - since we're going back to only responding to .onReceivedString() at the top of this loop:
-        // radio.onReceivedBuffer(_ => { })
-        // screen().fill(3);
+        
+        bitmaps.push(rebuildBitmap(Buffer.concat(bitmapBufs), bitmapWidth, bitmapHeight));
     }
 
     radio.onReceivedString((_: string) => { })
     radio.onReceivedBuffer((_: Buffer) => { })
-    // basic.showString("F")
+    // screen().fill(3);
     return bitmaps;
 }
 
 
 function rebuildBitmap(buf: Buffer, bitmapWidth: number, bitmapHeight: number): Bitmap {
     let img: Bitmap = bitmaps.create(bitmapWidth, bitmapHeight);
+
+    for (let row = 0; row < bitmapWidth; row++) {
+      for (let col = 0; col < bitmapHeight; col++) {
+        img.setPixel(row, col, 3)
+      }
+    }
+
+    // if (img.width > 32)
+    //     screen().fill(6)
+    //
+    // basic.pause(3000)
+
+    // const img = bitmaps.ofBuffer(buf);
 
     // basic.showString("B")
     // basic.showNumber(bitmapWidth)
@@ -167,9 +163,29 @@ function rebuildBitmap(buf: Buffer, bitmapWidth: number, bitmapHeight: number): 
 
     // basic.showNumber(buf.length)
 
-    for (let j = 0; j < bitmapHeight; j++) {
-        img.setRows(j, buf.slice(j * bitmapWidth, bitmapWidth));
+    // let count = 0;
+    //
+    // for (let i = 0; i < bitmapWidth; i++) {
+    //     if (buf[i] == 0) {
+    //       count++; 
+    //     }
+    // }
+    //
+    // if (count > 70) {
+    //   screen().fill(6)
+    // }
+    // else {screen().fill(4)}
+    // basic.pause(2500)
+    
+    for (let row = 0; row < bitmapWidth; row++) {
+      for (let col = 0; col < bitmapHeight; col++) {
+        img.setPixel(row, col, buf[(row * bitmapWidth) + col])
+      }
     }
+
+    // for (let j = 0; j < bitmapHeight; j++) {
+    //     img.setRows(j, buf.slice(j * bitmapWidth, bitmapWidth));
+    // }
 
     return img;
 }
@@ -177,8 +193,11 @@ function rebuildBitmap(buf: Buffer, bitmapWidth: number, bitmapHeight: number): 
 
 function handshake(): number {
     let device_id: number = null;
+    let i = 3;
 
     radio.onReceivedBuffer((buf: Buffer) => {
+        // screen().fill(i)
+        // i++;
        if (buf[0] == SCREEN_FN_ID_HANDSHAKE) {
           device_id = buf[1];
           radio.sendString("ACK")
@@ -204,13 +223,8 @@ function radioControlRxLoop() {
     })
 
     radio.onReceivedBuffer((buf: Buffer) => {
-
-        // radio.sendString("ACK");
         const request: number = buf[0];
         const params: Buffer = buf.slice(1);
-
-        // screen().printCenter(""+request, 0);
-        // basic.showNumber(fn_id)
 
         // control.inBackground(() => {
         switch (request) {
