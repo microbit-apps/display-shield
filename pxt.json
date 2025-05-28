@@ -6,7 +6,7 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "bitmap": "*",
+        "bitmap": "file:../bitmap",
         "fonts": "*"
     },
     "files": [
