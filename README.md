@@ -18,6 +18,7 @@ Five Arcade (display) shields for the micro:bit V2 are available on the market t
 * [Kitronik's Arcade for BBC micro:bit](https://kitronik.co.uk/products/56116-kitronik-arcade-for-bbc-micro-bit-makecode-arcade): No assembly required. Small screen. Battery holder on back. No Jacdac port.
 
 ![MakeCode Arcade shields](https://github.com/microbit-apps/display-shield/blob/master/assets/shields.png?raw=true)
+![more MakeCode Arcade shields](https://github.com/microbit-apps/display-shield/blob/master/assets/shields2.png?raw=true)
 
 
 ## Simulator support
