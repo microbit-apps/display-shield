@@ -19,7 +19,7 @@ This starts the simx's local development server.
 
 ### Load into the MakeCode editor
 
-1. Open the MakeCode editor for BBC micro:bit (https://makecode.microbit.org/beta)
+1. Open the MakeCode editor for BBC micro:bit (https://makecode.microbit.org/)
 2. Add the URL parameter `simxdev=1`
 3. Create a project
 4. Add the display-shield extension to your project
