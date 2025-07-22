@@ -40,7 +40,7 @@ for the shield are under the toolbox categories `Controller` and
 -  Open https://makecode.microbit.org/
 -  Create a new project
 -  Add an extension via the "Extensions" item in the gear wheel (upper right)
--  Type "display shield" into the search box
+-  Click the "Lights and Display" button, as shown below
 -  Select the **display-shield** extension, as shown below
 
 ![MakeCode extension dialog](https://github.com/microbit-apps/display-shield/blob/master/assets/extensions.png?raw=true)
