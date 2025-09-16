@@ -211,6 +211,8 @@ namespace shieldhelpers {
   }
 
   export function wdsHandshake(wds_id: number, contact_attempts: number): boolean {
+    radio.setGroup(5);
+
     let handshakeRecieved = false;
     radio.onReceivedString((_: string) => {
       handshakeRecieved = true;
