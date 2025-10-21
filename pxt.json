@@ -3,11 +3,11 @@
     "version": "1.0.7",
     "description": "Display shield extension for MakeCode micro:bit",
     "dependencies": {
-        "core": "*",
-        "radio": "*",
-        "microphone": "*",
-        "bitmap": "*",
-        "fonts": "*"
+        "core": "file:../core",
+        "radio": "file:../radio",
+        "microphone": "file:../microphone",
+        "bitmap": "file:../bitmap",
+        "fonts": "file:../fonts"
     },
     "files": [
         "README.md",
