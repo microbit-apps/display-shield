@@ -1,7 +1,12 @@
 namespace control.__screen {
     let __update: () => void
     let __updated = false;
+    let __ok = true;
 
+    export function stop() {
+        __ok = false
+    }
+    
     export function update() {
         if (__update)
             __update()
@@ -16,9 +21,9 @@ namespace control.__screen {
 
     // low frequency fallback screen refresh
     control.runInParallel(() => {
-        while (true) {
+        while (__ok) {
             __updated = false
-            pause(20)
+            pause(40)
             if (!__updated) {
                 __screen.update();
                 __updated = true
