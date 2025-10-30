@@ -95,6 +95,7 @@ namespace context {
                 this.framesInSample = 0
             }
             let delay = Math.max(1, 20 - runtime)
+            // let delay = Math.max(10, 20 - runtime)
 
             return delay
         }

@@ -77,7 +77,7 @@ static void *jd_push_in_frame(jd_frame_t *frame, unsigned service_num, unsigned 
     return dst;
 }
 
-JDDisplay::JDDisplay(SPI *spi, Pin *cs, Pin *flow) : spi(spi), cs(cs), flow(flow) {
+JDDisplay::JDDisplay(SPI *spi, Pin *cs, Pin *flow) : spi(spi), cs(cs), flow(flow), inProgressLock(1) {
     inProgress = false;
     stepWaiting = false;
     displayServiceNum = 0;
@@ -91,7 +91,7 @@ JDDisplay::JDDisplay(SPI *spi, Pin *cs, Pin *flow) : spi(spi), cs(cs), flow(flow
     avgFrameTime = 26300; // start with a reasonable default
     lastFrameTimestamp = 0;
 
-    EventModel::defaultEventBus->listen(DEVICE_ID_DISPLAY, 4243, this, &JDDisplay::sendDone);
+    // EventModel::defaultEventBus->listen(DEVICE_ID_DISPLAY, 4243, this, &JDDisplay::sendDone);
 
     flow->getDigitalValue(PullMode::Down);
     EventModel::defaultEventBus->listen(flow->id, DEVICE_PIN_EVENT_ON_EDGE, this,
@@ -100,13 +100,14 @@ JDDisplay::JDDisplay(SPI *spi, Pin *cs, Pin *flow) : spi(spi), cs(cs), flow(flow
 }
 
 void JDDisplay::waitForSendDone() {
-    if (inProgress)
-        fiber_wait_for_event(DEVICE_ID_DISPLAY, 4242);
+    // if (inProgress)
+    //     fiber_wait_for_event(DEVICE_ID_DISPLAY, 4242);
 }
 
-void JDDisplay::sendDone(Event) {
+void JDDisplay::sendDone(JDDisplay* jd) {
     inProgress = false;
-    Event(DEVICE_ID_DISPLAY, 4242);
+    inProgressLock.notify();
+    // Event(DEVICE_ID_DISPLAY, 4242);
 }
 
 void *JDDisplay::queuePkt(uint32_t service_num, uint32_t service_cmd, uint32_t size) {
@@ -323,7 +324,8 @@ void JDDisplay::step() {
     } else {
         // trigger sendDone(), which executes outside of IRQ context, so there
         // is no race with waitForSendDone
-        Event(DEVICE_ID_DISPLAY, 4243);
+        // Event(DEVICE_ID_DISPLAY, 4243);
+        sendDone(this);
     }
 }
 
@@ -333,12 +335,13 @@ int JDDisplay::sendIndexedImage(const uint8_t *src, unsigned width, unsigned hei
         target_panic(123);  // PANIC_SCREEN_ERROR
     if (width != addr.width || height != addr.height)
         target_panic(124); // PANIC_SCREEN_ERROR
-    if (inProgress)
-        target_panic(125); // PANIC_SCREEN_ERROR
+    // if (inProgress)
+    //     target_panic(125); // PANIC_SCREEN_ERROR
 
     if (addr.y && addr.y >= screenHeight)
         return 0; // out of range
 
+    inProgressLock.wait();
     inProgress = true;
 
     int numcols = JD_SERIAL_PAYLOAD_SIZE / (height / 2);
@@ -348,7 +351,6 @@ int JDDisplay::sendIndexedImage(const uint8_t *src, unsigned width, unsigned hei
     dataPtr = src;
 
     this->palette = palette;
-
     memset(&sendFrame, 0, sizeof(sendFrame));
 
     step();

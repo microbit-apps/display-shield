@@ -33,7 +33,6 @@ namespace bitmaps {
         return bitmap;
     }
 
-
     /**
      * A bitmap
      * @param bitmap the bitmap

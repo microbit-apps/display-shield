@@ -28,7 +28,7 @@ public:
   uint32_t currPalette[16];
   bool present;
   bool newPalette;
-  bool inUpdate;
+  codal::FiberLock inUpdate;
   uint8_t *screenBuf;
 
   uint16_t width, height;
@@ -113,7 +113,8 @@ public:
     DMESG("screen: %d x %d, off=%d,%d", width, height, offX, offY);
     int sz = doubleSize ? (width >> 1) * (height >> 1) : width * height;
     screenBuf = (uint8_t *)app_alloc(sz / 2 + 20);
-    inUpdate = false;
+
+    inUpdate = codal::FiberLock(1, codal::FiberLockMode::MUTEX);
   }
 
   uint32_t smartConfigure(uint32_t *cfg0, uint32_t *cfg1, uint32_t *cfg2) {
@@ -311,10 +312,10 @@ void updateScreen(Bitmap_ img) {
   if (!display)
     return;
 
-  if (display->inUpdate)
-    return;
+  // if (display->inUpdate)
+  //   return;
 
-  display->inUpdate = true;
+  display->inUpdate.wait();
 
   auto mult = display->doubleSize ? 2 : 1;
 
@@ -322,9 +323,12 @@ void updateScreen(Bitmap_ img) {
     if (img->bpp() != 4 || img->width() * mult != display->width ||
         img->height() * mult != display->displayHeight)
       target_panic(131); // PANIC_SCREEN_ERROR
-
-    // DMESG("wait for done");
+  
+    // const auto t = system_timer_current_time();
+    // DMESG("waiting for done, time: %d", t);
     display->waitForSendDone();
+    // fiber_sleep(33);
+    // DMESG("wait for done over: %d", system_timer_current_time() - t);
 
     auto palette = display->currPalette;
 
@@ -343,7 +347,8 @@ void updateScreen(Bitmap_ img) {
                               palette);
   }
 
-  display->inUpdate = false;
+  display->inUpdate.notify();
+  // display->inUpdate = false;
 }
 
 //%

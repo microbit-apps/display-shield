@@ -25,8 +25,11 @@ class JDDisplay {
     jd_frame_t sendFrame;
     jd_frame_t recvFrame;
     uint8_t bytesPerTransfer;
-    bool inProgress;
+
+    volatile bool inProgress;
     volatile bool stepWaiting;
+    FiberLock inProgressLock;
+
     uint8_t displayServiceNum;
     uint8_t controlsStartServiceNum;
     uint8_t controlsEndServiceNum;    
@@ -43,10 +46,11 @@ class JDDisplay {
     void *queuePkt(uint32_t service_num, uint32_t service_cmd, uint32_t size);
     void flushSend();
     void step();
-    void sendDone(Event);
+    void sendDone(JDDisplay* jd);
     static void stepStatic(void *);
     void onFlowHi(Event);
     void handleIncoming(jd_packet_t *pkt);
+
 
   public:
     uint8_t brightness;
