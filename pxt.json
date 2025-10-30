@@ -69,6 +69,7 @@
     "supportedTargets": [
         "microbit"
     ],
+    "preferredEditor": "tsprj",
     "disablesVariants": [
         "mbdal"
     ],
@@ -78,7 +79,6 @@
             "DMESG_SERIAL_DEBUG": 1
         }
     },
-    "preferredEditor": "tsprj",
     "tests": [
         "test.ts"
     ],
