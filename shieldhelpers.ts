@@ -227,7 +227,6 @@ namespace shieldhelpers {
         const s = b.toString()
         const msg = <ArcadeShieldMessage>JSON.parse(s)
         if (msg) {
-            console.log(msg.type)
             getScreenState();
             _screenState.gotSimMessage = true
             basic.pause(0)
