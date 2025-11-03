@@ -467,7 +467,7 @@ screen().drawTransparentBitmap(orangeBox, 32, 32)
 #### Drawing to a bitmap
 
 All the functions we previously reviewed for drawing to the
-screen can also be applied to a bitmap. For example, the orange border in a bitmap can be created as followsL
+screen can also be applied to a bitmap. For example, the orange border in a bitmap can be created as follows:
 
 ```block
 let orangeBox = bitmaps.create(32, 32)
