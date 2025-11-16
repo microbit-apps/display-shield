@@ -102,7 +102,7 @@ JDDisplay::JDDisplay(SPI *spi, Pin *cs, Pin *flow) : spi(spi), cs(cs), flow(flow
 }
 
 void JDDisplay::pollButtons() {
-    // TODO: need to be sure we don't conflict with other calls to step
+    inProgressLock.wait();
     step(false);
 }
 
@@ -258,6 +258,7 @@ void JDDisplay::step(bool sendImage) {
                 break;
         }
         if (!sendImage) {
+            sendDone(this);
             return;
         }
     }
