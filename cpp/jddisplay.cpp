@@ -106,10 +106,6 @@ void JDDisplay::pollButtons() {
     step(false);
 }
 
-/**
-* Deprecated; no longer neccessary. sendIndexedImage handles this.
-*/
-void JDDisplay::waitForSendDone() {}
 
 void JDDisplay::sendDone(JDDisplay* jdd) {
     inProgressLock.notify();
