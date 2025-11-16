@@ -59,6 +59,7 @@ class JDDisplay {
         addr.width = w;
         addr.height = h;
     }
+    void pollButtons();
     void waitForSendDone();
 
     int sendIndexedImage(const uint8_t *src, unsigned width, unsigned height, uint32_t *palette);
