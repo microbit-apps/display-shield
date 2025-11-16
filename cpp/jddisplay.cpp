@@ -218,12 +218,11 @@ void JDDisplay::handleIncoming(jd_packet_t *pkt) {
             buttonState = state;
         }
     } else {
-        // TODO remove later
         VLOG("JDA: unknown packet for %d (cmd=%x)", pkt->service_number, pkt->service_command);
     }
 }
 
-void JDDisplay::step() {
+void JDDisplay::step(bool sendImage) {
     if (cs)
         cs->setDigitalValue(1);
 
@@ -252,6 +251,10 @@ void JDDisplay::step() {
             handleIncoming((jd_packet_t *)&recvFrame);
             if (!jd_shift_frame(&recvFrame))
                 break;
+        }
+        if (!sendImage) {
+            sendDone(this);
+            return;
         }
     }
 
