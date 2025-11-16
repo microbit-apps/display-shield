@@ -100,12 +100,6 @@ JDDisplay::JDDisplay(SPI *spi, Pin *cs, Pin *flow) : spi(spi), cs(cs), flow(flow
     EventModel::defaultEventBus->listen(DEVICE_ID_COMPONENT, DEVICE_COMPONENT_EVT_SYSTEM_TICK, this, &JDDisplay::pollButtons)
 }
 
-
-/**
-* Deprecated; no longer neccessary. sendIndexedImage handles this.
-*/
-void JDDisplay::waitForSendDone() {}
-
 void JDDisplay::sendDone(JDDisplay* jdd) {
     inProgressLock.notify();
 }
