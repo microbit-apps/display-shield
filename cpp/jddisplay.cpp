@@ -98,7 +98,7 @@ JDDisplay::JDDisplay(SPI *spi, Pin *cs, Pin *flow) : spi(spi), cs(cs), flow(flow
 
     // set up polling for buttons
     EventModel::defaultEventBus->listen(DEVICE_ID_COMPONENT, DEVICE_COMPONENT_EVT_SYSTEM_TICK, 
-        &JDDisplat::pollButtons, MESSAGE_BUS_LISTENER_IMMEDIATE);
+        &JDDisplay::pollButtons, MESSAGE_BUS_LISTENER_IMMEDIATE);
 }
 
 void JDDisplay::pollButtons() {
@@ -227,7 +227,7 @@ void JDDisplay::handleIncoming(jd_packet_t *pkt) {
     }
 }
 
-void JDDisplay::step(bool sendImage = true) {
+void JDDisplay::step(bool sendImage) {
     if (cs)
         cs->setDigitalValue(1);
 
