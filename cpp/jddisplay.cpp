@@ -257,8 +257,9 @@ void JDDisplay::step(bool sendImage) {
             if (!jd_shift_frame(&recvFrame))
                 break;
         }
-        if (!sendImage)
-            return
+        if (!sendImage) {
+            return;
+        }
     }
 
     if (displayServiceNum == 0) {
