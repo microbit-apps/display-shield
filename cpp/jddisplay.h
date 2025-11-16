@@ -49,7 +49,7 @@ class JDDisplay {
     static void stepStatic(void *);
     void onFlowHi(Event);
     void handleIncoming(jd_packet_t *pkt);
-
+    void pollButtons(Event);
   public:
     uint8_t brightness;
     JDDisplay(SPI *spi, Pin *cs, Pin *flow);
@@ -59,7 +59,6 @@ class JDDisplay {
         addr.width = w;
         addr.height = h;
     }
-    void pollButtons();
     int sendIndexedImage(const uint8_t *src, unsigned width, unsigned height, uint32_t *palette);
 };
 

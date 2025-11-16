@@ -101,7 +101,7 @@ JDDisplay::JDDisplay(SPI *spi, Pin *cs, Pin *flow) : spi(spi), cs(cs), flow(flow
         &JDDisplay::pollButtons, MESSAGE_BUS_LISTENER_IMMEDIATE);
 }
 
-void JDDisplay::pollButtons() {
+void JDDisplay::pollButtons(Event) {
     inProgressLock.wait();
     step(false);
 }
