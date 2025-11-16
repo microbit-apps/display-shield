@@ -220,7 +220,7 @@ void JDDisplay::handleIncoming(jd_packet_t *pkt) {
     }
 }
 
-void JDDisplay::step() {
+void JDDisplay::step(bool sendImage = true) {
     if (cs)
         cs->setDigitalValue(1);
 
@@ -250,6 +250,8 @@ void JDDisplay::step() {
             if (!jd_shift_frame(&recvFrame))
                 break;
         }
+        if (!sendImage)
+            return
     }
 
     if (displayServiceNum == 0) {
