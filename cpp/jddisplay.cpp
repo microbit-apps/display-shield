@@ -223,7 +223,6 @@ void JDDisplay::handleIncoming(jd_packet_t *pkt) {
             buttonState = state;
         }
     } else {
-        // TODO remove latering
         VLOG("JDA: unknown packet for %d (cmd=%x)", pkt->service_number, pkt->service_command);
     }
 }
