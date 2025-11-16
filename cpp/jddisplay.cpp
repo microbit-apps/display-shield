@@ -251,13 +251,9 @@ void JDDisplay::step(bool sendImage) {
             if (!jd_shift_frame(&recvFrame))
                 break;
         }
-        if (!sendImage) {
-            sendDone(this);
-            return;
-        }
     }
 
-    if (displayServiceNum == 0) {
+    if (displayServiceNum == 0 || !sendImage) {
         // poke the control service to enumerate
         queuePkt(JD_SERVICE_NUMBER_CTRL, JD_CMD_ADVERTISEMENT_DATA, 0);
         flushSend();
