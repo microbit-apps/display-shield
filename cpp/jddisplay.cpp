@@ -95,8 +95,16 @@ JDDisplay::JDDisplay(SPI *spi, Pin *cs, Pin *flow) : spi(spi), cs(cs), flow(flow
     EventModel::defaultEventBus->listen(flow->id, DEVICE_PIN_EVENT_ON_EDGE, this,
                                         &JDDisplay::onFlowHi, MESSAGE_BUS_LISTENER_IMMEDIATE);
     flow->eventOn(DEVICE_PIN_EVT_RISE);
+
+    // set up polling for buttons
+    EventModel::defaultEventBus->listen(DEVICE_ID_COMPONENT, DEVICE_COMPONENT_EVT_SYSTEM_TICK, 
+        &JDDisplat::pollButtons, MESSAGE_BUS_LISTENER_IMMEDIATE);
 }
 
+void JDDisplay::pollButtons() {
+    // TODO: need to be sure we don't conflict with other calls to step
+    step(false);
+}
 
 /**
 * Deprecated; no longer neccessary. sendIndexedImage handles this.
@@ -215,7 +223,7 @@ void JDDisplay::handleIncoming(jd_packet_t *pkt) {
             buttonState = state;
         }
     } else {
-        // TODO remove later
+        // TODO remove latering
         VLOG("JDA: unknown packet for %d (cmd=%x)", pkt->service_number, pkt->service_command);
     }
 }
