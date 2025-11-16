@@ -102,7 +102,7 @@ JDDisplay::JDDisplay(SPI *spi, Pin *cs, Pin *flow) : spi(spi), cs(cs), flow(flow
 
 void JDDisplay::pollButtons(Event) {
     inProgressLock.wait();
-    step(false)
+    step(false);
 }
 
 void JDDisplay::sendDone(JDDisplay* jdd) {
