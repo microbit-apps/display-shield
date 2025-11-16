@@ -253,11 +253,16 @@ void JDDisplay::step(bool sendImage) {
         }
     }
 
-    if (displayServiceNum == 0 || !sendImage) {
+    if (displayServiceNum == 0) {
         // poke the control service to enumerate
         queuePkt(JD_SERVICE_NUMBER_CTRL, JD_CMD_ADVERTISEMENT_DATA, 0);
         flushSend();
         return;
+    }
+
+    if (!sendImage) {
+        flushSend();
+        return;   
     }
 
     if (palette) {
