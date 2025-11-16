@@ -100,6 +100,11 @@ JDDisplay::JDDisplay(SPI *spi, Pin *cs, Pin *flow) : spi(spi), cs(cs), flow(flow
     EventModel::defaultEventBus->listen(DEVICE_ID_COMPONENT, DEVICE_COMPONENT_EVT_SYSTEM_TICK, this, &JDDisplay::pollButtons);
 }
 
+void JDDisplay::pollButtons(Event) {
+    inProgressLock.wait();
+    step(false)
+}
+
 void JDDisplay::sendDone(JDDisplay* jdd) {
     inProgressLock.notify();
 }
