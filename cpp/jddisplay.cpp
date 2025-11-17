@@ -256,19 +256,18 @@ bool JDDisplay::stepPrefix() {
                 break;
         }
     }
+    if (displayServiceNum == 0) {
+        // poke the control service to enumerate
+        queuePkt(JD_SERVICE_NUMBER_CTRL, JD_CMD_ADVERTISEMENT_DATA, 0);
+        flushSend();
+        return true;
+    }
     return false;
 }
 
 void JDDisplay::step() {
     if (stepPrefix())
         return;
-
-    if (displayServiceNum == 0) {
-        // poke the control service to enumerate
-        queuePkt(JD_SERVICE_NUMBER_CTRL, JD_CMD_ADVERTISEMENT_DATA, 0);
-        flushSend();
-        return;
-    }
 
     if (palette) {
         {
