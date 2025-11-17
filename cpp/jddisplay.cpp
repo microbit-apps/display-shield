@@ -102,8 +102,10 @@ JDDisplay::JDDisplay(SPI *spi, Pin *cs, Pin *flow) : spi(spi), cs(cs), flow(flow
 }
 
 void JDDisplay::pollButtons(Event) {
-    if (stepWaiting)
-        step(false);
+    if (stepWaiting) {
+        stepPrefix();
+        flushSend();
+    }
 }
 
 void JDDisplay::sendDone(JDDisplay* jdd) {
@@ -222,7 +224,8 @@ void JDDisplay::handleIncoming(jd_packet_t *pkt) {
     }
 }
 
-void JDDisplay::step(bool sendImage) {
+
+void JDDisplay::stepPrefix() {
     if (cs)
         cs->setDigitalValue(1);
 
@@ -231,9 +234,8 @@ void JDDisplay::step(bool sendImage) {
         stepWaiting = true;
         target_enable_irq();
         return;
-    } else {
-        stepWaiting = false;
     }
+    stepWaiting = false;
     target_enable_irq();
 
     memset(&sendFrame, 0, JD_SERIAL_FULL_HEADER_SIZE);
@@ -253,17 +255,16 @@ void JDDisplay::step(bool sendImage) {
                 break;
         }
     }
+}
+
+void JDDisplay::step() {
+    stepPrefix()
 
     if (displayServiceNum == 0) {
         // poke the control service to enumerate
         queuePkt(JD_SERVICE_NUMBER_CTRL, JD_CMD_ADVERTISEMENT_DATA, 0);
         flushSend();
         return;
-    }
-
-    if (!sendImage) {
-        sendDone(this);
-        return;   
     }
 
     if (palette) {
