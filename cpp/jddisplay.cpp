@@ -258,7 +258,7 @@ void JDDisplay::stepPrefix() {
 }
 
 void JDDisplay::step() {
-    stepPrefix()
+    stepPrefix();
 
     if (displayServiceNum == 0) {
         // poke the control service to enumerate
