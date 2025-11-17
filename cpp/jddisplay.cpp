@@ -103,7 +103,8 @@ JDDisplay::JDDisplay(SPI *spi, Pin *cs, Pin *flow) : spi(spi), cs(cs), flow(flow
 
 void JDDisplay::pollButtons(Event) {
     if (stepWaiting) {
-        stepPrefix();
+        if (stepPrefix())
+            return;
         flushSend();
     }
 }
@@ -225,7 +226,7 @@ void JDDisplay::handleIncoming(jd_packet_t *pkt) {
 }
 
 
-void JDDisplay::stepPrefix() {
+bool JDDisplay::stepPrefix() {
     if (cs)
         cs->setDigitalValue(1);
 
@@ -233,7 +234,7 @@ void JDDisplay::stepPrefix() {
     if (!flow->getDigitalValue()) {
         stepWaiting = true;
         target_enable_irq();
-        return;
+        return true;
     }
     stepWaiting = false;
     target_enable_irq();
@@ -255,10 +256,12 @@ void JDDisplay::stepPrefix() {
                 break;
         }
     }
+    return false;
 }
 
 void JDDisplay::step() {
-    stepPrefix();
+    if (stepPrefix())
+        return;
 
     if (displayServiceNum == 0) {
         // poke the control service to enumerate

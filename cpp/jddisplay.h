@@ -44,7 +44,7 @@ class JDDisplay {
 
     void *queuePkt(uint32_t service_num, uint32_t service_cmd, uint32_t size);
     void flushSend();
-    void stepPrefix();
+    bool stepPrefix();
     void step();
     void sendDone(JDDisplay* jdd);
     static void stepStatic(void *);
