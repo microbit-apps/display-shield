@@ -21,14 +21,17 @@ namespace context {
             public flags: number
         ) { }
 
+        private myHandler: () => void = undefined
+
         register() {
-            control.onEvent(this.src, this.value, () => {
+            this.myHandler = () => {
                 if (this.handler) this.handler();
-            }, this.flags)
+            }
+            control.rawOnEvent(this.src, this.value, this.myHandler, this.flags)
         }
 
         unregister() {
-            control.onEvent(this.src, this.value, doNothing, this.flags);
+            control.rawUnregisterEvent(this.src, this.value);
         }
     }
 
