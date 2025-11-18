@@ -105,7 +105,9 @@ void JDDisplay::pollButtons(Event) {
     if (stepWaiting) {
         if (stepPrefix())
             return;
+        // stepWaiting == false
         flushSend();
+        sendDone()
     }
 }
 
@@ -268,7 +270,7 @@ bool JDDisplay::stepPrefix() {
 void JDDisplay::step() {
     if (stepPrefix())
         return;
-
+    // stepWaiting == false
     if (palette) {
         {
 #define PALETTE_SIZE (16 * 4)
