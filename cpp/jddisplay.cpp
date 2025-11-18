@@ -107,7 +107,7 @@ void JDDisplay::pollButtons(Event) {
             return;
         // stepWaiting == false
         flushSend();
-        sendDone()
+        sendDone(this);
     }
 }
 
