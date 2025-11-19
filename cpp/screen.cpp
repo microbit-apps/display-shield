@@ -197,12 +197,6 @@ public:
     else
       smart->setAddrWindow(offX, offY, width, displayHeight);
   }
-  void waitForSendDone() {
-    if (lcd)
-      lcd->waitForSendDone();
-    else
-      smart->waitForSendDone();
-  }
   int sendIndexedImage(const uint8_t *src, unsigned width, unsigned height,
                        uint32_t *palette) {
     if (lcd)
@@ -322,9 +316,6 @@ void updateScreen(Bitmap_ img) {
     if (img->bpp() != 4 || img->width() * mult != display->width ||
         img->height() * mult != display->displayHeight)
       target_panic(131); // PANIC_SCREEN_ERROR
-
-    // DMESG("wait for done");
-    display->waitForSendDone();
 
     auto palette = display->currPalette;
 

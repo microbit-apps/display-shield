@@ -95,13 +95,16 @@ JDDisplay::JDDisplay(SPI *spi, Pin *cs, Pin *flow) : spi(spi), cs(cs), flow(flow
     EventModel::defaultEventBus->listen(flow->id, DEVICE_PIN_EVENT_ON_EDGE, this,
                                         &JDDisplay::onFlowHi, MESSAGE_BUS_LISTENER_IMMEDIATE);
     flow->eventOn(DEVICE_PIN_EVT_RISE);
+
+    // set up polling for buttons
+    EventModel::defaultEventBus->listen(DEVICE_ID_COMPONENT, DEVICE_COMPONENT_EVT_SYSTEM_TICK, this, 
+                                        &JDDisplay::pollButtons, MESSAGE_BUS_LISTENER_IMMEDIATE);
 }
 
-
-/**
-* Deprecated; no longer neccessary. sendIndexedImage handles this.
-*/
-void JDDisplay::waitForSendDone() {}
+void JDDisplay::pollButtons(Event) {
+    if (stepWaiting)
+        step(false);
+}
 
 void JDDisplay::sendDone(JDDisplay* jdd) {
     inProgressLock.notify();
@@ -215,12 +218,11 @@ void JDDisplay::handleIncoming(jd_packet_t *pkt) {
             buttonState = state;
         }
     } else {
-        // TODO remove later
         VLOG("JDA: unknown packet for %d (cmd=%x)", pkt->service_number, pkt->service_command);
     }
 }
 
-void JDDisplay::step() {
+void JDDisplay::step(bool sendImage) {
     if (cs)
         cs->setDigitalValue(1);
 
@@ -257,6 +259,11 @@ void JDDisplay::step() {
         queuePkt(JD_SERVICE_NUMBER_CTRL, JD_CMD_ADVERTISEMENT_DATA, 0);
         flushSend();
         return;
+    }
+
+    if (!sendImage) {
+        sendDone(this);
+        return;   
     }
 
     if (palette) {
