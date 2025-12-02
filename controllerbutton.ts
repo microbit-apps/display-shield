@@ -34,12 +34,11 @@ enum ControllerButton {
 }
 
 enum ControllerShieldEvent {
-    // block="absent"
+    //% block="absent"
     Absent = 3042,
-    // block="present"
+    //% block="present"
     Present = 3043,
 }
-
 
 namespace controller {
     export class Controller {
