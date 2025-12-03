@@ -342,21 +342,22 @@ namespace helpers {
     }
 
     //% blockId=imageShowDataView
-    //% block="show data view in $img=theScreen headline $headline $label1 $value1 $label2 $value2 $label3 $value3||color $color=colorindexpicker background $backgroundColor=colorindexpicker font $font"
+    //% block="show data view in $img=theScreen headline $headline $label1 $value1 $label2 $value2 $label3 $value3||color $color=colorindexpicker background $backgroundColor=colorindexpicker offset $offset font $font"
     //% blockNamespace="drawing" group="Text"
     //% weight=85
     //% expandableArgumentMode="toggle"
     //% inlineInputMode=external
     //% color.defl=1
     //% backgroundColor.defl=15
-    //% headline.defl="Übersicht"
-    //% label1.defl="Temperatur" 
+    //% headline.defl="Overview"
+    //% label1.defl="Temperature"
     //% value1.defl=22
-    //% label2.defl="Feuchtigkeit" 
+    //% label2.defl="Light Level"
     //% value2.defl=55
-    //% label3.defl="Luftdruck" 
-    //% value3.defl=1000
+    //% label3.defl="Sound Level"
+    //% value3.defl=50
     //% font.shadow="font8_block"
+    //% offset.defl=0
     export function imageShowDataView(
         img: Bitmap, 
         headline: string,
@@ -368,27 +369,29 @@ namespace helpers {
         value3?: number,
         color?: number,
         backgroundColor?: number,
+        offset?: number,
         font?: bitmaps.Font
     ) {
         if (!font) font = bitmaps.font8;
         if (!color) color = 1;
-        if (backgroundColor !== undefined) {
+        if (offset === undefined) offset = 0;
+        if (backgroundColor !== undefined && backgroundColor !== 0) {
             img.fill(backgroundColor);
         }
         
         const lineHeight = font.charHeight + 2;
         const labelX = 2;
         const valueX = bitmaps.width(img) - 2;
-        let y = 2;
+        let y = 2 + offset;
 
         // Print headline
         if (headline) {
-            imagePrintCenter(img, headline, y, color, font);
-            y += lineHeight + 2; // Extra spacing after headline
+            imagePrintCenter(img, headline, y, color, bitmaps.font12);
+            y += lineHeight + 8; // Extra spacing after headline
         }
         
         // Print label-value pair 1
-        if (label1 !== undefined) {
+        if (label1 !== undefined && label1 !== "") {
             imagePrint(img, label1, labelX, y, color, font);
             if (value1 !== undefined) {
                 const valueStr = value1.toString();
@@ -399,7 +402,7 @@ namespace helpers {
         }
         
         // Print label-value pair 2
-        if (label2 !== undefined) {
+        if (label2 !== undefined && label2 !== "") {
             imagePrint(img, label2, labelX, y, color, font);
             if (value2 !== undefined) {
                 const valueStr = value2.toString();
@@ -410,7 +413,7 @@ namespace helpers {
         }
         
         // Print label-value pair 3
-        if (label3 !== undefined) {
+        if (label3 !== undefined && label3 !== "") {
             imagePrint(img, label3, labelX, y, color, font);
             if (value3 !== undefined) {
                 const valueStr = value3.toString();

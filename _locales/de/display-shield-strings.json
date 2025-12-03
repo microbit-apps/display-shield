@@ -50,7 +50,7 @@
   "controller.up|block": "hoch",
   "controller|block": "Tasten",
   "drawing|block": "Bildschirm",
-  "helpers.imageShowDataView|block": "zeige Datenansicht in $img=theScreen Überschrift $headline $label1 $value1 $label2 $value2 $label3 $value3||Farbe $color=colorindexpicker Hintergrund $backgroundColor=colorindexpicker Schrift $font",
+  "helpers.imageShowDataView|block": "zeige Datenansicht in $img=theScreen Überschrift $headline $label1 $value1 $label2 $value2 $label3 $value3||Farbe $color=colorindexpicker Hintergrund $backgroundColor=colorindexpicker Versatz $offset Schrift $font",
   "screen|block": "Bildschirm",
   "shieldhelpers.shieldPresent|block": "Shield vorhanden?",
   "shieldhelpers|block": "Shield-Helfer",
