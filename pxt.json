@@ -1,11 +1,9 @@
 {
     "name": "display-shield",
-    "version": "1.1.1",
-    "description": "Display shield extension for MakeCode micro:bit",
+    "version": "1.1.2",
+    "description": "Display shield extension for MakeCode micro:bit and Calliope mini",
     "dependencies": {
         "core": "*",
-        "radio": "*",
-        "microphone": "*",
         "bitmap": "*",
         "fonts": "*"
     },
