@@ -143,6 +143,24 @@ a420a8fcaa828400 a720087e2a1c0800 ab200098a4a6bf02 ac20183c5a5a4200 af20627f2244
         return bitmaps.font8
     }
 
+    //% blockId=font8_block block="medium font"
+    //% weight=10 group="Text" blockNamespace="drawing"
+    export function _font8(): Font {
+        return font8;
+    }
+
+    //% blockId=font12_block block="big font"
+    //% weight=9 group="Text" blockNamespace="drawing"
+    export function _font12(): Font {
+        return font12;
+    }
+
+    //% blockId=font5_block block="small font"
+    //% weight=8 group="Text" blockNamespace="drawing"
+    export function _font5(): Font {
+        return font5;
+    }
+
     //% deprecated=1 hidden=1
     export function doubledFont(f: Font): Font {
         return scaledFont(f, 2)
@@ -196,11 +214,28 @@ namespace texteffects {
 }
 
 interface Bitmap {
-    //% helper=imagePrint
+    //% helper=imagePrint blockNamespace="drawing" group="Text"
+    //% block="print $text in $this at x $x y $y in color $color=colorindexpicker || and font $font"
+    //% blockId=bitmapPrint
+    //% this.shadow="theScreen"
+    //% weight=90
+    //% x.defl=0 y.defl=0 color.defl=1 text.defl="Hello"
+    //% font.shadow="font8_block"
+    //% expandableArgumentMode="toggle"
+    //% inlineInputMode=inline
     print(text: string, x: number, y: number, color?: number, font?: bitmaps.Font, offsets?: texteffects.TextEffectState[]): void;
 
-    //% helper=imagePrintCenter
+    //% helper=imagePrintCenter blockNamespace="drawing" group="Text"
+    //% block="print $text centered in $this at y $y in color $color=colorindexpicker || and font $font"
+    //% blockId=bitmapPrintCenter
+    //% this.shadow="theScreen"
+    //% weight=89
+    //% y.defl=60 color.defl=1 text.defl="Hello"
+    //% font.shadow="font8_block"
+    //% expandableArgumentMode="toggle"
+    //% inlineInputMode=inline
     printCenter(text: string, y: number, color?: number, font?: bitmaps.Font): void;
+
 }
 
 namespace helpers {
@@ -302,6 +337,89 @@ namespace helpers {
                     }
                     x += mult
                 }
+            }
+        }
+    }
+
+    //% helper=imageShowDataView blockNamespace="drawing" group="Text"
+    //% block="show data view in $this headline $headline $label1 $value1 $label2 $value2 $label3 $value3||color $color=colorindexpicker background $backgroundColor=colorindexpicker offset $offset font $font"
+    //% blockId=bitmapShowDataView
+    //% this.shadow="theScreen"
+    //% weight=85
+    //% expandableArgumentMode="toggle"
+    //% inlineInputMode=external
+    //% color.defl=1
+    //% backgroundColor.defl=15
+    //% headline.defl="Overview"
+    //% label1.defl="Temperature"
+    //% value1.defl=22
+    //% label2.defl="Light Level"
+    //% value2.defl=55
+    //% label3.defl="Sound Level"
+    //% value3.defl=50
+    //% font.shadow="font8_block"
+    //% offset.defl=0
+    export function imageShowDataView(
+        img: Bitmap, 
+        headline: string,
+        label1?: string, 
+        value1?: number, 
+        label2?: string, 
+        value2?: number, 
+        label3?: string, 
+        value3?: number,
+        color?: number,
+        backgroundColor?: number,
+        offset?: number,
+        font?: bitmaps.Font
+    ) {
+        if (!font) font = bitmaps.font8;
+        if (!color) color = 1;
+        if (offset === undefined) offset = 0;
+        if (backgroundColor !== undefined && backgroundColor !== 0) {
+            img.fill(backgroundColor);
+        }
+        
+        const lineHeight = font.charHeight + 2;
+        const labelX = 2;
+        const valueX = bitmaps.width(img) - 2;
+        let y = 2 + offset;
+
+        // Print headline
+        if (headline) {
+            imagePrintCenter(img, headline, y, color, bitmaps.font12);
+            y += lineHeight + 8; // Extra spacing after headline
+        }
+        
+        // Print label-value pair 1
+        if (label1 !== undefined && label1 !== "") {
+            imagePrint(img, label1, labelX, y, color, font);
+            if (value1 !== undefined) {
+                const valueStr = value1.toString();
+                const valueWidth = valueStr.length * font.charWidth;
+                imagePrint(img, valueStr, valueX - valueWidth, y, color, font);
+            }
+            y += lineHeight;
+        }
+        
+        // Print label-value pair 2
+        if (label2 !== undefined && label2 !== "") {
+            imagePrint(img, label2, labelX, y, color, font);
+            if (value2 !== undefined) {
+                const valueStr = value2.toString();
+                const valueWidth = valueStr.length * font.charWidth;
+                imagePrint(img, valueStr, valueX - valueWidth, y, color, font);
+            }
+            y += lineHeight;
+        }
+        
+        // Print label-value pair 3
+        if (label3 !== undefined && label3 !== "") {
+            imagePrint(img, label3, labelX, y, color, font);
+            if (value3 !== undefined) {
+                const valueStr = value3.toString();
+                const valueWidth = valueStr.length * font.charWidth;
+                imagePrint(img, valueStr, valueX - valueWidth, y, color, font);
             }
         }
     }

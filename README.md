@@ -1,6 +1,6 @@
-# Display shield MakeCode extension for BBC micro:bit
+# Display shield MakeCode extension for BBC micro:bit and Calliope mini
 
-This MakeCode extension allows you to use any of the MakeCode Arcade shields with the MakeCode for BBC micro:bit editor. 
+This MakeCode extension allows you to use any of the MakeCode Arcade shields with the MakeCode for BBC micro:bit or MakeCode for Calliope editor. 
 The extension provides access to the color display and buttons on the shield, and has
 a Bitmap abstraction with numerous drawing primitives
 (draw line, circle, square, etc).
@@ -19,6 +19,12 @@ Five Arcade (display) shields for the micro:bit V2 are available on the market t
 
 ![MakeCode Arcade shields](https://github.com/microbit-apps/display-shield/blob/master/assets/shields.png?raw=true)
 ![more MakeCode Arcade shields](https://github.com/microbit-apps/display-shield/blob/master/assets/shields2.png?raw=true)
+
+
+## Arcade shields for the Calliope mini V3
+* [TINYSUPERLAB's GameKit Shield](https://shop.tinysuperlab.com/products/gamekit): No assembly required. Battery holder on the back. Jacdac compatible.
+
+![gamekit-calliope-mini-3](https://github.com/user-attachments/assets/8b0a923e-4297-4a91-ac62-8e150d269ed6)
 
 
 ## Simulator support
@@ -206,6 +212,29 @@ to fill the circle or just draw its outline:
 screen().fillCircle(10, 10, 8, 2)
 screen().drawCircle(10, 10, 8, 5)
 ```
+
+### Text
+There are three functions for drawing text onto a bitmap (including the screen):
+
+- `print(text, x, y, color?, font?)` — prints text starting at the given (x, y) coordinate.
+- `printCenter(text, y, color?, font?)` — prints text horizontally centered at the given y coordinate.
+- `showDataView(headline, label1?, value1?, label2?, value2?, label3?, value3?, color?, backgroundColor?, offset?, font?)` — displays a headline and up to three label/value pairs in a two-column layout, useful for showing sensor data or statistics. Labels or headlines without any string will not be printed. Using offset and a transparent background color, several calls of `showDataView(...)` can be combined to show 6 or more parameters in total.
+
+Here are examples in TypeScript using the `screen()` bitmap:
+
+```ts
+// 1) print — draw text at a specific position
+screen().print("Score: 123", 4, 4, 1) // x=4, y=4, color index 1
+
+// 2) printCenter — draw text centered horizontally
+screen().printCenter("Game Over", 50, 2) // centered at y=50, color index 2
+
+// 3) showDataView — display a headline and data pairs
+screen().showDataView("Stats", "Temp", 22, "Light", 55, "Sound", 49)
+```
+
+These helpers use built-in bitmapped fonts. You can explicitly pass a font (such as `bitmaps.font8` or `bitmaps.font12`) to control text size.
+
 
 ### Bitmap
 
@@ -485,5 +514,6 @@ screen().drawTransparentBitmap(orangeBox, 32, 32)
 # Supported targets
 
 - for PXT/microbit
+- for PXT/calliopemini
 
 <script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
