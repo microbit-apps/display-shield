@@ -342,7 +342,7 @@ namespace helpers {
     }
 
     //% helper=imageShowDataView blockNamespace="drawing" group="Text"
-    //% block="show data view in $this headline $headline $label1 $value1 $label2 $value2 $label3 $value3||color $color=colorindexpicker background $backgroundColor=colorindexpicker offset $offset font $font"
+    //% block="show data view in $img headline $headline $label1 $value1 $label2 $value2 $label3 $value3||color $color=colorindexpicker background $backgroundColor=colorindexpicker offset $offset font $font"
     //% blockId=bitmapShowDataView
     //% this.shadow="theScreen"
     //% weight=85
