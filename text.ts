@@ -347,7 +347,7 @@ namespace helpers {
     //% weight=85
     //% expandableArgumentMode="toggle"
     //% inlineInputMode=external
-    //% img.defl="theScreen"
+    //% img.shadow="theScreen"
     //% color.defl=1
     //% backgroundColor.defl=15
     //% headline.defl="Overview"
