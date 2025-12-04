@@ -218,7 +218,7 @@ There are three functions for drawing text onto a bitmap (including the screen):
 
 - `print(text, x, y, color?, font?)` — prints text starting at the given (x, y) coordinate.
 - `printCenter(text, y, color?, font?)` — prints text horizontally centered at the given y coordinate.
-- `showDataView(headline, label1?, value1?, ...)` — displays a headline and up to three label/value pairs in a two-column layout, useful for showing sensor data or statistics.
+- `showDataView(headline, label1?, value1?, label2?, value2?, label3?, value3?, color?, backgroundColor?, offset?, font?)` — displays a headline and up to three label/value pairs in a two-column layout, useful for showing sensor data or statistics. Labels or headlines without any string will not be printed. Using offset and a transparent background color, several calls of `showDataView(...)` can be combined to show 6 or more parameters in total.
 
 Here are examples in TypeScript using the `screen()` bitmap:
 
@@ -233,7 +233,7 @@ screen().printCenter("Game Over", 50, 2) // centered at y=50, color index 2
 screen().showDataView("Stats", "Temp", 22, "Light", 55, "Sound", 49)
 ```
 
-These helpers use built-in bitmapped fonts and will automatically select a larger font for Unicode text. You can explicitly pass a font (such as `bitmaps.font8` or `bitmaps.font12`) to control text size.
+These helpers use built-in bitmapped fonts. You can explicitly pass a font (such as `bitmaps.font8` or `bitmaps.font12`) to control text size.
 
 
 ### Bitmap
