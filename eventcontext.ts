@@ -21,20 +21,21 @@ namespace context {
             public flags: number
         ) { }
 
+        private myHandler: () => void = undefined
+
         register() {
-            control.onEvent(this.src, this.value, () => {
+            this.myHandler = () => {
                 if (this.handler) this.handler();
-            }, this.flags)
+            }
+            control.rawOnEvent(this.src, this.value, this.myHandler, this.flags)
         }
 
         unregister() {
-            control.onEvent(this.src, this.value, doNothing, this.flags);
+            control.rawUnregisterEvent(this.src, this.value);
         }
     }
 
     function doNothing() { }
-
-
 
     export class EventContext {
         private handlers: EventHandler[];
@@ -100,7 +101,7 @@ namespace context {
         }
 
         private runningCallbacks: boolean;
-        private registerFrameCallbacks() {
+        private startFrameWorker() {
             if (!this.frameCallbacks) return;
 
             const worker = this.frameWorker;
@@ -129,7 +130,7 @@ namespace context {
         register() {
             for (const h of this.handlers)
                 h.register();
-            this.registerFrameCallbacks();
+            this.startFrameWorker();
         }
 
         unregister() {
@@ -141,7 +142,7 @@ namespace context {
         registerFrameHandler(order: number, handler: () => void): FrameCallback {
             if (!this.frameCallbacks) {
                 this.frameCallbacks = [];
-                this.registerFrameCallbacks();
+                this.startFrameWorker();
             }
 
             const fn = new FrameCallback()

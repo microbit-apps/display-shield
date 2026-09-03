@@ -1,27 +1,30 @@
-// namespace config {
-//    export const DISPLAY_CFG0 = 0x02030180 // allow execution without shield plugged in
-// }
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    screen().fill(8)
+    screen().drawLine(0, 0, 160, 120, 1)
+    screen().drawLine(160, 0, 0, 120, 1)
+})
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    screen().fill(0)
+    screen().fillCircle(0, 0, 20, 3)
+    screen().fillCircle(160, 0, 20, 9)
+    screen().fillCircle(160, 120, 20, 7)
+    screen().fillCircle(0, 120, 20, 5)
+})
 
-// tests go here; this will not be compiled when this package is used as an extension.
+let presses = 0;
+controller.A.onEvent(
+  ControllerButtonEvent.Pressed,
+  () => {
+      presses += 1
+})
 
-const present = shieldhelpers.shieldPresent();
+controller.B.onEvent(
+      ControllerButtonEvent.Pressed,
+  () => {
+      presses = 0
+    })
 
-basic.showNumber(present ? 1 : 0)
+input.onButtonPressed(Button.A, () => {
+    basic.showNumber(presses)
+})
 
-while (true) {
-    let x = 0
-    let my = theScreen.height -1
-    theScreen.fill(0)
-    theScreen.print((my+1).toString(), 60, 60)
-    while (x < 160) {
-        theScreen.setPixel(x, 0, 9)
-        theScreen.setPixel(x, 2, 10)
-        theScreen.setPixel(x, 4, 11)
-        theScreen.setPixel(x, my, 9)
-        theScreen.setPixel(x, my - 2, 10)
-        theScreen.setPixel(x, my - 4, 11)
-        x++
-        basic.pause(100)
-        // pause
-    }
-}
