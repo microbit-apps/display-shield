@@ -17,7 +17,7 @@ Five Arcade (display) shields for the micro:bit V2 are available on the market t
 * [Forward Education's CodeCTRL shield](https://forwardedu.com/pages/codectrl-for-micro-bit): No assembly required. Large screen and 3-d printed enclosure with LiPo battery inside. Two [Jacdac](https://aka.ms/jacdac) ports.
 * [Kitronik's Arcade for BBC micro:bit](https://kitronik.co.uk/products/56116-kitronik-arcade-for-bbc-micro-bit-makecode-arcade): No assembly required. Small screen. Battery holder on back. No Jacdac port.
 * [TomatoCube's MakeCode Arcade Display Shield for micro:bit](https://tomatocube.com/product/makecode-arcade-display-shield-for-microbit). No assembly required. Small screen. Batteries not included. One Jacdac port
-* [ELECFREAK's micro:bit Arcade Pro"](https://shop.elecfreaks.com/products/elecfreaks-microsoft-makecode-micro-bit-arcade-pro). No assembly required. Large screen with injection-molded case and LiPo battery inside. One Jacdac port.
+* [ELECFREAK's micro:bit Arcade Pro](https://shop.elecfreaks.com/products/elecfreaks-microsoft-makecode-micro-bit-arcade-pro). No assembly required. Large screen with injection-molded case and LiPo battery inside. One Jacdac port.
 
 ![MakeCode Arcade shields](https://github.com/microbit-apps/display-shield/blob/master/assets/shields.png?raw=true)
 ![more MakeCode Arcade shields](https://github.com/microbit-apps/display-shield/blob/master/assets/shields2.png?raw=true)
