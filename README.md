@@ -21,7 +21,7 @@ Five Arcade (display) shields for the micro:bit V2 are available on the market t
 
 ![MakeCode Arcade shields](https://github.com/microbit-apps/display-shield/blob/master/assets/shields.png?raw=true)
 ![more MakeCode Arcade shields](https://github.com/microbit-apps/display-shield/blob/master/assets/shields2.png?raw=true)
-![more MakeCode Arcade shields](https://github.com/microbit-apps/display-shield/blob/master/assets/shields3.png?raw=true)
+![even more MakeCode Arcade shields](https://github.com/microbit-apps/display-shield/blob/master/assets/shields3.png?raw=true)
 
 
 ## Arcade shields for the Calliope mini V3
